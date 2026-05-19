@@ -1,10 +1,4 @@
 # Smart-Lost-and-Found-System
-This is the exact layout you can copy, paste, and complete with your team's specific details to present to your lecturer.
-
-Practical 1 Report: Project Proposal and Initial Setup
-Team Name: [Optional: Insert Team Name]
-
-Course Code: CP3407 Advanced Software Engineering / Projects
 
 Task One: Project Proposal
 

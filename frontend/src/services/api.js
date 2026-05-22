@@ -1,7 +1,7 @@
 // All API calls go through this file.
 // Change API_BASE to your Render URL after deploying the backend.
 
-const API_BASE = "http://127.0.0.1:5000";
+const API_BASE = "https://smart-lost-and-found-system.onrender.com";
 
 async function request(path, options = {}) {
   const res = await fetch(`${API_BASE}${path}`, {

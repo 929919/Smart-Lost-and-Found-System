@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lost &amp; Found · James Cook University Singapore</title>
+  <link rel="icon" href="assets/img/jcu_logo.png" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body data-page="dashboard">
+  <div id="site-header"></div>
+
+  <section class="hero lg">
+    <div class="wrap">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a><span class="sep">/</span>
+        <span>Campus Services</span><span class="sep">/</span>
+        <span>Lost &amp; Found</span>
+      </div>
+      <span class="tagchip">⭐ Smart Lost &amp; Found System</span>
+      <h1>Lost &amp; Found</h1>
+      <p class="lede">Browse items handed in across the JCU Singapore campus. Found something? Report it so it can be reunited with its owner.</p>
+    </div>
+  </section>
+
+  <div class="hero-search">
+    <div class="box">
+      <span class="ico">🔎</span>
+      <input type="text" id="heroSearch" placeholder="Search for an item — e.g. wallet, AirPods, ID card…" />
+      <a href="report.html" class="btn btn--primary">＋ Report an Item</a>
+    </div>
+  </div>
+
+  <main class="wrap section">
+    <section class="section-head">
+      <span class="eyebrow">Overview</span>
+      <h2>Item Statistics</h2>
+    </section>
+    <section class="stats" id="stats"></section>
+
+    <div class="toolbar">
+      <div class="search-inline">
+        <span>🔎</span>
+        <input type="text" id="search" placeholder="Filter the list by name, description or location…" />
+      </div>
+    </div>
+    <div class="filters" id="categoryFilters" style="margin-bottom:10px"></div>
+    <div class="filters" id="statusFilters"></div>
+
+    <section class="grid" id="grid"></section>
+
+    <div style="margin-top:46px">
+      <div class="cta-band">
+        <div>
+          <h3>Found something on campus?</h3>
+          <p>Hand it in and log it here — it only takes a minute and helps a fellow student.</p>
+        </div>
+        <span class="spacer"></span>
+        <a href="report.html" class="btn btn--gold">Report an Item →</a>
+      </div>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="assets/js/store.js"></script>
+  <script src="assets/js/layout.js"></script>
+  <script src="assets/js/dashboard.js"></script>
+</body>
+</html>

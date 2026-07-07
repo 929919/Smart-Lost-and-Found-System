@@ -1,0 +1,134 @@
+
+<style>
+#erd svg { width: 100%; }
+</style>
+<div id="erd"></div>
+<script type="module">
+import mermaid from 'https://esm.sh/mermaid@11/dist/mermaid.esm.min.mjs';
+const dark = matchMedia('(prefers-color-scheme: dark)').matches;
+await document.fonts.ready;
+mermaid.initialize({
+  startOnLoad: false,
+  theme: 'base',
+  fontFamily: '"Anthropic Sans", sans-serif',
+  themeVariables: {
+    darkMode: dark,
+    fontSize: '13px',
+    fontFamily: '"Anthropic Sans", sans-serif',
+    lineColor: dark ? '#9c9a92' : '#73726c',
+    textColor: dark ? '#c2c0b6' : '#3d3d3a',
+    primaryColor: dark ? '#1c3a5a' : '#E6F1FB',
+    primaryTextColor: dark ? '#b5d4f4' : '#0C447C',
+    primaryBorderColor: dark ? '#185FA5' : '#185FA5',
+    secondaryColor: dark ? '#1a3a2a' : '#EAF3DE',
+    tertiaryColor: dark ? '#2c2c2a' : '#F1EFE8',
+  },
+});
+const { svg } = await mermaid.render('erd-svg', `classDiagram
+  class Item {
+    +int id
+    +string name
+    +string category
+    +string location
+    +string item_type
+    +string description
+    +string color
+    +string shelf_tag
+    +string status
+    +string contact
+    +datetime created_at
+    +getAll() List
+    +getById(id) Item
+    +create(data) Item
+    +updateStatus(id, status) Item
+  }
+
+  class Store {
+    -string STORE_KEY
+    +load() List
+    +save(items) void
+    +all() List
+    +add(item) Item
+    +updateStatus(id, status) Item
+    +stats() Stats
+    +reset() void
+  }
+
+  class Dashboard {
+    -string search
+    -string category
+    -string status
+    +render() void
+    +renderStats() void
+    +renderFilters() void
+    +filterByCategory(cat) void
+    +filterByStatus(status) void
+  }
+
+  class ChatAssistant {
+    +reply(message) Response
+    +matchItem(message) Item
+    +answerPolicy(message) string
+    +send(message) void
+  }
+
+  class ReportForm {
+    -string selectedArea
+    +buildMap() void
+    +selectArea(name) void
+    +validate() bool
+    +submit() void
+  }
+
+  class AdminConsole {
+    +render() void
+    +renderStats() void
+    +updateStatus(id, status) void
+    +reset() void
+  }
+
+  class FlaskAPI {
+    +getItems(filters) JSON
+    +createItem(data) JSON
+    +updateItem(id, data) JSON
+    +getStats() JSON
+    +chat(message) JSON
+  }
+
+  class SupabaseDB {
+    +select(table, filters) List
+    +insert(table, data) Item
+    +update(table, id, data) Item
+  }
+
+  Dashboard --> Store : reads
+  ChatAssistant --> Store : searches
+  ReportForm --> Store : writes
+  AdminConsole --> Store : reads/writes
+  Store --> Item : manages
+
+  FlaskAPI --> SupabaseDB : queries
+  FlaskAPI --> Item : returns
+`);
+document.getElementById('erd').innerHTML = svg;
+
+document.querySelectorAll('#erd svg .node').forEach(node => {
+  const firstPath = node.querySelector('path[d]');
+  if (!firstPath) return;
+  const d = firstPath.getAttribute('d');
+  const nums = d.match(/-?[\d.]+/g)?.map(Number);
+  if (!nums || nums.length < 8) return;
+  const xs = [nums[0], nums[2], nums[4], nums[6]];
+  const ys = [nums[1], nums[3], nums[5], nums[7]];
+  const x = Math.min(...xs), y = Math.min(...ys);
+  const w = Math.max(...xs) - x, h = Math.max(...ys) - y;
+  const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+  rect.setAttribute('x', x); rect.setAttribute('y', y);
+  rect.setAttribute('width', w); rect.setAttribute('height', h);
+  rect.setAttribute('rx', '8');
+  for (const a of ['fill', 'stroke', 'stroke-width', 'class', 'style']) {
+    if (firstPath.hasAttribute(a)) rect.setAttribute(a, firstPath.getAttribute(a));
+  }
+  firstPath.replaceWith(rect);
+});
+</script>

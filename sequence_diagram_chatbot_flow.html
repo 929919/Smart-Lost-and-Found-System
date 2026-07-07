@@ -1,0 +1,63 @@
+
+<div id="seq"></div>
+<script type="module">
+import mermaid from 'https://esm.sh/mermaid@11/dist/mermaid.esm.min.mjs';
+const dark = matchMedia('(prefers-color-scheme: dark)').matches;
+await document.fonts.ready;
+mermaid.initialize({
+  startOnLoad: false,
+  theme: 'base',
+  fontFamily: '"Anthropic Sans", sans-serif',
+  themeVariables: {
+    darkMode: dark,
+    fontSize: '13px',
+    fontFamily: '"Anthropic Sans", sans-serif',
+    lineColor: dark ? '#9c9a92' : '#73726c',
+    textColor: dark ? '#c2c0b6' : '#3d3d3a',
+    primaryColor: dark ? '#1c3a5a' : '#E6F1FB',
+    primaryTextColor: dark ? '#b5d4f4' : '#0C447C',
+    primaryBorderColor: dark ? '#185FA5' : '#185FA5',
+    secondaryColor: dark ? '#08341e' : '#EAF3DE',
+    secondaryTextColor: dark ? '#c0dd97' : '#27500a',
+    tertiaryColor: dark ? '#412402' : '#FAEEDA',
+    noteBkgColor: dark ? '#412402' : '#FAEEDA',
+    noteTextColor: dark ? '#fac775' : '#633806',
+  },
+});
+const { svg } = await mermaid.render('seq-svg', `sequenceDiagram
+  actor User as Student / Staff
+  participant UI as Browser (HTML/React)
+  participant API as Flask API
+  participant DB as Supabase DB
+
+  User->>UI: Types message in chatbot
+  UI->>API: POST /api/chat {message}
+  API->>API: Parse keywords in message
+
+  alt Policy question (collect, hours, rules)
+    API-->>UI: Reply with policy text
+    UI-->>User: Show policy answer
+  else Item search
+    API->>DB: SELECT * FROM items WHERE status = Active
+    DB-->>API: Return active items list
+    API->>API: Match keywords vs item names
+    alt Match found
+      API-->>UI: {reply, match: item data}
+      UI-->>User: Show answer + item card (name, location, shelf)
+    else No match
+      API-->>UI: {reply: suggest dashboard}
+      UI-->>User: Suggest browsing dashboard
+    end
+  end
+
+  Note over User,DB: User can also browse the dashboard directly
+
+  User->>UI: Apply category / status filters
+  UI->>API: GET /api/items?category=X&status=Y
+  API->>DB: SELECT * FROM items WHERE filters
+  DB-->>API: Filtered items list
+  API-->>UI: JSON items array
+  UI-->>User: Render item grid
+`);
+document.getElementById('seq').innerHTML = svg;
+</script>

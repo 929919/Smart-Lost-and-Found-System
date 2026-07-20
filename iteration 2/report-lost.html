@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Report a Lost Item · JCU Singapore Lost &amp; Found</title>
+  <link rel="icon" href="assets/img/jcu_logo.png" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <script>window.PAGE_REQUIRES = "student";</script>
+  <script src="assets/js/auth.js"></script>
+</head>
+<body data-page="report-lost">
+  <div id="site-header"></div>
+
+  <section class="hero sm">
+    <div class="wrap">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a><span class="sep">/</span>
+        <a href="index.html">Lost &amp; Found</a><span class="sep">/</span>
+        <span>Report a Lost Item</span>
+      </div>
+      <h1>Report a Lost Item</h1>
+      <p class="lede">Lost something on campus? Tell us what it is and pinpoint where you last had it — we'll match it against found items.</p>
+    </div>
+  </section>
+
+  <main class="wrap section" style="max-width:900px">
+    <div class="banner success" id="banner">✅ Your lost item report has been submitted! Redirecting to the dashboard…</div>
+
+    <form id="reportForm" novalidate>
+      <div class="panel" id="mapCard">
+        <div class="panel-title">📍 Step 1 — Where did you last have it?</div>
+        <div class="panel-sub">Click a location pin on the JCU Singapore campus map below.</div>
+        <div class="mapwrap">
+          <img src="assets/img/jcu_layout.png" alt="JCU Singapore campus aerial map" />
+          <div id="mapPins"></div>
+        </div>
+        <div class="map-selected" id="mapSelected"><span class="dot"></span> No location selected yet — click a pin above.</div>
+        <input type="hidden" id="location" name="location" />
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">📝 Step 2 — Item details</div>
+        <div class="panel-sub">The more detail you provide, the easier it is to find a match.</div>
+        <div class="form-grid">
+          <div class="field full">
+            <label for="name">Item name <span class="req">*</span></label>
+            <input id="name" name="name" type="text" placeholder="e.g. Black leather wallet" required />
+          </div>
+          <div class="field">
+            <label for="category">Category <span class="req">*</span></label>
+            <select id="category" name="category" required>
+              <option value="">Select…</option>
+              <option>Electronics</option><option>Accessories</option><option>Clothing</option>
+              <option>Documents</option><option>Keys</option><option>Other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="color">Colour</label>
+            <input id="color" name="color" type="text" placeholder="e.g. Black" />
+          </div>
+          <div class="field">
+            <label for="date">Date lost</label>
+            <input id="date" name="date" type="date" />
+          </div>
+          <div class="field">
+            <label for="contact">Contact <span class="hint">(email or phone)</span></label>
+            <input id="contact" name="contact" type="text" placeholder="you@my.jcu.edu.au" />
+          </div>
+          <div class="field full">
+            <label for="description">Description</label>
+            <textarea id="description" name="description" placeholder="Any distinguishing details — brand, contents, markings…"></textarea>
+          </div>
+        </div>
+        <p class="form-error" id="error"></p>
+        <div style="margin-top:22px;display:flex;gap:12px;flex-wrap:wrap">
+          <button type="submit" class="btn btn--primary">Submit Lost Report</button>
+          <a href="index.html" class="btn btn--ghost">Cancel</a>
+        </div>
+      </div>
+    </form>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="assets/js/store.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/map.js"></script>
+  <script src="assets/js/report-lost.js"></script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Log a Found Item · JCU Singapore Lost &amp; Found</title>
+  <link rel="icon" href="assets/img/jcu_logo.png" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <script>window.PAGE_REQUIRES = "admin";</script>
+  <script src="assets/js/auth.js"></script>
+</head>
+<body data-page="log-found">
+  <div id="site-header"></div>
+
+  <section class="hero sm">
+    <div class="wrap">
+      <div class="breadcrumb">
+        <a href="admin-dashboard.html">Admin Home</a><span class="sep">/</span>
+        <span>Log a Found Item</span>
+      </div>
+      <h1>Log a Found Item</h1>
+      <p class="lede">Record an item handed in to campus security, with a photo so its owner can recognise it.</p>
+    </div>
+  </section>
+
+  <main class="wrap section" style="max-width:900px">
+    <div class="banner success" id="banner">✅ Found item logged successfully! Redirecting to the dashboard…</div>
+
+    <form id="logForm" novalidate>
+      <!-- Step 1: photo (camera or upload) -->
+      <div class="panel">
+        <div class="panel-title">📷 Step 1 — Add a photo</div>
+        <div class="panel-sub">Take a photo with your device camera, or upload an existing image.</div>
+
+        <div class="cam-tabs">
+          <button type="button" class="cam-tab active" data-tab="camera">📸 Take Photo</button>
+          <button type="button" class="cam-tab" data-tab="upload">📁 Upload File</button>
+        </div>
+
+        <!-- Camera panel -->
+        <div class="cam-panel active" id="panel-camera">
+          <div class="cam-stage">
+            <video id="camVideo" playsinline autoplay muted style="display:none"></video>
+            <div class="cam-msg" id="camMsg">Click “Start Camera” to begin. You can also switch to Upload File.</div>
+            <div id="camCapturedWrap" style="display:none;width:100%;height:100%">
+              <img id="camCaptured" alt="Captured photo" />
+            </div>
+          </div>
+          <canvas id="camCanvas" style="display:none"></canvas>
+          <div class="cam-actions">
+            <button type="button" class="btn btn--primary" id="camStart">Start Camera</button>
+            <button type="button" class="btn btn--ok" id="camCapture" style="display:none">📸 Capture</button>
+            <button type="button" class="btn btn--ghost" id="camRetake" style="display:none">↺ Retake</button>
+          </div>
+        </div>
+
+        <!-- Upload panel -->
+        <div class="cam-panel" id="panel-upload">
+          <div class="drop-zone">
+            <div>🖼️ Choose an image file to upload</div>
+            <input type="file" id="fileInput" accept="image/*" style="margin-top:12px" />
+            <img id="filePreview" class="preview" alt="Upload preview" style="display:none" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2: details -->
+      <div class="panel">
+        <div class="panel-title">📝 Step 2 — Item details</div>
+        <div class="form-grid">
+          <div class="field full">
+            <label for="name">Item name <span class="req">*</span></label>
+            <input id="name" name="name" type="text" placeholder="e.g. Black leather wallet" required />
+          </div>
+          <div class="field">
+            <label for="category">Category <span class="req">*</span></label>
+            <select id="category" name="category" required>
+              <option value="">Select…</option>
+              <option>Electronics</option><option>Accessories</option><option>Clothing</option>
+              <option>Documents</option><option>Keys</option><option>Other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="date">Date found</label>
+            <input id="date" name="date" type="date" />
+          </div>
+          <div class="field">
+            <label for="shelf_tag">Storage location <span class="hint">(shelf tag)</span></label>
+            <input id="shelf_tag" name="shelf_tag" type="text" placeholder="e.g. B-12" />
+          </div>
+          <div class="field">
+            <label for="color">Colour</label>
+            <input id="color" name="color" type="text" placeholder="e.g. Black" />
+          </div>
+          <div class="field full">
+            <label for="description">Description</label>
+            <textarea id="description" name="description" placeholder="Distinguishing details — brand, contents, markings…"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3: location -->
+      <div class="panel" id="mapCard">
+        <div class="panel-title">📍 Step 3 — Where was it found?</div>
+        <div class="panel-sub">Click a location pin on the JCU Singapore campus map.</div>
+        <div class="mapwrap">
+          <img src="assets/img/jcu_layout.png" alt="JCU Singapore campus aerial map" />
+          <div id="mapPins"></div>
+        </div>
+        <div class="map-selected" id="mapSelected"><span class="dot"></span> No location selected yet — click a pin above.</div>
+        <input type="hidden" id="location" name="location" />
+
+        <p class="form-error" id="error"></p>
+        <div style="margin-top:22px;display:flex;gap:12px;flex-wrap:wrap">
+          <button type="submit" class="btn btn--primary">Log Found Item</button>
+          <a href="admin-dashboard.html" class="btn btn--ghost">Cancel</a>
+        </div>
+      </div>
+    </form>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="assets/js/store.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/map.js"></script>
+  <script src="assets/js/camera.js"></script>
+  <script src="assets/js/log-found.js"></script>
+</body>
+</html>

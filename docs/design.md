@@ -109,7 +109,26 @@ erDiagram
   }
 ```
 
-The SQL schema lives in [`backend/supabase_schema.sql`](../backend/supabase_schema.sql).
+The authoritative SQL lives in **[`iteration 3/db/`](../iteration%203/db)**:
+[`schema.sql`](../iteration%203/db/schema.sql) (items + claims) and
+[`users.sql`](../iteration%203/db/users.sql) (accounts + the `verify_login`
+function). *(`backend/supabase_schema.sql` is an earlier draft kept for history —
+do not run it.)*
+
+### Third table — `users` (authentication)
+```mermaid
+erDiagram
+  USERS {
+    bigint id PK
+    text jcu_id UK
+    text password
+    text full_name
+    text role "student|admin|none"
+    timestamptz created_at
+  }
+```
+`users` is deliberately **not** linked by a foreign key to `claims`; claims store
+the claimant's JCU ID as text so a claim survives an account being removed.
 
 > 🛠️ Also modelled in **GenMyModel** (online DB diagram tool): _add link_
 

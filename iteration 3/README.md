@@ -27,18 +27,24 @@ python -m http.server 8124    # then open http://localhost:8124/login.html
 which browsers only allow on `localhost`/HTTPS.)
 
 ## Sign in
-No passwords. Enter any **JCU ID** (e.g. `jc123456`) and pick a role:
+Accounts live in the `users` table in PostgreSQL. **Your access level comes from
+the account — you cannot choose it at login.**
 
-- **Student** → browse & claim found items, report a lost item.
-- **Admin** → log found items (with photo), review & approve claims.
+| JCU ID | Password | Access level |
+|--------|----------|--------------|
+| `jc111111` | `student123` | 🎓 Student — browse & claim found items, report a lost item |
+| `jc999999` | `admin123` | 🛡️ Admin — log found items, review & approve claims |
+| `jc000000` | `guest123` | 🚫 No access — a valid account with no permissions |
 
-Your session is stored as `currentUser = {jcuId, role}` in localStorage. Use the
-**Logout** button (top-right) to switch roles.
+Credentials are checked by `verify_login()`, a `SECURITY DEFINER` function that
+runs inside the database, so passwords never reach the browser and Row-Level
+Security stops the client reading the `users` table. The signed-in session is
+kept as `currentUser = {jcuId, name, role}`; use **Logout** (top-right) to switch.
 
 ## Pages & access
 | Page                  | Role    | Purpose                                                  |
 |-----------------------|---------|----------------------------------------------------------|
-| `login.html`          | guest   | JCU ID + role sign in                                    |
+| `login.html`          | guest   | JCU ID + password sign in                                |
 | `index.html`          | both    | Dashboard of all items (search / filter)                 |
 | `item-detail.html`    | both    | Item details; students can start a claim                 |
 | `report-lost.html`    | student | Report a lost item (campus map location picker)          |
@@ -48,9 +54,11 @@ Your session is stored as `currentUser = {jcuId, role}` in localStorage. Use the
 | `log-found.html`      | admin   | Log a found item with **camera or upload** + map         |
 | `admin-claims.html`   | admin   | Review claims: approve / reject / mark returned          |
 | `admin.html`          | admin   | Item status table (extra management view)                |
+| `no-access.html`      | none    | Shown to accounts without permissions                    |
 
-**Route guard:** every protected page runs `auth.js` in `<head>`; visiting a page
-your role can't access (or while signed out) bounces you to `login.html`.
+**Route guard:** every protected page runs `auth.js` in `<head>`; signed-out
+visitors go to `login.html`, accounts with no permissions go to `no-access.html`,
+and signing in with the wrong role for a page returns you to your own home page.
 
 ## How data works
 Everything persists in **localStorage** (no backend):

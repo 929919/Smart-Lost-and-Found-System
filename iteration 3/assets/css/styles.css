@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Smart Lost & Found — JCU Singapore · Iteration 1
+   Smart Lost & Found — JCU Singapore · Iteration 3
    Professional redesign. Plain CSS, no frameworks.
    ========================================================================== */
 
@@ -360,14 +360,6 @@ td select { border: 1px solid var(--line); border-radius: 8px; padding: 7px 10px
 .login-card .logobox img { height: 60px; display: inline-block; }
 .login-card h1 { font-size: 1.55rem; text-align: center; }
 .login-card .sub { text-align: center; color: var(--text-soft); margin: 6px 0 24px; font-size: .94rem; }
-.role-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 6px; }
-.role-card { border: 2px solid var(--line); border-radius: 12px; padding: 18px 14px; text-align: center; cursor: pointer; transition: all .15s; background: var(--surface); }
-.role-card .ic { font-size: 2rem; }
-.role-card .nm { font-weight: 700; color: var(--jcu-navy); margin-top: 6px; }
-.role-card .ds { font-size: .78rem; color: var(--text-soft); margin-top: 2px; }
-.role-card:hover { border-color: var(--jcu-blue); }
-.role-card.selected { border-color: var(--jcu-blue); background: #eaf4fb; box-shadow: 0 0 0 3px rgba(0,121,193,.12); }
-.role-card input { display: none; }
 
 /* --- Admin dashboard action cards --- */
 .action-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
@@ -482,7 +474,6 @@ select:focus-visible,
 textarea:focus-visible,
 .chip:focus-visible,
 .map-pin:focus-visible,
-.role-card:focus-visible,
 .card:focus-visible {
   outline: 3px solid var(--jcu-gold);
   outline-offset: 2px;

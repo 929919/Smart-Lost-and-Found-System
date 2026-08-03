@@ -8,5 +8,5 @@
 # Team members (3 Members)
 
 ## Student 1: João Gabriel Costa
-## Student 2: Chiranjeeb Satpathy 
-## Student 3: [Nome do Integrante 3] 
+## Student 2: Chiranjeeb Satpathy
+## Student 3: Yuvraj Dave

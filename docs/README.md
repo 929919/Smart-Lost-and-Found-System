@@ -20,6 +20,7 @@ items, and a help assistant.
 | 🎤 [Demo Script](DEMO-SCRIPT.md) | 15-minute walkthrough running order |
 | [Requirements & Product Backlog](requirements.md) | 1 — Requirements |
 | [Design](design.md) — architecture, database, UI | 2 — Design |
+| [Diagram Build Specs](diagram-specs.md) — Gliffy / GenMyModel / NinjaMock | 2 — Design |
 | [Implementation](implementation.md) — what we delivered | 3 — Implementation / Code |
 | [Testing](testing.md) — strategy, TDD, unit tests, accessibility | 4 — Test |
 | [Acceptance Tests](acceptance-tests.md) — Given/When/Then per story | 4 — Test |
@@ -38,8 +39,8 @@ Smart-Lost-and-Found-System/
 ├── iteration 1/        # Iteration 1 — static browse & report prototype
 ├── iteration 2/        # Iteration 2 — roles, claims, camera
 ├── iteration 3/        # Iteration 3 — auto-matching, tests, DB (current app)
-├── backend/            # Flask API + Supabase schema (database tier)
-├── frontend/           # Earlier React prototype
+├── backend/            # ⚠️ superseded Flask prototype (see its README)
+├── frontend/           # ⚠️ superseded React prototype (see its README)
 ├── docs/               # 📚 this documentation
 └── README.md
 ```

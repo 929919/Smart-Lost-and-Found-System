@@ -49,10 +49,14 @@ Full documentation lives in **[`docs/`](docs)** — one page per assessment crit
 
 | Page | Covers |
 |------|--------|
+| 📋 **[How to Test](docs/HOW-TO-TEST.md)** | **Click-by-click walkthrough — start here if marking** |
+| 🎤 [Demo Script](docs/DEMO-SCRIPT.md) | 15-minute presentation running order |
 | [Requirements & Backlog](docs/requirements.md) | User stories, MoSCoW priorities, estimates, budget |
 | [Design](docs/design.md) | Architecture, database ER model, UI design |
+| [Diagram Build Specs](docs/diagram-specs.md) | Specs for the Gliffy / GenMyModel / NinjaMock diagrams |
 | [Implementation](docs/implementation.md) | What each iteration delivered, tech stack |
-| [Testing](docs/testing.md) | Strategy, TDD, unit + acceptance tests |
+| [Testing](docs/testing.md) | Strategy, TDD, unit tests, accessibility |
+| [Acceptance Tests](docs/acceptance-tests.md) | 34 Given/When/Then scenarios + traceability matrix |
 | [Version Control](docs/version-control.md) | Branching model, commit conventions, tags |
 | [Build & Dev Tools](docs/tools.md) | Tools and libraries used, and how |
 | [Agile Process](docs/agile.md) | Iteration plans, reviews, retrospectives, velocity |
@@ -66,9 +70,9 @@ Smart-Lost-and-Found-System/
 ├── iteration 1/     # Iteration 1 — browse & report prototype          (tag v1.0)
 ├── iteration 2/     # Iteration 2 — roles, claims, camera              (tag v2.0)
 ├── iteration 3/     # Iteration 3 — auto-matching, tests, database  ← CURRENT APP
-├── docs/            # Project documentation
-├── backend/         # Flask API + Supabase schema (database tier)
-└── frontend/        # Earlier React prototype
+├── docs/            # Project documentation (+ diagrams/)
+├── backend/         # ⚠️ superseded Flask prototype — kept for history
+└── frontend/        # ⚠️ superseded React prototype — kept for history
 ```
 
 Each iteration folder is a snapshot of what that iteration actually delivered, so the
@@ -80,7 +84,7 @@ incremental progress is visible. Releases are tagged `v1.0`, `v2.0`, `v3.0`.
 |-----------|-----------|
 | **1** | Found-items dashboard (search, category/status filters, live stats), report form with interactive JCU campus map picker, rule-based assistant |
 | **2** | JCU ID login with Student/Admin roles + route guard, item detail pages, claim submission with proof of ownership, admin dashboard, log-found with **camera capture**, claims review (approve/reject/mark returned) |
-| **3** | **Lost↔found auto-matching**, **35 automated unit tests**, **PostgreSQL schema**, project documentation suite |
+| **3** | **Live PostgreSQL database** (Supabase), **credential login with database-backed accounts and roles**, **lost↔found auto-matching**, **35 automated unit tests**, accessibility pass, full documentation suite |
 
 ## 🛠️ Technology
 

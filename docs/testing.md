@@ -62,8 +62,9 @@ app data. **Result: 35/35 passing.**
 ## Acceptance tests (mapped to user stories)
 
 > 📋 Full **Given / When / Then** scenarios with a traceability matrix live in
-> **[acceptance-tests.md](acceptance-tests.md)** — 33 scenarios covering all 14
+> **[acceptance-tests.md](acceptance-tests.md)** — 34 scenarios covering all 14
 > delivered stories. Summary below.
+
 | Story | Given / When / Then | Result |
 |-------|---------------------|:------:|
 | 1.2 | Sign in as Student → only Student nav is shown | ✅ |
@@ -84,7 +85,7 @@ app data. **Result: 35/35 passing.**
 | Validation errors announced | `role="alert"` on form error messages | ✅ |
 | Images described | `alt` text on all images | ✅ |
 | Motion sensitivity | `prefers-reduced-motion` disables transitions and hover transforms | ✅ |
-| Language declared | `lang="en"` on all 10 pages | ✅ |
+| Language declared | `lang="en"` on all 11 pages | ✅ |
 | Landmarks | `<header> <nav> <main id="main-content"> <footer>` | ✅ |
 
 ## Test data set

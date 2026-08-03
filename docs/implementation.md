@@ -58,8 +58,8 @@ Detail, Admin Claims. (Save under `docs/img/` and embed with `![](img/...)`.)_
 
 ## Run / build
 ```bash
-# Current app (Iteration 2)
-cd "iteration 2" && python -m http.server 8124   # http://localhost:8124/login.html
+# Current app (Iteration 3)
+cd "iteration 3" && python -m http.server 8124   # http://localhost:8124/login.html
 ```
 No build step is required. Iteration 3 adds a `config.js` holding your Supabase
 URL + anon key (see [Tools](tools.md)).

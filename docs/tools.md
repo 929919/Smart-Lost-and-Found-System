@@ -43,7 +43,7 @@ most of the maintainability benefits without a bundler.
 ## Local setup
 ```bash
 git clone https://github.com/929919/Smart-Lost-and-Found-System.git
-cd Smart-Lost-and-Found-System/"iteration 2"
+cd Smart-Lost-and-Found-System/"iteration 3"
 python -m http.server 8124        # open http://localhost:8124/login.html
 ```
 For the database build, add your Supabase keys to `assets/js/config.js`

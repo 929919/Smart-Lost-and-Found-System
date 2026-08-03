@@ -14,3 +14,10 @@ dist/
 # OS
 .DS_Store
 Thumbs.db
+desktop.ini
+
+# Editor / tooling
+.claude/
+
+# Local secrets (Supabase keys)
+**/assets/js/config.local.js

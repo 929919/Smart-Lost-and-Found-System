@@ -22,6 +22,43 @@ const state = { search: "", category: "All", status: "Active" };
   }
 })();
 
+/* Story 5.3 — surface auto-matched found items for the student's lost reports */
+function renderMatchAlerts() {
+  const host = document.getElementById("matchAlerts");
+  if (!host || typeof Matcher === "undefined") return;
+
+  const user = (window.Auth && Auth.getUser()) || null;
+  if (!user || user.role !== "student") { host.innerHTML = ""; return; }
+
+  const groups = Matcher.matchesForUser(user.jcuId);
+  if (!groups.length) { host.innerHTML = ""; return; }
+
+  const total = groups.reduce((n, g) => n + g.matches.length, 0);
+  host.innerHTML = `
+    <div class="match-alert">
+      <div class="match-alert__head">
+        <span class="ic">🔔</span>
+        <div>
+          <h3>${total} possible ${total === 1 ? "match" : "matches"} for your lost ${groups.length === 1 ? "item" : "items"}</h3>
+          <p>We compared your lost reports against items handed in to campus security.</p>
+        </div>
+      </div>
+      ${groups.map(g => `
+        <div class="match-group">
+          <div class="match-group__lost">You lost: <strong>${escapeHTML(g.lost.name)}</strong></div>
+          ${g.matches.map(m => `
+            <a class="match-row" href="item-detail.html?id=${m.item.id}">
+              <span class="match-row__ic">${icon(m.item.category)}</span>
+              <span class="match-row__body">
+                <strong>${escapeHTML(m.item.name)}</strong>
+                <small>📍 ${escapeHTML(m.item.location)} · ${escapeHTML(m.reasons.join(" · "))}</small>
+              </span>
+              <span class="match-row__cta">View &amp; claim →</span>
+            </a>`).join("")}
+        </div>`).join("")}
+    </div>`;
+}
+
 function renderStats() {
   const s = Store.stats();
   document.getElementById("stats").innerHTML = `
@@ -63,6 +100,7 @@ function cardHTML(item) {
 }
 
 function render() {
+  renderMatchAlerts();
   renderStats();
   renderFilters();
   let items = Store.all();

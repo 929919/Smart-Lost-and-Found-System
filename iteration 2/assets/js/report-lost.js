@@ -36,6 +36,7 @@ form.addEventListener("submit", (e) => {
     color: (data.color || "").trim(),
     description: (data.description || "").trim(),
     contact: (data.contact || "").trim(),
+    reported_by: (Auth.getUser() || {}).jcuId || "",
     created_at: data.date || new Date().toISOString().slice(0, 10),
   });
 

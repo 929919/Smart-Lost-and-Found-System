@@ -440,3 +440,31 @@ a.card { color: inherit; }
 /* small button size (used on detail/claims/admin pages) */
 .btn--sm { padding: 7px 13px; font-size: .83rem; }
 
+/* --- Story 5.3: lost↔found auto-match alerts --- */
+.match-alert {
+  background: var(--surface); border: 1px solid var(--line); border-left: 5px solid var(--jcu-gold);
+  border-radius: var(--radius); box-shadow: var(--shadow-sm); padding: 20px 22px; margin-bottom: 28px;
+}
+.match-alert__head { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 14px; }
+.match-alert__head .ic { font-size: 1.6rem; }
+.match-alert__head h3 { font-size: 1.18rem; }
+.match-alert__head p { color: var(--text-soft); font-size: .9rem; margin-top: 2px; }
+.match-group { border-top: 1px solid var(--line); padding-top: 12px; margin-top: 12px; }
+.match-group__lost { font-size: .88rem; color: var(--text-soft); margin-bottom: 8px; }
+.match-group__lost strong { color: var(--jcu-navy); }
+.match-row {
+  display: flex; align-items: center; gap: 14px; padding: 11px 14px; border-radius: 10px;
+  background: var(--surface-2); border: 1px solid var(--line); margin-bottom: 8px;
+  color: inherit; transition: border-color .15s, transform .12s;
+}
+.match-row:hover { border-color: var(--jcu-blue); transform: translateX(3px); }
+.match-row__ic { font-size: 1.7rem; }
+.match-row__body { flex: 1; display: flex; flex-direction: column; }
+.match-row__body strong { color: var(--jcu-navy); font-size: .98rem; }
+.match-row__body small { color: var(--text-soft); font-size: .8rem; margin-top: 2px; }
+.match-row__cta { color: var(--jcu-blue); font-weight: 700; font-size: .86rem; white-space: nowrap; }
+@media (max-width: 620px) {
+  .match-row { flex-wrap: wrap; }
+  .match-row__cta { width: 100%; }
+}
+

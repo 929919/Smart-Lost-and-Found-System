@@ -46,9 +46,10 @@ const SEED_CLAIMS = [
 /* ---------------- Items ---------------- */
 const Store = {
   load() {
-    const raw = localStorage.getItem(STORE_KEY);
-    if (!raw) { localStorage.setItem(STORE_KEY, JSON.stringify(SEED_ITEMS)); return [...SEED_ITEMS]; }
-    try { return JSON.parse(raw); } catch { return [...SEED_ITEMS]; }
+    let raw = localStorage.getItem(STORE_KEY);
+    if (!raw) { localStorage.setItem(STORE_KEY, JSON.stringify(SEED_ITEMS)); raw = localStorage.getItem(STORE_KEY); }
+    // Always return parsed copies so the SEED_ITEMS constant is never mutated.
+    try { return JSON.parse(raw); } catch { return JSON.parse(JSON.stringify(SEED_ITEMS)); }
   },
   save(items) { localStorage.setItem(STORE_KEY, JSON.stringify(items)); },
   all() { return this.load().sort((a, b) => (b.created_at || "").localeCompare(a.created_at || "")); },
@@ -82,9 +83,10 @@ const Store = {
 /* ---------------- Claims ---------------- */
 const Claims = {
   load() {
-    const raw = localStorage.getItem(CLAIMS_KEY);
-    if (!raw) { localStorage.setItem(CLAIMS_KEY, JSON.stringify(SEED_CLAIMS)); return [...SEED_CLAIMS]; }
-    try { return JSON.parse(raw); } catch { return [...SEED_CLAIMS]; }
+    let raw = localStorage.getItem(CLAIMS_KEY);
+    if (!raw) { localStorage.setItem(CLAIMS_KEY, JSON.stringify(SEED_CLAIMS)); raw = localStorage.getItem(CLAIMS_KEY); }
+    // Always return parsed copies so the SEED_CLAIMS constant is never mutated.
+    try { return JSON.parse(raw); } catch { return JSON.parse(JSON.stringify(SEED_CLAIMS)); }
   },
   save(claims) { localStorage.setItem(CLAIMS_KEY, JSON.stringify(claims)); },
   all() { return this.load().sort((a, b) => (b.created_at || "").localeCompare(a.created_at || "")); },

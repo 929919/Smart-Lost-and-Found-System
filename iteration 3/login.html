@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign in · JCU Singapore Lost &amp; Found</title>
+  <link rel="icon" href="assets/img/jcu_logo.png" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <script>window.PAGE_REQUIRES = "guest";</script>
+  <script src="assets/js/auth.js"></script>
+</head>
+<body>
+  <div class="login-shell">
+    <form class="login-card" id="loginForm" novalidate>
+      <div class="logobox"><img src="assets/img/jcu_logo.png" alt="James Cook University Singapore" /></div>
+      <h1>Lost &amp; Found Sign in</h1>
+      <p class="sub">Enter your JCU ID and choose how you'd like to sign in.</p>
+
+      <div class="field" style="margin-bottom:18px">
+        <label for="jcuId">JCU ID</label>
+        <input id="jcuId" name="jcuId" type="text" placeholder="e.g. jc123456" autocomplete="off" />
+        <span class="hint">Any ID is accepted for this prototype — no password required.</span>
+      </div>
+
+      <label style="font-size:.85rem;font-weight:700;color:var(--jcu-navy);display:block;margin-bottom:8px">I am a…</label>
+      <div class="role-cards" id="roleCards">
+        <label class="role-card" data-role="student">
+          <input type="radio" name="role" value="student" />
+          <div class="ic">🎓</div><div class="nm">Student</div><div class="ds">Browse &amp; claim found items, report a lost item</div>
+        </label>
+        <label class="role-card" data-role="admin">
+          <input type="radio" name="role" value="admin" />
+          <div class="ic">🛡️</div><div class="nm">Admin</div><div class="ds">Log found items, review &amp; approve claims</div>
+        </label>
+      </div>
+
+      <p class="form-error" id="error"></p>
+
+      <button type="submit" class="btn btn--primary btn--block" style="margin-top:20px">Sign in →</button>
+    </form>
+  </div>
+
+  <script src="assets/js/login.js"></script>
+</body>
+</html>

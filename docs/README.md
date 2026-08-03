@@ -25,15 +25,16 @@ items, and a help assistant.
 | [Agile Process](agile.md) — iterations, reviews, velocity | 7 — Agile software engineering |
 
 ## 👥 Team — Group 6
+- Yuvraj Dave
 - João Gabriel Costa
 - Chiranjeeb Satpathy
-- _Member 3_
 
 ## 🗂️ Repository layout
 ```
 Smart-Lost-and-Found-System/
 ├── iteration 1/        # Iteration 1 — static browse & report prototype
-├── iteration 2/        # Iteration 2 — roles, claims, camera (current app)
+├── iteration 2/        # Iteration 2 — roles, claims, camera
+├── iteration 3/        # Iteration 3 — auto-matching, tests, DB (current app)
 ├── backend/            # Flask API + Supabase schema (database tier)
 ├── frontend/           # Earlier React prototype
 ├── docs/               # 📚 this documentation
@@ -42,7 +43,7 @@ Smart-Lost-and-Found-System/
 
 ## ▶️ Run the current app locally
 ```bash
-cd "iteration 2"
+cd "iteration 3"
 python -m http.server 8124        # then open http://localhost:8124/login.html
 ```
 Sign in with any JCU ID (e.g. `jc123456`) and pick **Student** or **Admin**.

@@ -16,14 +16,14 @@ flowchart TD
   C["Static checks<br/>(console-error sweep before each demo)"]
 ```
 
-- **Unit** — pure logic: item/claim CRUD, status transitions, seed integrity. Run via a **zero-install browser test runner** (`iteration 2/tests/tests.html`) — no npm needed.
+- **Unit** — pure logic: item/claim CRUD, status transitions, seed integrity. Run via a **zero-install browser test runner** (`iteration 3/tests/tests.html`) — no npm needed.
 - **Acceptance** — each user story has a pass/fail scenario exercised in the browser.
 - **Static** — every page is loaded and checked for console errors before a demo.
 
 ## Test-driven development
 We wrote the claims-workflow assertions **first**, watched them fail, then
 implemented `Claims.approve()` / `reject()` / `markReturned()` until they passed.
-Example assertion (`iteration 2/tests/tests.js`):
+Example assertion (`iteration 3/tests/tests.js`):
 
 ```js
 // approve() should set the claim Approved AND the linked item Claimed
@@ -33,8 +33,8 @@ eq("approve() sets linked item Claimed", Store.get(pending.itemId).status, "Clai
 
 Run the suite — **no installation required**:
 ```
-Open  iteration 2/tests/tests.html  in a browser
-(or serve it:  cd "iteration 2" && python -m http.server 8130
+Open  iteration 3/tests/tests.html  in a browser
+(or serve it:  cd "iteration 3" && python -m http.server 8130
  then open  http://localhost:8130/tests/tests.html )
 ```
 The runner snapshots and restores your real localStorage, so it never disturbs

@@ -31,6 +31,7 @@ function buildHeader(user, active) {
   const roleLabel = user.role === "admin" ? "Admin" : "Student";
 
   return `
+  <a href="#main-content" class="skip-link">Skip to main content</a>
   <div class="utilitybar">
     <div class="wrap">
       <span class="uloc">📍 Singapore Campus</span>

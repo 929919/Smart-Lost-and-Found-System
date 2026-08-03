@@ -24,8 +24,8 @@
     </div>
   </section>
 
-  <main class="wrap section" style="max-width:900px">
-    <div class="banner success" id="banner">✅ Your lost item report has been submitted! Redirecting to the dashboard…</div>
+  <main id="main-content" class="wrap section" style="max-width:900px">
+    <div class="banner success" id="banner" role="status">✅ Your lost item report has been submitted! Redirecting to the dashboard…</div>
 
     <form id="reportForm" novalidate>
       <div class="panel" id="mapCard">
@@ -72,7 +72,7 @@
             <textarea id="description" name="description" placeholder="Any distinguishing details — brand, contents, markings…"></textarea>
           </div>
         </div>
-        <p class="form-error" id="error"></p>
+        <p class="form-error" id="error" role="alert"></p>
         <div style="margin-top:22px;display:flex;gap:12px;flex-wrap:wrap">
           <button type="submit" class="btn btn--primary">Submit Lost Report</button>
           <a href="index.html" class="btn btn--ghost">Cancel</a>

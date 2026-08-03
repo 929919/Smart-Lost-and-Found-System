@@ -71,6 +71,18 @@ app data. **Result: 35/35 passing.**
 | 5.3 | Student reports a lost wallet → dashboard shows "1 possible match" with reasons | ✅ |
 | 5.3 | Admin views the same dashboard → no student match banner shown | ✅ |
 
+## Accessibility checks
+| Check | Implementation | Status |
+|-------|----------------|:------:|
+| Keyboard focus visible | `:focus-visible` gold outline on every interactive element (light ring on dark backgrounds) | ✅ |
+| Skip navigation | "Skip to main content" link as the first tab stop on every page | ✅ |
+| Dynamic content announced | `aria-live="polite"` on match alerts, `role="log"` on the chat, `role="status"` on success banners | ✅ |
+| Validation errors announced | `role="alert"` on form error messages | ✅ |
+| Images described | `alt` text on all images | ✅ |
+| Motion sensitivity | `prefers-reduced-motion` disables transitions and hover transforms | ✅ |
+| Language declared | `lang="en"` on all 10 pages | ✅ |
+| Landmarks | `<header> <nav> <main id="main-content"> <footer>` | ✅ |
+
 ## Test data set
 A deterministic seed (`store.js` → `SEED_ITEMS`, `SEED_CLAIMS`) provides 10 items
 across every category/status and 2 sample claims (1 Pending, 1 Approved) so every

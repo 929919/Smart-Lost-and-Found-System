@@ -23,8 +23,8 @@
     </div>
   </section>
 
-  <main class="wrap section" style="max-width:900px">
-    <div class="banner success" id="banner">✅ Found item logged successfully! Redirecting to the dashboard…</div>
+  <main id="main-content" class="wrap section" style="max-width:900px">
+    <div class="banner success" id="banner" role="status">✅ Found item logged successfully! Redirecting to the dashboard…</div>
 
     <form id="logForm" novalidate>
       <!-- Step 1: photo (camera or upload) -->
@@ -110,7 +110,7 @@
         <div class="map-selected" id="mapSelected"><span class="dot"></span> No location selected yet — click a pin above.</div>
         <input type="hidden" id="location" name="location" />
 
-        <p class="form-error" id="error"></p>
+        <p class="form-error" id="error" role="alert"></p>
         <div style="margin-top:22px;display:flex;gap:12px;flex-wrap:wrap">
           <button type="submit" class="btn btn--primary">Log Found Item</button>
           <a href="admin-dashboard.html" class="btn btn--ghost">Cancel</a>

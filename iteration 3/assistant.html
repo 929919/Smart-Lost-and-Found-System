@@ -24,13 +24,13 @@
     </div>
   </section>
 
-  <main class="wrap section" style="max-width:800px">
+  <main id="main-content" class="wrap section" style="max-width:800px">
     <div class="chat-wrap">
       <div class="chat-head">
         <span class="ava">🤖</span>
         <span class="who"><b>JCU Lost &amp; Found Assistant</b><small>Online · replies instantly</small></span>
       </div>
-      <div class="chat-log" id="log"></div>
+      <div class="chat-log" id="log" role="log" aria-live="polite" aria-label="Conversation with the Lost and Found assistant"></div>
       <div class="suggestions" id="suggestions"></div>
       <form class="chat-input" id="chatForm">
         <input id="chatInput" type="text" placeholder="Type your message…" autocomplete="off" />

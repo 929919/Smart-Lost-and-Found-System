@@ -6,6 +6,10 @@ Design of all major components: **architecture**, **database**, and **user
 interface**. Supports **Rubric Criterion 2 — Design**. Diagrams below render on
 GitHub; we also modelled them in the required online tools (links noted).
 
+> 🛠️ **Building the tool-based diagrams?** Every box, column and screen element is
+> specified in **[diagram-specs.md](diagram-specs.md)** — ready to reproduce in
+> Gliffy, GenMyModel and NinjaMock.
+
 ---
 
 ## 1. Architectural design

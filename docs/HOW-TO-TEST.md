@@ -18,8 +18,21 @@ Open **http://localhost:8124/login.html**
 > **Why a local server rather than double-clicking?** The camera feature only works
 > in a secure context (`localhost` or HTTPS). Everything else works from `file://` too.
 
-**Sign in:** any JCU ID is accepted — there are no passwords in this prototype.
-Data is seeded automatically on first load (10 items, 2 claims).
+### Sign-in accounts
+
+Accounts are stored in the `users` table in PostgreSQL. **The role comes from the
+account, not from a choice at login** — you cannot pick your own permissions.
+
+| JCU ID | Password | Access level |
+|--------|----------|--------------|
+| `jc111111` | `student123` | 🎓 **Student** — browse, report lost, claim |
+| `jc999999` | `admin123` | 🛡️ **Admin** — log found, review claims |
+| `jc000000` | `guest123` | 🚫 **No access** — valid account, no permissions |
+
+> These are also listed under "Demo accounts" on the login page itself.
+> Any other ID, or a wrong password, is rejected.
+
+Item data is seeded automatically (10 items, 2 claims).
 
 ---
 
@@ -155,7 +168,7 @@ console and run `localStorage.clear()`.
 
 These are deliberate, documented in [Requirements](requirements.md):
 
-- **No passwords.** Login is open by design for this prototype; role selection is the access control being demonstrated.
-- **No JCU ID validation.** Any string is accepted.
+- **Passwords are stored unhashed** in the `users` table. This is prototype-grade: credentials are checked by a `SECURITY DEFINER` database function so they never reach the browser, and Row-Level Security blocks the client from reading the table — but a production system would use Supabase Auth with hashed passwords and session tokens.
+- **Accounts are pre-provisioned.** There is no self-registration; Campus Security would create accounts.
 - **Camera needs HTTPS/localhost.** A browser restriction, not a bug — the fallback to file upload is intentional.
 - **Data is per-browser** until the Supabase migration (story 5.1) completes.

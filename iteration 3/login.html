@@ -7,6 +7,8 @@
   <link rel="icon" href="assets/img/jcu_logo.png" />
   <link rel="stylesheet" href="assets/css/styles.css" />
   <script>window.PAGE_REQUIRES = "guest";</script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/js/config.js"></script>
   <script src="assets/js/auth.js"></script>
 </head>
 <body>
@@ -14,29 +16,40 @@
     <form class="login-card" id="loginForm" novalidate>
       <div class="logobox"><img src="assets/img/jcu_logo.png" alt="James Cook University Singapore" /></div>
       <h1>Lost &amp; Found Sign in</h1>
-      <p class="sub">Enter your JCU ID and choose how you'd like to sign in.</p>
+      <p class="sub">Sign in with your JCU account to continue.</p>
 
-      <div class="field" style="margin-bottom:18px">
+      <div class="field" style="margin-bottom:16px">
         <label for="jcuId">JCU ID</label>
-        <input id="jcuId" name="jcuId" type="text" placeholder="e.g. jc123456" autocomplete="off" />
-        <span class="hint">Any ID is accepted for this prototype — no password required.</span>
+        <input id="jcuId" name="jcuId" type="text" placeholder="e.g. jc111111"
+               autocomplete="username" autocapitalize="off" spellcheck="false" />
       </div>
 
-      <label style="font-size:.85rem;font-weight:700;color:var(--jcu-navy);display:block;margin-bottom:8px">I am a…</label>
-      <div class="role-cards" id="roleCards">
-        <label class="role-card" data-role="student">
-          <input type="radio" name="role" value="student" />
-          <div class="ic">🎓</div><div class="nm">Student</div><div class="ds">Browse &amp; claim found items, report a lost item</div>
-        </label>
-        <label class="role-card" data-role="admin">
-          <input type="radio" name="role" value="admin" />
-          <div class="ic">🛡️</div><div class="nm">Admin</div><div class="ds">Log found items, review &amp; approve claims</div>
-        </label>
+      <div class="field" style="margin-bottom:6px">
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" placeholder="••••••••"
+               autocomplete="current-password" />
       </div>
 
       <p class="form-error" id="error" role="alert"></p>
 
-      <button type="submit" class="btn btn--primary btn--block" style="margin-top:20px">Sign in →</button>
+      <button type="submit" class="btn btn--primary btn--block" id="submitBtn"
+              style="margin-top:18px">Sign in →</button>
+
+      <p class="sub" style="margin:18px 0 0;font-size:.82rem">
+        Your access level is determined by your account. Contact Campus Security
+        if you cannot sign in.
+      </p>
+
+      <!-- Demo credentials — remove before a public deployment -->
+      <details class="demo-accounts">
+        <summary>Demo accounts (for assessment)</summary>
+        <table>
+          <tr><th>JCU ID</th><th>Password</th><th>Access</th></tr>
+          <tr><td><code>jc111111</code></td><td><code>student123</code></td><td>🎓 Student</td></tr>
+          <tr><td><code>jc999999</code></td><td><code>admin123</code></td><td>🛡️ Admin</td></tr>
+          <tr><td><code>jc000000</code></td><td><code>guest123</code></td><td>🚫 No access</td></tr>
+        </table>
+      </details>
     </form>
   </div>
 

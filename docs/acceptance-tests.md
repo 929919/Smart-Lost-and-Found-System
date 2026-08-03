@@ -15,7 +15,7 @@ form. A story is *Done* only when its scenarios pass. Supports **Rubric Criterio
 | **Application** | `iteration 3/` served over HTTP (`python -m http.server 8124`) |
 | **Database** | Supabase PostgreSQL (live) — falls back to local demo data if unreachable |
 | **Browsers** | Chrome / Edge (primary), Firefox, mobile Safari |
-| **Test accounts** | Student `jc111111` · Admin `jc999999` (any ID is accepted — no passwords) |
+| **Test accounts** | `jc111111`/`student123` (student) · `jc999999`/`admin123` (admin) · `jc000000`/`guest123` (no access) |
 | **Reset between runs** | Admin → ⚙️ Manage item statuses → **Reset demo data** |
 
 ## Test data set
@@ -32,25 +32,35 @@ Deterministic seed loaded on first run (`db/schema.sql` / `SEED_ITEMS`):
 
 ## Epic 1 — Accounts & Access
 
-### AT-1.1 · Sign in with a JCU ID *(story 1.1)*
+### AT-1.1 · Sign in with valid credentials *(story 1.1)*
 > **Given** I am a signed-out visitor on `login.html`
-> **When** I enter JCU ID `jc111111`, select **Student** and submit
-> **Then** a session is stored and I land on the student dashboard, with
-> "Logged in as jc111111" shown in the header.
+> **When** I enter JCU ID `jc111111` and password `student123` and submit
+> **Then** the credentials are verified in the database, a session is stored, and
+> I land on the student dashboard with "Logged in as jc111111" in the header.
 
 **Result:** ✅ Pass
 
-### AT-1.2 · Sign in is rejected without required input *(story 1.1)*
+### AT-1.2 · Invalid credentials are rejected *(story 1.1)*
 > **Given** I am on the login page
-> **When** I submit with an empty JCU ID, **or** without choosing a role
-> **Then** an inline error appears and no session is created.
+> **When** I submit an empty field, an unknown JCU ID, or a wrong password
+> **Then** an inline error appears, the password field is cleared, and no session
+> is created.
 
 **Result:** ✅ Pass
 
-### AT-1.3 · Role determines the landing page *(story 1.2)*
+### AT-1.3 · The account determines the role and landing page *(story 1.2)*
 > **Given** I am on the login page
-> **When** I sign in as **Admin**
-> **Then** I land on `admin-dashboard.html`, not the student dashboard.
+> **When** I sign in as `jc999999` / `admin123`
+> **Then** the role comes from the account record — I cannot choose it — and I
+> land on `admin-dashboard.html`, not the student dashboard.
+
+### AT-1.3b · An account with no permissions is denied *(story 1.3)*
+> **Given** the account `jc000000` exists with role `none`
+> **When** I sign in with `guest123`, or try to open any application page
+> **Then** I am shown the **Access Not Permitted** page and can reach no
+> student or admin functionality.
+
+**Result:** ✅ Pass
 
 **Result:** ✅ Pass
 

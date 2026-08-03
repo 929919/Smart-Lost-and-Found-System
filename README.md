@@ -22,12 +22,17 @@ python -m http.server 8124
 ```
 Then open **http://localhost:8124/login.html**
 
-**Sign in:** enter any JCU ID and pick a role — no password.
+**Sign in** with one of the pre-provisioned accounts — your access level comes from the account:
 
-| Role | Example ID | What you can do |
-|------|-----------|-----------------|
-| 🎓 **Student** | `jc111111` | Browse & search found items, report a lost item, submit a claim |
-| 🛡️ **Admin** | `jc999999` | Log found items (camera/upload), review & approve claims, manage statuses |
+| JCU ID | Password | Access level |
+|--------|----------|--------------|
+| `jc111111` | `student123` | 🎓 **Student** — browse & search found items, report a lost item, submit a claim |
+| `jc999999` | `admin123` | 🛡️ **Admin** — log found items (camera/upload), review & approve claims, manage statuses |
+| `jc000000` | `guest123` | 🚫 **No access** — a valid account with no permissions, demonstrating access control |
+
+Credentials are verified by a `SECURITY DEFINER` function inside PostgreSQL, so
+passwords are never sent to the browser and the `users` table cannot be read by
+the client.
 
 > 📋 **Marking this project?** Start with **[docs/HOW-TO-TEST.md](docs/HOW-TO-TEST.md)** —
 > a click-by-click walkthrough of every feature.

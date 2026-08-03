@@ -440,6 +440,28 @@ a.card { color: inherit; }
 /* small button size (used on detail/claims/admin pages) */
 .btn--sm { padding: 7px 13px; font-size: .83rem; }
 
+/* --- Demo account helper on the login page --- */
+.demo-accounts { margin-top: 20px; border-top: 1px solid var(--line); padding-top: 14px; }
+.demo-accounts summary {
+  cursor: pointer; font-size: .82rem; font-weight: 700; color: var(--text-soft);
+  list-style: none; display: flex; align-items: center; gap: 6px;
+}
+.demo-accounts summary::before { content: "🔑"; }
+.demo-accounts summary:hover { color: var(--jcu-blue-d); }
+.demo-accounts table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: .8rem; }
+.demo-accounts th { background: var(--surface-2); color: var(--text-soft); text-transform: none;
+  font-size: .72rem; letter-spacing: 0; padding: 6px 8px; text-align: left; }
+.demo-accounts td { padding: 6px 8px; border-bottom: 1px solid var(--line); }
+.demo-accounts code { background: var(--surface-2); padding: 2px 6px; border-radius: 4px; font-size: .78rem; }
+
+/* --- Access denied page --- */
+.denied-icon { font-size: 3.4rem; line-height: 1; margin-bottom: 6px; }
+.denied-box {
+  background: #fce4e2; border: 1px solid #f5c2bd; color: #7d2019;
+  border-radius: 10px; padding: 14px 16px; text-align: left; font-size: .88rem;
+}
+.denied-box p + p { margin-top: 6px; }
+
 /* database offline notice (story 5.1) */
 .db-offline {
   background: #fdf0d6; color: #7a4b00; border-bottom: 1px solid #f0d59a;

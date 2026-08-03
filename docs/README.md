@@ -17,6 +17,7 @@ items, and a help assistant.
 | Page | Rubric criterion it supports |
 |------|------------------------------|
 | 📋 **[How to Test This Project](HOW-TO-TEST.md)** | **Start here if you are marking** |
+| 🎤 [Demo Script](DEMO-SCRIPT.md) | 15-minute walkthrough running order |
 | [Requirements & Product Backlog](requirements.md) | 1 — Requirements |
 | [Design](design.md) — architecture, database, UI | 2 — Design |
 | [Implementation](implementation.md) — what we delivered | 3 — Implementation / Code |
@@ -48,4 +49,5 @@ Smart-Lost-and-Found-System/
 cd "iteration 3"
 python -m http.server 8124        # then open http://localhost:8124/login.html
 ```
-Sign in with any JCU ID (e.g. `jc123456`) and pick **Student** or **Admin**.
+Sign in with `jc111111` / `student123` (student) or `jc999999` / `admin123` (admin).
+See [How to Test](HOW-TO-TEST.md) for all accounts.

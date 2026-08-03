@@ -1,30 +1,41 @@
-/* login.js — role-card selection + open sign in (no password) */
+/* login.js — credential sign in; the role comes from the account (story 1.1) */
 
 const form = document.getElementById("loginForm");
 const errorEl = document.getElementById("error");
-const roleCards = document.getElementById("roleCards");
-let selectedRole = "";
-
-roleCards.querySelectorAll(".role-card").forEach(card => {
-  card.addEventListener("click", () => {
-    selectedRole = card.dataset.role;
-    roleCards.querySelectorAll(".role-card").forEach(c => c.classList.remove("selected"));
-    card.classList.add("selected");
-    card.querySelector("input").checked = true;
-    errorEl.style.display = "none";
-  });
-});
+const submitBtn = document.getElementById("submitBtn");
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-  errorEl.style.display = "none";
+  hideError();
 
   const jcuId = document.getElementById("jcuId").value.trim();
-  if (!jcuId) { showError("Please enter your JCU ID."); return; }
-  if (!selectedRole) { showError("Please choose a role — Student or Admin."); return; }
+  const password = document.getElementById("password").value;
 
-  Auth.login(jcuId, selectedRole);
-  location.replace(Auth.home(selectedRole));
+  if (!jcuId)    { showError("Please enter your JCU ID."); return; }
+  if (!password) { showError("Please enter your password."); return; }
+
+  setBusy(true);
+  Auth.signIn(jcuId, password)
+    .then(user => {
+      if (!user) {
+        setBusy(false);
+        showError("Incorrect JCU ID or password. Please try again.");
+        document.getElementById("password").value = "";
+        document.getElementById("password").focus();
+        return;
+      }
+      location.replace(Auth.home(user.role));
+    })
+    .catch(err => {
+      setBusy(false);
+      showError("Sign in failed: " + (err.message || err));
+    });
 });
 
 function showError(msg) { errorEl.textContent = msg; errorEl.style.display = "block"; }
+function hideError() { errorEl.style.display = "none"; }
+
+function setBusy(busy) {
+  submitBtn.disabled = busy;
+  submitBtn.textContent = busy ? "Signing in…" : "Sign in →";
+}

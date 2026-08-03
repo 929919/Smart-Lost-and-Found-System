@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Access Denied · JCU Singapore Lost &amp; Found</title>
+  <link rel="icon" href="assets/img/jcu_logo.png" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <script>window.PAGE_REQUIRES = "none";</script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/auth.js"></script>
+</head>
+<body>
+  <div class="login-shell">
+    <div class="login-card" style="text-align:center">
+      <div class="logobox"><img src="assets/img/jcu_logo.png" alt="James Cook University Singapore" /></div>
+
+      <div class="denied-icon" aria-hidden="true">🚫</div>
+      <h1>Access Not Permitted</h1>
+
+      <p class="sub" style="margin-bottom:20px">
+        You are signed in as <strong id="whoami">—</strong>, but this account has
+        not been granted access to the Lost &amp; Found system.
+      </p>
+
+      <div class="denied-box">
+        <p><strong>Why am I seeing this?</strong></p>
+        <p>Access is granted per account by Campus Security. Student accounts can
+        browse and claim found items; administrator accounts manage the register.
+        Your account currently has neither permission.</p>
+      </div>
+
+      <p class="sub" style="margin:18px 0">
+        To request access, contact Campus Security at
+        <strong>lostandfound@jcu.edu.sg</strong> or visit the office in the Main
+        Entrance &amp; Atrium.
+      </p>
+
+      <button class="btn btn--primary btn--block" id="logoutBtn">← Sign in with a different account</button>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var u = Auth.getUser();
+      if (u) document.getElementById("whoami").textContent = u.jcuId;
+      document.getElementById("logoutBtn").addEventListener("click", function () { Auth.logout(); });
+    })();
+  </script>
+</body>
+</html>

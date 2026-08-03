@@ -16,6 +16,7 @@ items, and a help assistant.
 
 | Page | Rubric criterion it supports |
 |------|------------------------------|
+| 📋 **[How to Test This Project](HOW-TO-TEST.md)** | **Start here if you are marking** |
 | [Requirements & Product Backlog](requirements.md) | 1 — Requirements |
 | [Design](design.md) — architecture, database, UI | 2 — Design |
 | [Implementation](implementation.md) — what we delivered | 3 — Implementation / Code |

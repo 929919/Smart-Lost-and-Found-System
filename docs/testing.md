@@ -60,6 +60,10 @@ app data. **Result: 35/35 passing.**
 | `Matcher.matchesForUser` | returns only the signed-in student's lost reports |
 
 ## Acceptance tests (mapped to user stories)
+
+> 📋 Full **Given / When / Then** scenarios with a traceability matrix live in
+> **[acceptance-tests.md](acceptance-tests.md)** — 33 scenarios covering all 14
+> delivered stories. Summary below.
 | Story | Given / When / Then | Result |
 |-------|---------------------|:------:|
 | 1.2 | Sign in as Student → only Student nav is shown | ✅ |

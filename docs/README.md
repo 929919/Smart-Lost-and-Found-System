@@ -20,7 +20,8 @@ items, and a help assistant.
 | [Requirements & Product Backlog](requirements.md) | 1 — Requirements |
 | [Design](design.md) — architecture, database, UI | 2 — Design |
 | [Implementation](implementation.md) — what we delivered | 3 — Implementation / Code |
-| [Testing](testing.md) — strategy, TDD, acceptance tests | 4 — Test |
+| [Testing](testing.md) — strategy, TDD, unit tests, accessibility | 4 — Test |
+| [Acceptance Tests](acceptance-tests.md) — Given/When/Then per story | 4 — Test |
 | [Version Control](version-control.md) — git workflow | 5 — Version control |
 | [Build & Development Tools](tools.md) | 6 — Building and development tools |
 | [Agile Process](agile.md) — iterations, reviews, velocity | 7 — Agile software engineering |

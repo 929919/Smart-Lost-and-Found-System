@@ -1,6 +1,6 @@
 /* submit-claim.js — student submits proof-of-ownership claim on a found item */
 
-(function () {
+DB.ready(function () {
   const id = new URLSearchParams(location.search).get("id");
   const item = Store.get(id);
   const user = Auth.getUser();
@@ -75,4 +75,4 @@
     window.scrollTo({ top: 0, behavior: "smooth" });
     setTimeout(() => { window.location.href = "item-detail.html?id=" + item.id; }, 1500);
   });
-})();
+});

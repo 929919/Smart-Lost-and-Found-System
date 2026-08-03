@@ -112,6 +112,8 @@ The SQL schema lives in [`backend/supabase_schema.sql`](../backend/supabase_sche
 **Design decisions**
 - Both *lost* and *found* reports live in one `items` table, distinguished by `item_type` — simpler queries, one dashboard.
 - `claims` reference `items` by FK so approving a claim can transition the item's `status`.
+- **Row-Level Security is enabled with no `DELETE` policy on either table.** Reads, inserts and updates are permitted; deletes issued from the browser are silently rejected, so item and claim history cannot be destroyed by a client. Records are retired by changing `status`, never removed.
+- The browser holds only the **anon/publishable key**; the `service_role` key is never shipped to the client.
 - Users are **not** stored in a table this release (open, password-less login) — role lives in the session only. Documented as a deliberate scope decision (see [Requirements](requirements.md)).
 
 ---

@@ -1,6 +1,6 @@
 /* admin-dashboard.js — admin landing: stats strip + pending-claims badge */
 
-(function () {
+DB.ready(function () {
   const user = Auth.getUser();
   if (user) document.getElementById("welcome").textContent = "Welcome, " + user.jcuId;
 
@@ -15,4 +15,4 @@
 
   const badge = document.getElementById("claimBadge");
   if (c.pending > 0) { badge.textContent = c.pending; badge.style.display = "grid"; }
-})();
+});

@@ -53,7 +53,7 @@ Estimates in story points (SP). Status legend: ✅ done · 🔨 in progress · �
 ### Epic 5 — Iteration 3 (persistence, deployment, matching)
 | ID | User story | Priority | SP | Iteration | Status |
 |----|------------|:--------:|:--:|:---------:|:------:|
-| 5.1 | As the team, we want the app backed by a **real relational database (Supabase Postgres)** so data is shared and durable. | M | 8 | 3 | 🔨 |
+| 5.1 | As the team, we want the app backed by a **real relational database (Supabase Postgres)** so data is shared and durable. | M | 8 | 3 | ✅ |
 | 5.2 | As a user, I want the app **deployed to a public URL** so I can use it from any device. | M | 3 | 3 | 🔨 |
 | 5.3 | As a student, I want to be **notified when a found item matches my lost report** so recovery is automatic. | S | 5 | 3 | ✅ |
 | 5.4 | As the team, we want **automated tests** (unit + acceptance) so regressions are caught. | M | 5 | 3 | ✅ |

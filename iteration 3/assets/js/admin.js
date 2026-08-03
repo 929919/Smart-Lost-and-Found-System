@@ -41,4 +41,4 @@ document.getElementById("resetBtn").onclick = () => {
   }
 };
 
-render();
+DB.ready(() => { render(); DB.warnIfOffline(); });

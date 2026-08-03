@@ -129,4 +129,4 @@ function render() {
   });
 });
 
-render();
+DB.ready(() => { render(); DB.warnIfOffline(); });

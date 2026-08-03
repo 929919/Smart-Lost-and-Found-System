@@ -1,6 +1,14 @@
 /* ============================================================
-   store.js — shared data layer (localStorage, no server)
-   Iteration 2: adds a Claims model + photoUrl on items.
+   store.js — shared data layer (story 5.1)
+
+   Backed by Supabase (PostgreSQL) when config.js supplies a key,
+   otherwise falls back to browser localStorage so the app still
+   runs offline and in tests.
+
+   Design: load-once-then-cache. DB.ready() fetches everything into
+   memory; all reads stay synchronous so page rendering code is
+   unchanged. Writes update the cache immediately (optimistic) and
+   are persisted to Postgres in the background.
    ============================================================ */
 
 const STORE_KEY  = "slf_jcu_items_v2";
@@ -43,30 +51,125 @@ const SEED_CLAIMS = [
   { id: 2, itemId: 4, claimantJcuId: "jc222333", proof: "Cracked top-right corner, lock screen is a photo of a husky. IMEI ends 7741.",                  contact: "jc222333@my.jcu.edu.au", status: "Approved", created_at: "2026-05-26", updated_at: "2026-05-27" },
 ];
 
+/* ---------- Row mapping: Postgres snake_case <-> JS camelCase ---------- */
+const Rows = {
+  itemIn(r)  { return { ...r, photoUrl: r.photo_url || "", created_at: (r.created_at || "").slice(0, 10) }; },
+  itemOut(i) {
+    return {
+      name: i.name, category: i.category, location: i.location, item_type: i.item_type,
+      description: i.description || "", color: i.color || "", contact: i.contact || "",
+      shelf_tag: i.shelf_tag || "", status: i.status || "Active",
+      photo_url: i.photoUrl || "", reported_by: i.reported_by || "",
+      created_at: i.created_at || new Date().toISOString().slice(0, 10),
+    };
+  },
+  claimIn(r)  { return { ...r, itemId: r.item_id, claimantJcuId: r.claimant_jcu_id,
+                         created_at: (r.created_at || "").slice(0, 10),
+                         updated_at: (r.updated_at || "").slice(0, 10) }; },
+  claimOut(c) {
+    return {
+      item_id: c.itemId, claimant_jcu_id: c.claimantJcuId, proof: c.proof || "",
+      contact: c.contact || "", status: c.status || "Pending",
+    };
+  },
+};
+
+/* ---------------- Database bootstrap ---------------- */
+const DB = {
+  client: null,
+  online: false,
+  error: null,
+  _ready: null,
+
+  /* Resolves once the caches are populated. Pages call DB.ready(render). */
+  ready(callback) {
+    if (!this._ready) this._ready = this._load();
+    return callback ? this._ready.then(callback) : this._ready;
+  },
+
+  async _load() {
+    const configured = (typeof USE_SUPABASE !== "undefined") && USE_SUPABASE;
+    if (configured && typeof supabase !== "undefined") {
+      try {
+        this.client = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        const [items, claims] = await Promise.all([
+          this.client.from("items").select("*").order("created_at", { ascending: false }),
+          this.client.from("claims").select("*").order("created_at", { ascending: false }),
+        ]);
+        if (items.error) throw items.error;
+        if (claims.error) throw claims.error;
+        Store._cache  = items.data.map(Rows.itemIn);
+        Claims._cache = claims.data.map(Rows.claimIn);
+        this.online = true;
+        console.info(`[DB] Supabase connected — ${Store._cache.length} items, ${Claims._cache.length} claims.`);
+        return;
+      } catch (err) {
+        this.error = err;
+        console.warn("[DB] Supabase unavailable, using local data:", err.message || err);
+      }
+    }
+    Store._cache  = Store._loadLocal();
+    Claims._cache = Claims._loadLocal();
+    this.online = false;
+  },
+
+  /* Small banner when the cloud database could not be reached. */
+  warnIfOffline() {
+    if (this.online || !((typeof USE_SUPABASE !== "undefined") && USE_SUPABASE)) return;
+    const bar = document.createElement("div");
+    bar.className = "db-offline";
+    bar.textContent = "⚠️ Could not reach the database — showing local demo data. Changes will not be shared.";
+    document.body.prepend(bar);
+  },
+};
+
 /* ---------------- Items ---------------- */
 const Store = {
-  load() {
+  _cache: null,
+
+  _loadLocal() {
     let raw = localStorage.getItem(STORE_KEY);
     if (!raw) { localStorage.setItem(STORE_KEY, JSON.stringify(SEED_ITEMS)); raw = localStorage.getItem(STORE_KEY); }
-    // Always return parsed copies so the SEED_ITEMS constant is never mutated.
     try { return JSON.parse(raw); } catch { return JSON.parse(JSON.stringify(SEED_ITEMS)); }
   },
-  save(items) { localStorage.setItem(STORE_KEY, JSON.stringify(items)); },
-  all() { return this.load().sort((a, b) => (b.created_at || "").localeCompare(a.created_at || "")); },
+  _saveLocal() { if (!DB.online) localStorage.setItem(STORE_KEY, JSON.stringify(this._cache)); },
+
+  load() { if (this._cache === null) this._cache = this._loadLocal(); return this._cache; },
+  all() { return [...this.load()].sort((a, b) => (b.created_at || "").localeCompare(a.created_at || "")); },
   get(id) { return this.load().find(i => i.id === Number(id)) || null; },
+
   add(item) {
     const items = this.load();
-    const id = items.reduce((m, i) => Math.max(m, i.id), 0) + 1;
-    const record = { id, status: "Active", created_at: new Date().toISOString().slice(0, 10),
-      description: "", color: "", contact: "", shelf_tag: "", photoUrl: "", ...item };
-    items.push(record); this.save(items); return record;
+    const record = {
+      id: items.reduce((m, i) => Math.max(m, i.id), 0) + 1,
+      status: "Active", created_at: new Date().toISOString().slice(0, 10),
+      description: "", color: "", contact: "", shelf_tag: "", photoUrl: "", reported_by: "",
+      ...item,
+    };
+    items.push(record);
+    this._saveLocal();
+    if (DB.online) {
+      DB.client.from("items").insert(Rows.itemOut(record)).select().single()
+        .then(({ data, error }) => {
+          if (error) return console.error("[DB] insert item failed:", error.message);
+          record.id = data.id;                    // adopt the real database id
+        });
+    }
+    return record;
   },
+
   updateStatus(id, status) {
-    const items = this.load();
-    const item = items.find(i => i.id === Number(id));
-    if (item) { item.status = status; this.save(items); }
+    const item = this.get(id);
+    if (!item) return null;
+    item.status = status;
+    this._saveLocal();
+    if (DB.online) {
+      DB.client.from("items").update({ status }).eq("id", Number(id))
+        .then(({ error }) => error && console.error("[DB] update item failed:", error.message));
+    }
     return item;
   },
+
   stats() {
     const items = this.load();
     return {
@@ -77,37 +180,62 @@ const Store = {
       activeFound: items.filter(i => i.item_type === "found" && i.status === "Active").length,
     };
   },
-  reset() { localStorage.removeItem(STORE_KEY); },
+
+  reset() { localStorage.removeItem(STORE_KEY); this._cache = null; },
 };
 
 /* ---------------- Claims ---------------- */
 const Claims = {
-  load() {
+  _cache: null,
+
+  _loadLocal() {
     let raw = localStorage.getItem(CLAIMS_KEY);
     if (!raw) { localStorage.setItem(CLAIMS_KEY, JSON.stringify(SEED_CLAIMS)); raw = localStorage.getItem(CLAIMS_KEY); }
-    // Always return parsed copies so the SEED_CLAIMS constant is never mutated.
     try { return JSON.parse(raw); } catch { return JSON.parse(JSON.stringify(SEED_CLAIMS)); }
   },
-  save(claims) { localStorage.setItem(CLAIMS_KEY, JSON.stringify(claims)); },
-  all() { return this.load().sort((a, b) => (b.created_at || "").localeCompare(a.created_at || "")); },
+  _saveLocal() { if (!DB.online) localStorage.setItem(CLAIMS_KEY, JSON.stringify(this._cache)); },
+
+  load() { if (this._cache === null) this._cache = this._loadLocal(); return this._cache; },
+  all() { return [...this.load()].sort((a, b) => (b.created_at || "").localeCompare(a.created_at || "")); },
   forItem(itemId) { return this.load().filter(c => c.itemId === Number(itemId)); },
+
   add(claim) {
     const claims = this.load();
-    const id = claims.reduce((m, c) => Math.max(m, c.id), 0) + 1;
     const today = new Date().toISOString().slice(0, 10);
-    const record = { id, status: "Pending", created_at: today, updated_at: today, contact: "", ...claim };
-    claims.push(record); this.save(claims); return record;
+    const record = {
+      id: claims.reduce((m, c) => Math.max(m, c.id), 0) + 1,
+      status: "Pending", created_at: today, updated_at: today, contact: "",
+      ...claim,
+    };
+    claims.push(record);
+    this._saveLocal();
+    if (DB.online) {
+      DB.client.from("claims").insert(Rows.claimOut(record)).select().single()
+        .then(({ data, error }) => {
+          if (error) return console.error("[DB] insert claim failed:", error.message);
+          record.id = data.id;
+        });
+    }
+    return record;
   },
+
   update(id, patch) {
-    const claims = this.load();
-    const c = claims.find(x => x.id === Number(id));
-    if (c) { Object.assign(c, patch, { updated_at: new Date().toISOString().slice(0, 10) }); this.save(claims); }
+    const c = this.load().find(x => x.id === Number(id));
+    if (!c) return null;
+    Object.assign(c, patch, { updated_at: new Date().toISOString().slice(0, 10) });
+    this._saveLocal();
+    if (DB.online) {
+      DB.client.from("claims").update({ ...patch, updated_at: new Date().toISOString() }).eq("id", Number(id))
+        .then(({ error }) => error && console.error("[DB] update claim failed:", error.message));
+    }
     return c;
   },
+
   /* Workflow helpers (also move the linked item's status) */
   approve(id) { const c = this.update(id, { status: "Approved" }); if (c) Store.updateStatus(c.itemId, "Claimed"); return c; },
   reject(id)  { return this.update(id, { status: "Rejected" }); },
   markReturned(id) { const c = this.update(id, { status: "Returned" }); if (c) Store.updateStatus(c.itemId, "Returned"); return c; },
+
   counts() {
     const cs = this.load();
     return {
@@ -118,7 +246,8 @@ const Claims = {
       returned: cs.filter(c => c.status === "Returned").length,
     };
   },
-  reset() { localStorage.removeItem(CLAIMS_KEY); },
+
+  reset() { localStorage.removeItem(CLAIMS_KEY); this._cache = null; },
 };
 
 /* ---------------- Helpers ---------------- */

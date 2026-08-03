@@ -105,7 +105,8 @@ function buildFooter() {
   </footer>`;
 }
 
-(function initLayout() {
+/* Wait for the data layer so the pending-claims badge is accurate. */
+DB.ready(function initLayout() {
   const user = (window.Auth && Auth.getUser()) ? Auth.getUser() : null;
   if (!user) return; // login page / not signed in — no chrome
 
@@ -131,4 +132,4 @@ function buildFooter() {
     fab.innerHTML = "💬";
     document.body.appendChild(fab);
   }
-})();
+});

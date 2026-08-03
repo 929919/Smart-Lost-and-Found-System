@@ -1,6 +1,6 @@
 /* item-detail.js — view one item; students can start a claim on active found items */
 
-(function () {
+DB.ready(function () {
   const id = new URLSearchParams(location.search).get("id");
   const item = Store.get(id);
   const user = Auth.getUser();
@@ -62,4 +62,4 @@
         <div style="margin-top:18px"><a href="index.html" class="btn btn--ghost btn--sm">← Back to dashboard</a></div>
       </div>
     </div>`;
-})();
+});

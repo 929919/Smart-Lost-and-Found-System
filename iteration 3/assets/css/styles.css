@@ -440,6 +440,12 @@ a.card { color: inherit; }
 /* small button size (used on detail/claims/admin pages) */
 .btn--sm { padding: 7px 13px; font-size: .83rem; }
 
+/* database offline notice (story 5.1) */
+.db-offline {
+  background: #fdf0d6; color: #7a4b00; border-bottom: 1px solid #f0d59a;
+  padding: 10px 20px; font-size: .88rem; text-align: center; font-weight: 600;
+}
+
 /* --- Story 5.3: lost↔found auto-match alerts --- */
 .match-alert {
   background: var(--surface); border: 1px solid var(--line); border-left: 5px solid var(--jcu-gold);

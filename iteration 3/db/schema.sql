@@ -16,6 +16,7 @@ CREATE TABLE IF NOT EXISTS items (
     shelf_tag   TEXT DEFAULT '',
     status      TEXT NOT NULL DEFAULT 'Active' CHECK (status IN ('Active','Claimed','Returned')),
     photo_url   TEXT DEFAULT '',
+    reported_by TEXT DEFAULT '',          -- JCU ID of the student who reported a lost item
     created_at  TIMESTAMPTZ DEFAULT NOW()
 );
 
@@ -45,6 +46,11 @@ CREATE POLICY "public update items"  ON items  FOR UPDATE USING (true);
 CREATE POLICY "public read claims"   ON claims FOR SELECT USING (true);
 CREATE POLICY "public insert claims" ON claims FOR INSERT WITH CHECK (true);
 CREATE POLICY "public update claims" ON claims FOR UPDATE USING (true);
+
+-- NOTE: no DELETE policy is defined on either table, by design. With RLS
+-- enabled, any DELETE from the browser is silently rejected (it reports
+-- success but removes 0 rows), so item and claim history cannot be destroyed
+-- from the client. Records are retired by setting status, never deleted.
 
 -- ---------- Seed data (matches the app's demo data) ----------
 INSERT INTO items (name, category, location, item_type, description, color, shelf_tag, status, created_at) VALUES

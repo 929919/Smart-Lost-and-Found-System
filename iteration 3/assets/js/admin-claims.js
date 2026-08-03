@@ -87,4 +87,4 @@ function refreshNavBadge() {
   }
 }
 
-render();
+DB.ready(() => { render(); DB.warnIfOffline(); });

@@ -18,6 +18,7 @@ items, and a help assistant.
 |------|------------------------------|
 | 📋 **[How to Test This Project](HOW-TO-TEST.md)** | **Start here if you are marking** |
 | 🎤 [Demo Script](DEMO-SCRIPT.md) | 15-minute walkthrough running order |
+| 🚀 [Deployment Guide](DEPLOYMENT.md) | Publishing to Vercel, step by step |
 | [Requirements & Product Backlog](requirements.md) | 1 — Requirements |
 | [Design](design.md) — architecture, database, UI | 2 — Design |
 | [Diagram Build Specs](diagram-specs.md) — Gliffy / GenMyModel / NinjaMock | 2 — Design |

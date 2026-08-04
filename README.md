@@ -51,6 +51,7 @@ Full documentation lives in **[`docs/`](docs)** — one page per assessment crit
 |------|--------|
 | 📋 **[How to Test](docs/HOW-TO-TEST.md)** | **Click-by-click walkthrough — start here if marking** |
 | 🎤 [Demo Script](docs/DEMO-SCRIPT.md) | 15-minute presentation running order |
+| 🚀 [Deployment Guide](docs/DEPLOYMENT.md) | Publishing to Vercel, step by step |
 | [Requirements & Backlog](docs/requirements.md) | User stories, MoSCoW priorities, estimates, budget |
 | [Design](docs/design.md) | Architecture, database ER model, UI design |
 | [Diagram Build Specs](docs/diagram-specs.md) | Specs for the Gliffy / GenMyModel / NinjaMock diagrams |

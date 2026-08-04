@@ -62,8 +62,6 @@ Deterministic seed loaded on first run (`db/schema.sql` / `SEED_ITEMS`):
 
 **Result:** ✅ Pass
 
-**Result:** ✅ Pass
-
 ### AT-1.4 · Navigation is filtered by role *(story 1.2)*
 > **Given** I am signed in
 > **When** I look at the main navigation

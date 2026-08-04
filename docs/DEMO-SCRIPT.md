@@ -3,8 +3,9 @@
 ← [Back to documentation home](README.md)
 
 A running order for demonstrating the Smart Lost & Found System on a laptop.
-Everything runs **locally** — no internet-hosted deployment needed, though the
-database is live in the cloud.
+Everything runs **locally**, backed by the live cloud database. The same build is
+also deployed at <https://smart-lost-and-found-system-virid.vercel.app> if you prefer
+to present from there.
 
 ---
 
@@ -19,6 +20,9 @@ database is live in the cloud.
 | ☐ | Sign out, so you start from the login screen |
 | ☐ | Open these browser tabs in advance: **Supabase dashboard**, **GitHub repo**, **`tests/tests.html`** |
 | ☐ | Close unrelated tabs/notifications; zoom browser to ~110% for visibility |
+
+**Backup if the local server misbehaves:** the same application is live at
+<https://smart-lost-and-found-system-virid.vercel.app> — switch to it and carry on.
 
 **Fallback if the internet drops:** the app automatically falls back to local demo
 data and shows an amber banner. Everything still works — say so out loud, it
@@ -153,5 +157,7 @@ went into features, testing and documentation. Shared behaviour is still modular
 (`auth.js`, `store.js`, `matching.js`, `camera.js`).
 
 **"Is it deployed?"**
-The database is live in the cloud; static hosting on Vercel is the next step —
-the code is deployment-ready and the repo is connected.
+Yes — <https://smart-lost-and-found-system-virid.vercel.app>, hosted on Vercel and
+redeployed automatically on every push to `main`. The database is managed
+PostgreSQL on Supabase. We are demonstrating locally today, but the same build is
+live and works on a phone.

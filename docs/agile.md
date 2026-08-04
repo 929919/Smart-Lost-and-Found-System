@@ -19,7 +19,7 @@ tracked on a GitHub Projects board.
 |-----------|:--------------:|:--------------:|-----|
 | Iteration 1 | 11 | 11 | ███████████ |
 | Iteration 2 | 22 | 24 | ████████████████████████ |
-| Iteration 3 | 26 | _in progress_ | |
+| Iteration 3 | 26 | 21 | █████████████████████ |
 
 Velocity rose as the team found its rhythm; Iteration 3 is scoped close to our
 proven capacity, with **Could** stories (Claude API) as the buffer to protect the
@@ -41,7 +41,7 @@ deadline.
 
 ### Iteration 3 — Persistence, deployment & matching
 - **Planned:** Supabase Postgres, Vercel deploy, auto-matching, test suite (Epic 5).
-- **Delivered:** _fill in at close of iteration._
+- **Delivered:** Supabase PostgreSQL backend, deployment to <https://smart-lost-and-found-system-virid.vercel.app>, lost↔found auto-matching, a 35-assertion automated test suite and an accessibility pass. Story 5.5 (Claude API assistant), the lowest-priority *Could*, was deferred to protect the deadline — exactly the buffer the plan intended.
 - **Review:** _add client feedback._
 - **Retrospective:** _add._
 

@@ -7,7 +7,7 @@ lost items across the JCU Singapore campus, with role-based access (Student /
 Admin), an interactive campus map, a claims workflow, camera capture for found
 items, and a help assistant.
 
-> 🔗 **Live demo:** _add your deployed Vercel URL here_
+> 🔗 **Live demo:** <https://smart-lost-and-found-system-virid.vercel.app>
 > 🎥 **Demo video:** _add link here_
 
 ---

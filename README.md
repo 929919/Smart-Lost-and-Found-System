@@ -7,14 +7,16 @@ items across the JCU Singapore campus — with role-based access, an interactive
 map, a verified claims workflow, camera capture for found items, automatic lost↔found
 matching, and a help assistant.
 
-> 🔗 **Live demo:** _to be added (Iteration 3)_
+> 🔗 **Live demo:** <https://smart-lost-and-found-system-virid.vercel.app>
 > 🎥 **Demo video:** _to be added_
 
 ---
 
 ## ▶️ Run it in 30 seconds
 
-The current application is in **[`iteration 3/`](iteration%203)**. No install, no build step.
+**Just open the live site:** <https://smart-lost-and-found-system-virid.vercel.app>
+
+Or run it locally — the application is in **[`iteration 3/`](iteration%203)**, no install, no build step.
 
 ```bash
 cd "iteration 3"

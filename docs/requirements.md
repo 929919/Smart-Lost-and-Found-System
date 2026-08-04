@@ -54,7 +54,7 @@ Estimates in story points (SP). Status legend: ✅ done · 🔨 in progress · �
 | ID | User story | Priority | SP | Iteration | Status |
 |----|------------|:--------:|:--:|:---------:|:------:|
 | 5.1 | As the team, we want the app backed by a **real relational database (Supabase Postgres)** so data is shared and durable. | M | 8 | 3 | ✅ |
-| 5.2 | As a user, I want the app **deployed to a public URL** so I can use it from any device. | M | 3 | 3 | 🔨 |
+| 5.2 | As a user, I want the app **deployed to a public URL** so I can use it from any device. | M | 3 | 3 | ✅ |
 | 5.3 | As a student, I want to be **notified when a found item matches my lost report** so recovery is automatic. | S | 5 | 3 | ✅ |
 | 5.4 | As the team, we want **automated tests** (unit + acceptance) so regressions are caught. | M | 5 | 3 | ✅ |
 | 5.5 | As a student, I want the assistant powered by the **Claude API** for natural answers. | C | 5 | 3 | ⬜ |
@@ -70,7 +70,7 @@ three planned iterations. Team of 3, ~2-week iterations.
 |-----------|:--------------------:|:---------:|:--------------------:|
 | Iteration 1 | 18 | 11 | 11 |
 | Iteration 2 | 22 | 24 | 24 |
-| Iteration 3 | 22 | 26 | _in progress_ |
+| Iteration 3 | 22 | 26 | 21 (story 5.5 deferred) |
 | **Total budget** | **~62 SP** | | |
 
 **Reading the plan:** the highest-value **Must** stories were pulled into the

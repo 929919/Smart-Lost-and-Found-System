@@ -5,6 +5,8 @@
 How to publish the Smart Lost & Found System to a public URL on **Vercel**.
 Free, no credit card, about **10 minutes**.
 
+> ✅ **Currently deployed at:** <https://smart-lost-and-found-system-virid.vercel.app>
+
 ---
 
 ## ⚠️ Read this first — who should deploy

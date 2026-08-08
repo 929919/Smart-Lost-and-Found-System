@@ -12,11 +12,17 @@
   <script src="assets/js/auth.js"></script>
 </head>
 <body>
+  <div class="project-disclaimer" role="note">
+    🎓 <strong>Student coursework project</strong> — this is a CP3407 university
+    assignment by Group 6, <strong>not an official James Cook University service</strong>.
+    Do not enter real credentials. Use the demo accounts listed below.
+  </div>
+
   <div class="login-shell">
     <form class="login-card" id="loginForm" novalidate>
       <div class="logobox"><img src="assets/img/jcu_logo.png" alt="James Cook University Singapore" /></div>
       <h1>Lost &amp; Found Sign in</h1>
-      <p class="sub">Sign in with your JCU account to continue.</p>
+      <p class="sub">Demonstration sign-in for the Smart Lost &amp; Found prototype.</p>
 
       <div class="field" style="margin-bottom:16px">
         <label for="jcuId">JCU ID</label>
@@ -40,9 +46,9 @@
         if you cannot sign in.
       </p>
 
-      <!-- Demo credentials — remove before a public deployment -->
-      <details class="demo-accounts">
-        <summary>Demo accounts (for assessment)</summary>
+      <!-- Demo credentials — open by default so it is obvious this is a test system -->
+      <details class="demo-accounts" open>
+        <summary>Demo accounts — use these, not real credentials</summary>
         <table>
           <tr><th>JCU ID</th><th>Password</th><th>Access</th></tr>
           <tr><td><code>jc111111</code></td><td><code>student123</code></td><td>🎓 Student</td></tr>

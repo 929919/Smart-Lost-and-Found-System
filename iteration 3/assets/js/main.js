@@ -57,7 +57,9 @@ function buildFooter() {
   const year = new Date().getFullYear();
   return `
   <div class="acknowledge wrap" style="max-width:none">
-    James Cook University Singapore is committed to a safe, inclusive and connected campus community.
+    🎓 <strong>Student coursework project</strong> — CP3407 Advanced Software Engineering,
+    Group 6. This is a university assignment and <strong>not an official James Cook
+    University service</strong>. All data shown is sample data.
   </div>
   <footer class="site-footer">
     <div class="wrap">

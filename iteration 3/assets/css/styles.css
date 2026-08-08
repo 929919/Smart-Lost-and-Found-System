@@ -432,6 +432,16 @@ a.card { color: inherit; }
 /* small button size (used on detail/claims/admin pages) */
 .btn--sm { padding: 7px 13px; font-size: .83rem; }
 
+/* --- Student-project disclaimer (shown above the sign-in card) ---
+   Makes it unambiguous that this is coursework and not a real JCU service,
+   so nobody is misled into entering genuine credentials. --- */
+.project-disclaimer {
+  background: #fdf0d6; color: #6b4200; border-bottom: 2px solid var(--jcu-gold);
+  padding: 12px 20px; font-size: .88rem; text-align: center; line-height: 1.5;
+  position: relative; z-index: 5;
+}
+.project-disclaimer strong { color: #4a2d00; }
+
 /* --- Demo account helper on the login page --- */
 .demo-accounts { margin-top: 20px; border-top: 1px solid var(--line); padding-top: 14px; }
 .demo-accounts summary {

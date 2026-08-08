@@ -30,7 +30,32 @@ development tools**.
 | **VS Code** | Primary editor; Live Server / `python -m http.server` for local preview |
 | **GitHub Projects** | Backlog board — stories move To do → In progress → Done |
 | **draw.io / diagrams.net** | Architectural UML diagram, database ER model and UI wireframes — sources committed under `docs/diagrams/` and exported to PNG for the documentation |
+| **GitHub Actions** | Continuous integration on every push — see below |
+| **Playwright** | Drives headless Chromium so CI runs the same browser test suite a developer runs |
 | **Chrome DevTools** | Debugging, responsive checks, console-error sweeps |
+
+## Continuous integration
+
+Every push and pull request runs **[GitHub Actions](../.github/workflows/ci.yml)**.
+The application has no build step, so the workflow does not compile anything — it
+guards the failures this project actually had:
+
+| Job | What it does | Why |
+|-----|--------------|-----|
+| **Repository & documentation checks** | `tools/check_links.py` resolves every relative link and image; `tools/check_repo.py` verifies required files, the 20 story pages, that all 11 pages declare `PAGE_REQUIRES` and load the route guard, that the documented test count matches the suite, that the iteration 2 snapshot is unmodified, and that no `service_role` token is committed | Documentation drifting out of step with the code was a repeated defect (D-09) |
+| **JavaScript syntax** | `node --check` on every application and test script | Catches a syntax error before it reaches a demonstration |
+| **Unit tests (headless browser)** | Serves the app, drives `tests/tests.html` with headless Chromium via Playwright, fails on any failing assertion **or any console error** | Runs exactly what a person runs, so CI cannot drift from the local suite |
+
+The privileged-key check decodes any JWT found in the repository and inspects its
+`role` claim, rather than searching for the word — `config.js` legitimately
+mentions `service_role` in a comment warning against committing it.
+
+Both Python checks are runnable locally:
+
+```bash
+python tools/check_links.py
+python tools/check_repo.py
+```
 
 ## Why "no framework"?
 For a small team on a tight timeline, vanilla JS removed build/tooling overhead

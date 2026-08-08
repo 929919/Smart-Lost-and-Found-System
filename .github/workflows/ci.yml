@@ -1,0 +1,86 @@
+name: CI
+
+# The application has no build step and no package manager, so this workflow
+# does not build anything. It verifies the things that have actually broken on
+# this project: documentation drifting out of step with the code, a page losing
+# its route guard, the iteration snapshots being modified, a privileged database
+# key being committed, and the unit suite regressing.
+
+on:
+  push:
+    branches: [main, "iteration-*"]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  checks:
+    name: Repository & documentation checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Documentation links resolve
+        run: python tools/check_links.py
+
+      - name: Repository consistency
+        run: python tools/check_repo.py
+
+      - name: SQL files parse as text and define the expected objects
+        run: |
+          grep -q "CREATE TABLE IF NOT EXISTS items"  "iteration 3/db/schema.sql"
+          grep -q "CREATE TABLE IF NOT EXISTS claims" "iteration 3/db/schema.sql"
+          grep -q "CREATE TABLE IF NOT EXISTS users"  "iteration 3/db/users.sql"
+          grep -q "CREATE OR REPLACE FUNCTION verify_login" "iteration 3/db/users.sql"
+          echo "schema objects present"
+
+  syntax:
+    name: JavaScript syntax
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Every application script parses
+        run: |
+          fail=0
+          for f in "iteration 3"/assets/js/*.js "iteration 3"/tests/*.js; do
+            if node --check "$f"; then echo "  ok   $f"; else echo "  FAIL $f"; fail=1; fi
+          done
+          exit $fail
+
+  unit-tests:
+    name: Unit tests (headless browser)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install a headless browser
+        run: npx --yes playwright@1.47.0 install --with-deps chromium
+
+      - name: Serve the application
+        run: |
+          cd "iteration 3"
+          python -m http.server 8124 &
+          for i in $(seq 1 20); do
+            curl -sf http://localhost:8124/tests/tests.html > /dev/null && break
+            sleep 0.5
+          done
+
+      - name: Run the suite
+        run: node tools/run_tests.mjs

@@ -134,6 +134,13 @@ would realistically never be tested.
 | Language declared | `lang="en"` on all 11 pages | ✅ |
 | Landmarks | `<header> <nav> <main id="main-content"> <footer>` | ✅ |
 
+## System testing and defects
+
+The procedure used to system-test the integrated application before a
+demonstration, the defect severity scale, and the log of every defect found —
+including the two raised by the client during the Iteration 3 demonstration —
+are in **[system-testing-plan.md](system-testing-plan.md)**.
+
 ## Test data set
 A deterministic seed (`store.js` → `SEED_ITEMS`, `SEED_CLAIMS`) provides 10 items
 across every category/status and 2 sample claims (1 Pending, 1 Approved) so every

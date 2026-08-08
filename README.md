@@ -61,6 +61,7 @@ Full documentation lives in **[`docs/`](docs)** — one page per assessment crit
 | [Testing](docs/testing.md) | Strategy, TDD, unit tests, accessibility |
 | [Code Quality](docs/code-quality.md) | SRP & DRY review of the codebase |
 | [Acceptance Tests](docs/acceptance-tests.md) | 34 Given/When/Then scenarios + traceability matrix |
+| [System Testing Plan](docs/system-testing-plan.md) | Test procedure, defect management and the defect log |
 | [Version Control](docs/version-control.md) | Branching model, commit conventions, tags |
 | [Build & Dev Tools](docs/tools.md) | Tools and libraries used, and how |
 | [Agile Process](docs/agile.md) | Iteration plans, reviews, retrospectives, velocity |

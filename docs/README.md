@@ -26,6 +26,7 @@ items, and a help assistant.
 | [Testing](testing.md) — strategy, TDD, unit tests, accessibility | 4 — Test |
 | [Code Quality](code-quality.md) — SRP & DRY review | 4 — Test / 7 — Agile |
 | [Acceptance Tests](acceptance-tests.md) — Given/When/Then per story | 4 — Test |
+| [System Testing Plan & Defect Log](system-testing-plan.md) | 4 — Test |
 | [Version Control](version-control.md) — git workflow | 5 — Version control |
 | [Build & Development Tools](tools.md) | 6 — Building and development tools |
 | [Agile Process](agile.md) — iterations, reviews, velocity | 7 — Agile software engineering |

@@ -10,7 +10,7 @@ source file linked under each section).
 > 🛠️ **Diagram sources:** all three diagrams are maintained as an editable
 > **[draw.io file](diagrams/smart-lost-found-diagrams.drawio)** (open at
 > <https://app.diagrams.net>). See **[diagram-specs.md](diagram-specs.md)** for how to
-> open, edit and export them, or to rebuild them in Gliffy / GenMyModel / NinjaMock.
+> open, edit and export them.
 
 ---
 
@@ -38,9 +38,10 @@ flowchart TD
   Modules -->|"supabase-js SDK (CRUD)"| Supabase
 ```
 
-> 🛠️ Also maintained as an editable UML diagram in draw.io — tab **1. Architecture**
-> of [`diagrams/smart-lost-found-diagrams.drawio`](diagrams/smart-lost-found-diagrams.drawio).
-> _Exported image: `img/architecture.png` (add once exported)._
+![Architectural design — UML component and deployment view](img/architecture.drawio.png)
+
+> 🛠️ Produced in **draw.io** (online). Editable source: tab **1. Architecture** of
+> [`diagrams/smart-lost-found-diagrams.drawio`](diagrams/smart-lost-found-diagrams.drawio).
 
 **Layering / separation of concerns**
 - **Presentation** — HTML pages + `styles.css` (JCU design system).
@@ -134,9 +135,10 @@ erDiagram
 `users` is deliberately **not** linked by a foreign key to `claims`; claims store
 the claimant's JCU ID as text so a claim survives an account being removed.
 
-> 🛠️ Also modelled as an ER diagram in draw.io — tab **2. Database ER**
-> of [`diagrams/smart-lost-found-diagrams.drawio`](diagrams/smart-lost-found-diagrams.drawio).
-> _Exported image: `img/database-er.png` (add once exported)._
+![Database design — entity relationship model](img/database.png)
+
+> 🛠️ Produced in **draw.io** (online). Editable source: tab **2. Database ER** of
+> [`diagrams/smart-lost-found-diagrams.drawio`](diagrams/smart-lost-found-diagrams.drawio).
 
 **Design decisions**
 - Both *lost* and *found* reports live in one `items` table, distinguished by `item_type` — simpler queries, one dashboard.
@@ -175,7 +177,9 @@ sequenceDiagram
   App->>DB: UPDATE claim = Returned, item = Returned
 ```
 
-> 🛠️ Wireframes for all five key screens — tab **3. UI Design**
-> of [`diagrams/smart-lost-found-diagrams.drawio`](diagrams/smart-lost-found-diagrams.drawio).
-> _Exported image: `img/ui-design.png` (add once exported)._
+![User interface design — wireframes for the five key screens](img/ui-design.drawio.png)
+
+> 🛠️ Produced in **draw.io** (online). Editable source: tab **3. UI Design** of
+> [`diagrams/smart-lost-found-diagrams.drawio`](diagrams/smart-lost-found-diagrams.drawio).
+> 📸 Screenshots of the interface as delivered: see [Implementation](implementation.md).
 > 📸 Screenshots of the delivered UI: see [Implementation](implementation.md).

@@ -29,9 +29,7 @@ development tools**.
 | **Git + GitHub** | Version control, one repo, feature branches, PRs, tags per iteration (see [Version Control](version-control.md)) |
 | **VS Code** | Primary editor; Live Server / `python -m http.server` for local preview |
 | **GitHub Projects** | Backlog board — stories move To do → In progress → Done |
-| **Gliffy** | Architectural UML diagram |
-| **GenMyModel** | Database ER diagram |
-| **NinjaMock** | UI wireframes / prototype |
+| **draw.io / diagrams.net** | Architectural UML diagram, database ER model and UI wireframes — sources committed under `docs/diagrams/` and exported to PNG for the documentation |
 | **Chrome DevTools** | Debugging, responsive checks, console-error sweeps |
 
 ## Why "no framework"?

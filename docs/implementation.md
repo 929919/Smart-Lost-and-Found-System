@@ -52,9 +52,52 @@ Each iteration ended with a demo to our client/tutor. Summary:
 
 > _Replace the italicised feedback with your actual tutor/client comments._
 
-## Screenshots
-_Add screenshots of: Login, Dashboard, Report-Lost map, Log-Found camera, Item
-Detail, Admin Claims. (Save under `docs/img/` and embed with `![](img/...)`.)_
+## The delivered solution
+
+### Signing in
+Accounts live in PostgreSQL and the **role comes from the account**, so a user
+cannot choose their own permissions. The banner makes clear this is coursework.
+
+![Login screen](img/login.png)
+
+### Student — dashboard, search and auto-matching
+Live statistics, category and status filters, and search across name,
+description and location. When a student has an outstanding lost report, the
+🔔 **match alert** appears at the top with the reason each item matched.
+
+![Student dashboard](img/dashboard.png)
+
+### Student — item detail and claiming
+Full record for an item, with the claim entry point for active found items.
+
+![Item detail](img/item-detail.png)
+
+A claim cannot be submitted without proof of ownership.
+
+![Submit a claim](img/submit-claim.png)
+
+### Student — reporting a lost item on the campus map
+Location is chosen by clicking a pin on the JCU Singapore campus aerial, which
+gives consistent, searchable location data instead of free text.
+
+![Report a lost item with the campus map picker](img/report-lost.png)
+
+### Admin — dashboard
+Operational summary and the pending-claims badge.
+
+![Admin dashboard](img/admin-dashboard.png)
+
+### Admin — logging a found item with the camera
+`getUserMedia()` capture with a file-upload fallback, plus the shelf tag that
+locates the item physically.
+
+![Logging a found item with camera capture](img/log-found.png)
+
+### Admin — reviewing claims
+Each claim shows the claimant, the item, and their proof of ownership.
+Approving transitions the claim **and** the linked item in one action.
+
+![Reviewing student claims](img/review-claims.png)
 
 ## Run / build
 ```bash

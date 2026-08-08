@@ -56,7 +56,7 @@ Full documentation lives in **[`docs/`](docs)** — one page per assessment crit
 | 🚀 [Deployment Guide](docs/DEPLOYMENT.md) | Publishing to Vercel, step by step |
 | [Requirements & Backlog](docs/requirements.md) | User stories, MoSCoW priorities, estimates, budget |
 | [Design](docs/design.md) | Architecture, database ER model, UI design |
-| [Diagram Build Specs](docs/diagram-specs.md) | Specs for the Gliffy / GenMyModel / NinjaMock diagrams |
+| [Diagram Build Specs](docs/diagram-specs.md) | draw.io diagram sources, how to edit and export them |
 | [Implementation](docs/implementation.md) | What each iteration delivered, tech stack |
 | [Testing](docs/testing.md) | Strategy, TDD, unit tests, accessibility |
 | [Acceptance Tests](docs/acceptance-tests.md) | 34 Given/When/Then scenarios + traceability matrix |

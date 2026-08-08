@@ -60,12 +60,7 @@ function renderMatchAlerts() {
 }
 
 function renderStats() {
-  const s = Store.stats();
-  document.getElementById("stats").innerHTML = `
-    <div class="stat"><div class="num">${s.total}</div><div class="label">Total Items</div></div>
-    <div class="stat s-active"><div class="num">${s.active}</div><div class="label">Active</div></div>
-    <div class="stat s-claimed"><div class="num">${s.claimed}</div><div class="label">Claimed</div></div>
-    <div class="stat s-returned"><div class="num">${s.returned}</div><div class="label">Returned</div></div>`;
+  document.getElementById("stats").innerHTML = itemStatusCards();
 }
 
 function renderFilters() {

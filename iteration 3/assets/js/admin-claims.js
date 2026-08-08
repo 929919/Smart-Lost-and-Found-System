@@ -5,11 +5,12 @@ let claimFilter = "All";
 
 function renderCounters() {
   const c = Claims.counts();
-  document.getElementById("counters").innerHTML = `
-    <div class="stat"><div class="num">${c.total}</div><div class="label">Total Claims</div></div>
-    <div class="stat s-returned"><div class="num">${c.pending}</div><div class="label">Pending</div></div>
-    <div class="stat s-claimed"><div class="num">${c.approved}</div><div class="label">Approved</div></div>
-    <div class="stat s-active"><div class="num">${c.returned}</div><div class="label">Returned</div></div>`;
+  document.getElementById("counters").innerHTML = statsCards([
+    { value: c.total,    label: "Total Claims" },
+    { value: c.pending,  label: "Pending",  tone: "returned" },
+    { value: c.approved, label: "Approved", tone: "claimed"  },
+    { value: c.returned, label: "Returned", tone: "active"   },
+  ]);
 }
 
 function renderFilters() {

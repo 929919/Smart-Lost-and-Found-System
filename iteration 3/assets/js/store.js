@@ -258,6 +258,27 @@ function escapeHTML(str) {
     ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 }
 
+/* Statistic cards. Takes a list of {value, label, tone} so any page can render
+   its own figures through one implementation. Extracted after a DRY review
+   found the same markup duplicated across the dashboard and admin pages. */
+function statsCards(cards) {
+  return cards.map(c =>
+    `<div class="stat ${c.tone ? "s-" + c.tone : ""}">
+       <div class="num">${c.value}</div><div class="label">${escapeHTML(c.label)}</div>
+     </div>`).join("");
+}
+
+/* The item-status figures shared by the dashboard and the admin item table. */
+function itemStatusCards() {
+  const s = Store.stats();
+  return statsCards([
+    { value: s.total,    label: "Total Items" },
+    { value: s.active,   label: "Active",   tone: "active"   },
+    { value: s.claimed,  label: "Claimed",  tone: "claimed"  },
+    { value: s.returned, label: "Returned", tone: "returned" },
+  ]);
+}
+
 /* Media block for an item: photo if present, else category gradient + icon */
 function itemMedia(item, extraClass) {
   if (item.photoUrl) {

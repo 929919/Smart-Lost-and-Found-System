@@ -24,6 +24,7 @@ items, and a help assistant.
 | [Diagram Build Specs](diagram-specs.md) — draw.io sources, editing and export | 2 — Design |
 | [Implementation](implementation.md) — what we delivered | 3 — Implementation / Code |
 | [Testing](testing.md) — strategy, TDD, unit tests, accessibility | 4 — Test |
+| [Code Quality](code-quality.md) — SRP & DRY review | 4 — Test / 7 — Agile |
 | [Acceptance Tests](acceptance-tests.md) — Given/When/Then per story | 4 — Test |
 | [Version Control](version-control.md) — git workflow | 5 — Version control |
 | [Build & Development Tools](tools.md) | 6 — Building and development tools |

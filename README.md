@@ -59,6 +59,7 @@ Full documentation lives in **[`docs/`](docs)** — one page per assessment crit
 | [Diagram Build Specs](docs/diagram-specs.md) | draw.io diagram sources, how to edit and export them |
 | [Implementation](docs/implementation.md) | What each iteration delivered, tech stack |
 | [Testing](docs/testing.md) | Strategy, TDD, unit tests, accessibility |
+| [Code Quality](docs/code-quality.md) | SRP & DRY review of the codebase |
 | [Acceptance Tests](docs/acceptance-tests.md) | 34 Given/When/Then scenarios + traceability matrix |
 | [Version Control](docs/version-control.md) | Branching model, commit conventions, tags |
 | [Build & Dev Tools](docs/tools.md) | Tools and libraries used, and how |

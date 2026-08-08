@@ -8,9 +8,38 @@ The assessment requires the design diagrams to be produced in **online tools**:
 > *"Database designs. **Must use** online tool, e.g. GenMyModel."*
 > *"Interface design. **Must use** prototyping tool, e.g. NinjaMock."*
 
-This page is the **build sheet** — every box, label and connector is specified so
-the diagrams can be reproduced quickly. Export each as PNG into `docs/img/` and
-paste the share link into [design.md](design.md).
+There are two ways to satisfy this. Note the rubric says *"**e.g.** Gliffy"* — the
+named tools are **examples**; the requirement is to use *an* online diagramming
+tool.
+
+---
+
+## ⚡ Fast path — import the ready-made file (about 10 minutes)
+
+A complete draw.io file containing all three diagrams is in this repository:
+**[`diagrams/smart-lost-found-diagrams.drawio`](diagrams/smart-lost-found-diagrams.drawio)**
+
+1. Go to **<https://app.diagrams.net>** (draw.io — free, online, no sign-up)
+2. Choose **Open Existing Diagram** → select the `.drawio` file
+   *(or File → Import from → Device)*
+3. Three tabs appear along the bottom:
+   **1. Architecture (UML)** · **2. Database ER** · **3. UI Design**
+4. Adjust anything you want — it is fully editable, so make it yours
+5. For each tab: **File → Export as → PNG…**, save into `docs/img/` as
+   `architecture.png`, `database-er.png`, `ui-design.png`
+6. **File → Save as → Device** to keep your edited copy, and optionally
+   **File → Share** for a link to paste into [design.md](design.md)
+
+> Editing the diagrams yourself is worthwhile — you should be able to explain
+> every box if you are asked about it.
+
+---
+
+## 🎯 Thorough path — build them in the named tools
+
+If you would rather use Gliffy, GenMyModel and NinjaMock specifically, the
+sections below specify every box, column and screen element so it is
+transcription rather than design work.
 
 ---
 

@@ -1,0 +1,257 @@
+<mxfile host="app.diagrams.net" agent="CP3407 Group 6" version="24.0.0">
+
+  <diagram name="1. Architecture (UML)" id="architecture">
+    <mxGraphModel dx="1100" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="826" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="title" value="Smart Lost &amp; Found System — Architectural Design" style="text;html=1;align=center;verticalAlign=middle;fontSize=20;fontStyle=1;fontColor=#00263A;" vertex="1" parent="1">
+          <mxGeometry x="300" y="20" width="560" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="actorStudent" value="Student" style="shape=umlActor;verticalLabelPosition=bottom;html=1;verticalAlign=top;fontStyle=1;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="70" y="200" width="40" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="actorAdmin" value="Admin&#10;(Campus Security)" style="shape=umlActor;verticalLabelPosition=bottom;html=1;verticalAlign=top;fontStyle=1;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="70" y="420" width="40" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="browser" value="Browser — Web Client" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;fontStyle=1;fontSize=14;fillColor=#EAF4FB;strokeColor=#0079C1;strokeWidth=2;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="250" y="130" width="400" height="450" as="geometry" />
+        </mxCell>
+        <mxCell id="pages" value="&lt;b&gt;Presentation&lt;/b&gt;&lt;br&gt;login · index · item-detail&lt;br&gt;report-lost · submit-claim&lt;br&gt;log-found · admin-dashboard&lt;br&gt;admin-claims · assistant" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#0079C1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="280" y="170" width="340" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="modules" value="&lt;b&gt;Application logic (ES6 modules)&lt;/b&gt;&lt;br&gt;auth.js — session + route guard&lt;br&gt;store.js — data access + cache&lt;br&gt;matching.js — lost↔found scoring&lt;br&gt;map.js · camera.js · main.js" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#0079C1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="280" y="300" width="340" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="media" value="&lt;b&gt;MediaDevices API&lt;/b&gt;&lt;br&gt;getUserMedia() — device camera" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FDF0D6;strokeColor=#D98E00;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="280" y="450" width="340" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="cloud" value="Cloud services" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;fontStyle=1;fontSize=14;fillColor=#F1EFE8;strokeColor=#73726C;strokeWidth=2;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="770" y="130" width="330" height="450" as="geometry" />
+        </mxCell>
+        <mxCell id="vercel" value="&lt;b&gt;Vercel&lt;/b&gt;&lt;br&gt;Static hosting / CDN&lt;br&gt;HTTPS, auto-deploy from GitHub" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#333333;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="800" y="180" width="270" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="supabase" value="&lt;b&gt;Supabase — PostgreSQL&lt;/b&gt;&lt;br&gt;items · claims · users&lt;br&gt;REST API · Row-Level Security&lt;br&gt;verify_login() SECURITY DEFINER" style="shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=15;whiteSpace=wrap;html=1;fillColor=#E2F5EA;strokeColor=#1F8A4C;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="800" y="330" width="270" height="140" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e1" value="HTTPS" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=11;" edge="1" parent="1" source="actorStudent" target="browser">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" value="HTTPS" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=11;" edge="1" parent="1" source="actorAdmin" target="browser">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" value="serves static files" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=11;dashed=1;" edge="1" parent="1" source="vercel" target="pages">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" value="uses" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=11;dashed=1;" edge="1" parent="1" source="pages" target="modules">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" value="supabase-js SDK&#10;SELECT / INSERT / UPDATE" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=11;strokeWidth=3;strokeColor=#0079C1;fontStyle=1;" edge="1" parent="1" source="modules" target="supabase">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" value="getUserMedia()" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontSize=11;dashed=1;" edge="1" parent="1" source="modules" target="media">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="note" value="A static browser client talks directly to managed PostgreSQL via the Supabase SDK — no server tier of our own.&#10;Access rules are enforced at the database by Row-Level Security, and credentials are verified inside the database." style="text;html=1;align=left;verticalAlign=top;fontSize=12;fontStyle=2;fontColor=#5B6B7B;" vertex="1" parent="1">
+          <mxGeometry x="250" y="610" width="850" height="50" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+
+  <diagram name="2. Database ER" id="database">
+    <mxGraphModel dx="1100" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="826" math="0" shadow="0">
+      <root>
+        <mxCell id="d0" />
+        <mxCell id="d1" parent="d0" />
+
+        <mxCell id="dtitle" value="Smart Lost &amp; Found System — Database Design (PostgreSQL)" style="text;html=1;align=center;verticalAlign=middle;fontSize=20;fontStyle=1;fontColor=#00263A;" vertex="1" parent="d1">
+          <mxGeometry x="250" y="20" width="660" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="tItems" value="items" style="swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=32;horizontalStack=0;resizeParent=1;resizeParentMax=0;html=1;fillColor=#0079C1;fontColor=#FFFFFF;strokeColor=#005A93;fontSize=15;" vertex="1" parent="d1">
+          <mxGeometry x="80" y="110" width="330" height="384" as="geometry" />
+        </mxCell>
+        <mxCell id="i1" value="PK  id : BIGSERIAL" style="text;html=1;strokeColor=#E3E8EE;fillColor=#FFFFFF;align=left;spacingLeft=8;fontStyle=1;fontSize=12;" vertex="1" parent="tItems"><mxGeometry y="32" width="330" height="26" as="geometry" /></mxCell>
+        <mxCell id="i2" value="name : TEXT  NOT NULL" style="text;html=1;strokeColor=#E3E8EE;fillColor=#FFFFFF;align=left;spacingLeft=8;fontSize=12;" vertex="1" parent="tItems"><mxGeometry y="58" width="330" height="26" as="geometry" /></mxCell>
+        <mxCell id="i3" value="category : TEXT  CHECK (6 values)" style="text;html=1;strokeColor=#E3E8EE;fillColor=#FFFFFF;align=left;spacingLeft=8;fontSize=12;" vertex="1" parent="tItems"><mxGeometry y="84" width="330" height="26" as="geometry" /></mxCell>
+        <mxCell id="i4" value="location : TEXT  NOT NULL" style="text;html=1;strokeColor=#E3E8EE;fillColor=#FFFFFF;align=left;spacingLeft=8;fontSize=12;" vertex="1" parent="tItems"><mxGeometry y="110" width="330" height="26" as="geometry" /></mxCell>
+        <mxCell id="i5" value="item_type : TEXT  CHECK (found|lost)" style="text;html=1;strokeColor=#E3E8EE;fillColor=#FFFFFF;align=left;spacingLeft=8;fontSize=12;" vertex="1" parent="tItems"><mxGeometry y="136" width="330" height="26" as="geometry" /></mxCell>
+        <mxCell id="i6" value="description : TEXT" style="text;html=1;strokeColor=#E3E8EE;fillColor=#FFFFFF;align=left;spacingLeft=8;fontSize=12;" vertex="1" parent="tItems"><mxGeometry y="162" width="330" height="26" as="geometry" /></mxCell>
+        <mxCell id="i7" value="color : TEXT" style="text;html=1;strokeColor=#E3E8EE;fillColor=#FFFFFF;align=left;spacingLeft=8;fontSize=12;" vertex="1" parent="tItems"><mxGeometry y="188" width="330" height="26" as="geometry" /></mxCell>
+        <mxCell id="i8" value="contact : TEXT" style="text;html=1;strokeColor=#E3E8EE;fillColor=#FFFFFF;align=left;spacingLeft=8;fontSize=12;" vertex="1" parent="tItems"><mxGeometry y="214" width="330" height="26" as="geometry" /></mxCell>
+        <mxCell id="i9" value="shelf_tag : TEXT" style="text;html=1;strokeColor=#E3E8EE;fillColor=#FFFFFF;align=left;spacingLeft=8;fontSize=12;" vertex="1" parent="tItems"><mxGeometry y="240" width="330" height="26" as="geometry" /></mxCell>
+        <mxCell id="i10" value="status : TEXT  CHECK (Active|Claimed|Returned)" style="text;html=1;strokeColor=#E3E8EE;fillColor=#FFFFFF;align=left;spacingLeft=8;fontSize=11;" vertex="1" parent="tItems"><mxGeometry y="266" width="330" height="26" as="geometry" /></mxCell>
+        <mxCell id="i11" value="photo_url : TEXT" style="text;html=1;strokeColor=#E3E8EE;fillColor=#FFFFFF;align=left;spacingLeft=8;fontSize=12;" vertex="1" parent="tItems"><mxGeometry y="292" width="330" height="26" as="geometry" /></mxCell>
+        <mxCell id="i12" value="reported_by : TEXT" style="text;html=1;strokeColor=#E3E8EE;fillColor=#FFFFFF;align=left;spacingLeft=8;fontSize=12;" vertex="1" parent="tItems"><mxGeometry y="318" width="330" height="26" as="geometry" /></mxCell>
+        <mxCell id="i13" value="created_at : TIMESTAMPTZ" style="text;html=1;strokeColor=#E3E8EE;fillColor=#FFFFFF;align=left;spacingLeft=8;fontSize=12;" vertex="1" parent="tItems"><mxGeometry y="344" width="330" height="26" as="geometry" /></mxCell>
+
+        <mxCell id="tClaims" value="claims" style="swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=32;horizontalStack=0;resizeParent=1;resizeParentMax=0;html=1;fillColor=#D98E00;fontColor=#FFFFFF;strokeColor=#9C6500;fontSize=15;" vertex="1" parent="d1">
+          <mxGeometry x="600" y="110" width="330" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="c1" value="PK  id : BIGSERIAL" style="text;html=1;strokeColor=#E3E8EE;fillColor=#FFFFFF;align=left;spacingLeft=8;fontStyle=1;fontSize=12;" vertex="1" parent="tClaims"><mxGeometry y="32" width="330" height="26" as="geometry" /></mxCell>
+        <mxCell id="c2" value="FK  item_id : BIGINT → items(id)" style="text;html=1;strokeColor=#E3E8EE;fillColor=#FFF6E5;align=left;spacingLeft=8;fontStyle=1;fontSize=12;" vertex="1" parent="tClaims"><mxGeometry y="58" width="330" height="26" as="geometry" /></mxCell>
+        <mxCell id="c3" value="claimant_jcu_id : TEXT  NOT NULL" style="text;html=1;strokeColor=#E3E8EE;fillColor=#FFFFFF;align=left;spacingLeft=8;fontSize=12;" vertex="1" parent="tClaims"><mxGeometry y="84" width="330" height="26" as="geometry" /></mxCell>
+        <mxCell id="c4" value="proof : TEXT  NOT NULL" style="text;html=1;strokeColor=#E3E8EE;fillColor=#FFFFFF;align=left;spacingLeft=8;fontSize=12;" vertex="1" parent="tClaims"><mxGeometry y="110" width="330" height="26" as="geometry" /></mxCell>
+        <mxCell id="c5" value="contact : TEXT" style="text;html=1;strokeColor=#E3E8EE;fillColor=#FFFFFF;align=left;spacingLeft=8;fontSize=12;" vertex="1" parent="tClaims"><mxGeometry y="136" width="330" height="26" as="geometry" /></mxCell>
+        <mxCell id="c6" value="status : TEXT  CHECK (Pending|Approved|&#10;Rejected|Returned)" style="text;html=1;strokeColor=#E3E8EE;fillColor=#FFFFFF;align=left;spacingLeft=8;fontSize=11;" vertex="1" parent="tClaims"><mxGeometry y="162" width="330" height="26" as="geometry" /></mxCell>
+        <mxCell id="c7" value="created_at : TIMESTAMPTZ" style="text;html=1;strokeColor=#E3E8EE;fillColor=#FFFFFF;align=left;spacingLeft=8;fontSize=12;" vertex="1" parent="tClaims"><mxGeometry y="188" width="330" height="26" as="geometry" /></mxCell>
+        <mxCell id="c8" value="updated_at : TIMESTAMPTZ" style="text;html=1;strokeColor=#E3E8EE;fillColor=#FFFFFF;align=left;spacingLeft=8;fontSize=12;" vertex="1" parent="tClaims"><mxGeometry y="214" width="330" height="26" as="geometry" /></mxCell>
+
+        <mxCell id="tUsers" value="users" style="swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=32;horizontalStack=0;resizeParent=1;resizeParentMax=0;html=1;fillColor=#1F8A4C;fontColor=#FFFFFF;strokeColor=#166B39;fontSize=15;" vertex="1" parent="d1">
+          <mxGeometry x="600" y="410" width="330" height="188" as="geometry" />
+        </mxCell>
+        <mxCell id="u1" value="PK  id : BIGSERIAL" style="text;html=1;strokeColor=#E3E8EE;fillColor=#FFFFFF;align=left;spacingLeft=8;fontStyle=1;fontSize=12;" vertex="1" parent="tUsers"><mxGeometry y="32" width="330" height="26" as="geometry" /></mxCell>
+        <mxCell id="u2" value="UK  jcu_id : TEXT  UNIQUE NOT NULL" style="text;html=1;strokeColor=#E3E8EE;fillColor=#FFFFFF;align=left;spacingLeft=8;fontStyle=1;fontSize=12;" vertex="1" parent="tUsers"><mxGeometry y="58" width="330" height="26" as="geometry" /></mxCell>
+        <mxCell id="u3" value="password : TEXT  NOT NULL" style="text;html=1;strokeColor=#E3E8EE;fillColor=#FFFFFF;align=left;spacingLeft=8;fontSize=12;" vertex="1" parent="tUsers"><mxGeometry y="84" width="330" height="26" as="geometry" /></mxCell>
+        <mxCell id="u4" value="full_name : TEXT" style="text;html=1;strokeColor=#E3E8EE;fillColor=#FFFFFF;align=left;spacingLeft=8;fontSize=12;" vertex="1" parent="tUsers"><mxGeometry y="110" width="330" height="26" as="geometry" /></mxCell>
+        <mxCell id="u5" value="role : TEXT  CHECK (student|admin|none)" style="text;html=1;strokeColor=#E3E8EE;fillColor=#FFFFFF;align=left;spacingLeft=8;fontSize=12;" vertex="1" parent="tUsers"><mxGeometry y="136" width="330" height="26" as="geometry" /></mxCell>
+        <mxCell id="u6" value="created_at : TIMESTAMPTZ" style="text;html=1;strokeColor=#E3E8EE;fillColor=#FFFFFF;align=left;spacingLeft=8;fontSize=12;" vertex="1" parent="tUsers"><mxGeometry y="162" width="330" height="26" as="geometry" /></mxCell>
+
+        <mxCell id="rel1" value="1 : 0..*  receives" style="edgeStyle=entityRelationEdgeStyle;html=1;fontSize=12;fontStyle=1;startArrow=ERone;startFill=0;endArrow=ERzeroToMany;endFill=0;strokeWidth=2;strokeColor=#0079C1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="d1" source="tItems" target="tClaims">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel2" value="claimant_jcu_id references jcu_id&#10;(no FK — claims survive account removal)" style="edgeStyle=entityRelationEdgeStyle;html=1;fontSize=11;fontStyle=2;dashed=1;endArrow=open;strokeColor=#5B6B7B;" edge="1" parent="d1" source="tUsers" target="tClaims">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="dnote" value="Row-Level Security is enabled on all three tables. No DELETE policy exists, so records cannot be destroyed from the browser —&#10;items are retired by changing status. The users table has no anon policy at all; authentication goes through verify_login(),&#10;a SECURITY DEFINER function, so passwords never reach the client." style="text;html=1;align=left;verticalAlign=top;fontSize=12;fontStyle=2;fontColor=#5B6B7B;" vertex="1" parent="d1">
+          <mxGeometry x="80" y="620" width="900" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+
+  <diagram name="3. UI Design" id="ui">
+    <mxGraphModel dx="1100" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="826" math="0" shadow="0">
+      <root>
+        <mxCell id="w0" />
+        <mxCell id="w1" parent="w0" />
+
+        <mxCell id="wtitle" value="Smart Lost &amp; Found System — User Interface Design" style="text;html=1;align=center;verticalAlign=middle;fontSize=20;fontStyle=1;fontColor=#00263A;" vertex="1" parent="w1">
+          <mxGeometry x="280" y="15" width="600" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- Screen A: Login -->
+        <mxCell id="sA" value="A · Login" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;fontStyle=1;fontSize=13;fillColor=#FFFFFF;strokeColor=#333333;strokeWidth=2;" vertex="1" parent="w1">
+          <mxGeometry x="60" y="80" width="300" height="330" as="geometry" />
+        </mxCell>
+        <mxCell id="a1" value="⚠ Student project — not an official JCU service" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FDF0D6;strokeColor=#D98E00;fontSize=9;" vertex="1" parent="w1">
+          <mxGeometry x="70" y="105" width="280" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="a2" value="[ JCU logo ]" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F6F8FA;strokeColor=#E3E8EE;fontSize=10;" vertex="1" parent="w1">
+          <mxGeometry x="140" y="139" width="140" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="a3" value="Lost &amp; Found Sign in" style="text;html=1;align=center;fontSize=14;fontStyle=1;" vertex="1" parent="w1">
+          <mxGeometry x="70" y="180" width="280" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="a4" value="JCU ID" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=6;fillColor=#FFFFFF;strokeColor=#B0B8C0;fontSize=10;fontColor=#8A96A3;" vertex="1" parent="w1">
+          <mxGeometry x="90" y="212" width="240" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="a5" value="Password" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=6;fillColor=#FFFFFF;strokeColor=#B0B8C0;fontSize=10;fontColor=#8A96A3;" vertex="1" parent="w1">
+          <mxGeometry x="90" y="248" width="240" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="a6" value="Sign in →" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0079C1;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontSize=11;" vertex="1" parent="w1">
+          <mxGeometry x="90" y="286" width="240" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="a7" value="🔑 Demo accounts (student / admin / no-access)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F6F8FA;strokeColor=#E3E8EE;fontSize=9;" vertex="1" parent="w1">
+          <mxGeometry x="90" y="326" width="240" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="aNote" value="Role comes from the account —&#10;the user cannot choose it" style="text;html=1;align=center;fontSize=10;fontStyle=2;fontColor=#5B6B7B;" vertex="1" parent="w1">
+          <mxGeometry x="70" y="368" width="280" height="34" as="geometry" />
+        </mxCell>
+
+        <!-- Screen B: Dashboard -->
+        <mxCell id="sB" value="B · Student Dashboard" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;fontStyle=1;fontSize=13;fillColor=#FFFFFF;strokeColor=#333333;strokeWidth=2;" vertex="1" parent="w1">
+          <mxGeometry x="410" y="80" width="360" height="330" as="geometry" />
+        </mxCell>
+        <mxCell id="b1" value="📍 Singapore Campus            Logged in as jc111111 [STUDENT]  Logout" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#00263A;strokeColor=none;fontColor=#FFFFFF;fontSize=8;" vertex="1" parent="w1">
+          <mxGeometry x="420" y="105" width="340" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="b2" value="[logo]      Dashboard | Report Lost Item | Assistant" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#F6A800;fontSize=9;" vertex="1" parent="w1">
+          <mxGeometry x="420" y="125" width="340" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="b3" value="HERO — campus photo · &quot;Lost &amp; Found&quot;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#005A93;strokeColor=none;fontColor=#FFFFFF;fontSize=10;" vertex="1" parent="w1">
+          <mxGeometry x="420" y="151" width="340" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="b4" value="🔔 1 possible match for your lost item — same category · same location" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FDF0D6;strokeColor=#F6A800;strokeWidth=2;fontSize=9;" vertex="1" parent="w1">
+          <mxGeometry x="420" y="197" width="340" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="b5" value="Total" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#E3E8EE;fontSize=9;" vertex="1" parent="w1"><mxGeometry x="420" y="233" width="82" height="30" as="geometry" /></mxCell>
+        <mxCell id="b6" value="Active" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1F8A4C;fontSize=9;" vertex="1" parent="w1"><mxGeometry x="506" y="233" width="82" height="30" as="geometry" /></mxCell>
+        <mxCell id="b7" value="Claimed" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#0079C1;fontSize=9;" vertex="1" parent="w1"><mxGeometry x="592" y="233" width="82" height="30" as="geometry" /></mxCell>
+        <mxCell id="b8" value="Returned" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#F6A800;fontSize=9;" vertex="1" parent="w1"><mxGeometry x="678" y="233" width="82" height="30" as="geometry" /></mxCell>
+        <mxCell id="b9" value="🔎 Search…      [All][Electronics][Clothing][Keys]…" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F6F8FA;strokeColor=#E3E8EE;fontSize=9;" vertex="1" parent="w1">
+          <mxGeometry x="420" y="269" width="340" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="b10" value="🖼 item card" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#E3E8EE;fontSize=9;" vertex="1" parent="w1"><mxGeometry x="420" y="301" width="105" height="70" as="geometry" /></mxCell>
+        <mxCell id="b11" value="🖼 item card" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#E3E8EE;fontSize=9;" vertex="1" parent="w1"><mxGeometry x="537" y="301" width="105" height="70" as="geometry" /></mxCell>
+        <mxCell id="b12" value="🖼 item card" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#E3E8EE;fontSize=9;" vertex="1" parent="w1"><mxGeometry x="654" y="301" width="106" height="70" as="geometry" /></mxCell>
+
+        <!-- Screen C: Report Lost -->
+        <mxCell id="sC" value="C · Report Lost Item (campus map picker)" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;fontStyle=1;fontSize=13;fillColor=#FFFFFF;strokeColor=#333333;strokeWidth=2;" vertex="1" parent="w1">
+          <mxGeometry x="820" y="80" width="300" height="330" as="geometry" />
+        </mxCell>
+        <mxCell id="c1u" value="📍 Step 1 — Where did you last have it?" style="text;html=1;align=left;fontSize=10;fontStyle=1;" vertex="1" parent="w1">
+          <mxGeometry x="830" y="105" width="280" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="c2u" value="CAMPUS AERIAL MAP&#10;● ● ● 9 clickable location pins ● ● ●" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E8F0E4;strokeColor=#7A9A6B;fontSize=9;" vertex="1" parent="w1">
+          <mxGeometry x="830" y="127" width="280" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="c3u" value="● Selected location: Library" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F6F8FA;strokeColor=#0079C1;dashed=1;fontSize=9;" vertex="1" parent="w1">
+          <mxGeometry x="830" y="221" width="280" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="c4u" value="📝 Step 2 — Item details" style="text;html=1;align=left;fontSize=10;fontStyle=1;" vertex="1" parent="w1">
+          <mxGeometry x="830" y="249" width="280" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="c5u" value="Item name *" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=6;fillColor=#FFFFFF;strokeColor=#B0B8C0;fontSize=9;fontColor=#8A96A3;" vertex="1" parent="w1"><mxGeometry x="830" y="269" width="280" height="22" as="geometry" /></mxCell>
+        <mxCell id="c6u" value="Category ▾" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=6;fillColor=#FFFFFF;strokeColor=#B0B8C0;fontSize=9;fontColor=#8A96A3;" vertex="1" parent="w1"><mxGeometry x="830" y="295" width="135" height="22" as="geometry" /></mxCell>
+        <mxCell id="c7u" value="Colour" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=6;fillColor=#FFFFFF;strokeColor=#B0B8C0;fontSize=9;fontColor=#8A96A3;" vertex="1" parent="w1"><mxGeometry x="975" y="295" width="135" height="22" as="geometry" /></mxCell>
+        <mxCell id="c8u" value="Description" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=6;fillColor=#FFFFFF;strokeColor=#B0B8C0;fontSize=9;fontColor=#8A96A3;" vertex="1" parent="w1"><mxGeometry x="830" y="321" width="280" height="34" as="geometry" /></mxCell>
+        <mxCell id="c9u" value="Submit Lost Report" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0079C1;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontSize=10;" vertex="1" parent="w1"><mxGeometry x="830" y="361" width="140" height="26" as="geometry" /></mxCell>
+
+        <!-- Screen D: Log Found (camera) -->
+        <mxCell id="sD" value="D · Admin — Log Found Item (camera)" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;fontStyle=1;fontSize=13;fillColor=#FFFFFF;strokeColor=#333333;strokeWidth=2;" vertex="1" parent="w1">
+          <mxGeometry x="60" y="450" width="300" height="290" as="geometry" />
+        </mxCell>
+        <mxCell id="d1u" value="📸 Take Photo" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#0079C1;strokeColor=none;fontColor=#FFFFFF;fontSize=9;fontStyle=1;" vertex="1" parent="w1"><mxGeometry x="70" y="478" width="138" height="24" as="geometry" /></mxCell>
+        <mxCell id="d2u" value="📁 Upload File" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#E3E8EE;fontSize=9;" vertex="1" parent="w1"><mxGeometry x="212" y="478" width="138" height="24" as="geometry" /></mxCell>
+        <mxCell id="d3u" value="[ live camera preview ]" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#0B1622;strokeColor=none;fontColor=#9FB3C4;fontSize=10;" vertex="1" parent="w1"><mxGeometry x="70" y="508" width="280" height="90" as="geometry" /></mxCell>
+        <mxCell id="d4u" value="Start Camera" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0079C1;strokeColor=none;fontColor=#FFFFFF;fontSize=9;" vertex="1" parent="w1"><mxGeometry x="70" y="604" width="88" height="24" as="geometry" /></mxCell>
+        <mxCell id="d5u" value="📸 Capture" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1F8A4C;strokeColor=none;fontColor=#FFFFFF;fontSize=9;" vertex="1" parent="w1"><mxGeometry x="166" y="604" width="88" height="24" as="geometry" /></mxCell>
+        <mxCell id="d6u" value="↺ Retake" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#E3E8EE;fontSize=9;" vertex="1" parent="w1"><mxGeometry x="262" y="604" width="88" height="24" as="geometry" /></mxCell>
+        <mxCell id="d7u" value="Name · Category · Date found · Shelf tag · Colour" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F6F8FA;strokeColor=#E3E8EE;fontSize=9;" vertex="1" parent="w1"><mxGeometry x="70" y="636" width="280" height="30" as="geometry" /></mxCell>
+        <mxCell id="d8u" value="Campus map picker (step 3)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E8F0E4;strokeColor=#7A9A6B;fontSize=9;" vertex="1" parent="w1"><mxGeometry x="70" y="672" width="280" height="26" as="geometry" /></mxCell>
+        <mxCell id="d9u" value="Log Found Item" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0079C1;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontSize=10;" vertex="1" parent="w1"><mxGeometry x="70" y="704" width="130" height="26" as="geometry" /></mxCell>
+
+        <!-- Screen E: Admin claims -->
+        <mxCell id="sE" value="E · Admin — Review Student Claims" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;fontStyle=1;fontSize=13;fillColor=#FFFFFF;strokeColor=#333333;strokeWidth=2;" vertex="1" parent="w1">
+          <mxGeometry x="410" y="450" width="710" height="290" as="geometry" />
+        </mxCell>
+        <mxCell id="e1u" value="Total Claims" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#E3E8EE;fontSize=9;" vertex="1" parent="w1"><mxGeometry x="420" y="478" width="170" height="30" as="geometry" /></mxCell>
+        <mxCell id="e2u" value="Pending" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#F6A800;fontSize=9;" vertex="1" parent="w1"><mxGeometry x="594" y="478" width="170" height="30" as="geometry" /></mxCell>
+        <mxCell id="e3u" value="Approved" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#0079C1;fontSize=9;" vertex="1" parent="w1"><mxGeometry x="768" y="478" width="170" height="30" as="geometry" /></mxCell>
+        <mxCell id="e4u" value="Returned" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1F8A4C;fontSize=9;" vertex="1" parent="w1"><mxGeometry x="942" y="478" width="168" height="30" as="geometry" /></mxCell>
+        <mxCell id="e5u" value="Show:  [All] [Pending] [Approved] [Rejected] [Returned]" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F6F8FA;strokeColor=#E3E8EE;fontSize=9;align=left;spacingLeft=8;" vertex="1" parent="w1"><mxGeometry x="420" y="514" width="690" height="24" as="geometry" /></mxCell>
+        <mxCell id="e6u" value="🖼&#10;photo" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#0079C1;strokeColor=none;fontColor=#FFFFFF;fontSize=9;" vertex="1" parent="w1"><mxGeometry x="430" y="554" width="80" height="80" as="geometry" /></mxCell>
+        <mxCell id="e7u" value="&lt;b&gt;Black leather wallet&lt;/b&gt;  [PENDING]&#10;🙋 Claimant: jc123456 · 📍 Food Court · #0002&#10;🗓 Submitted 2026-06-03" style="text;html=1;align=left;fontSize=9;verticalAlign=top;" vertex="1" parent="w1"><mxGeometry x="522" y="554" width="380" height="46" as="geometry" /></mxCell>
+        <mxCell id="e8u" value="PROOF OF OWNERSHIP&#10;&quot;Brown stitching inside and my concession card is in the front slot.&quot;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F6F8FA;strokeColor=#E3E8EE;fontSize=9;align=left;spacingLeft=6;" vertex="1" parent="w1"><mxGeometry x="522" y="602" width="380" height="34" as="geometry" /></mxCell>
+        <mxCell id="e9u" value="✓ Approve" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1F8A4C;strokeColor=none;fontColor=#FFFFFF;fontSize=9;fontStyle=1;" vertex="1" parent="w1"><mxGeometry x="930" y="558" width="170" height="26" as="geometry" /></mxCell>
+        <mxCell id="e10u" value="✕ Reject" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#C0392B;strokeColor=none;fontColor=#FFFFFF;fontSize=9;fontStyle=1;" vertex="1" parent="w1"><mxGeometry x="930" y="590" width="170" height="26" as="geometry" /></mxCell>
+        <mxCell id="e11u" value="📦 Mark as Returned  (once approved)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0079C1;strokeColor=none;fontColor=#FFFFFF;fontSize=8;" vertex="1" parent="w1"><mxGeometry x="930" y="622" width="170" height="26" as="geometry" /></mxCell>
+
+        <mxCell id="wnote" value="JCU Singapore visual identity: brand blue #0079C1, gold #F6A800, navy #00263A, Georgia headings, card-based layout.&#10;Wireframes were produced before implementation and drove the delivered interface." style="text;html=1;align=left;verticalAlign=top;fontSize=11;fontStyle=2;fontColor=#5B6B7B;" vertex="1" parent="w1">
+          <mxGeometry x="60" y="756" width="1060" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+
+</mxfile>

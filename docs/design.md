@@ -3,12 +3,14 @@
 ← [Back to documentation home](README.md)
 
 Design of all major components: **architecture**, **database**, and **user
-interface**. Supports **Rubric Criterion 2 — Design**. Diagrams below render on
-GitHub; we also modelled them in the required online tools (links noted).
+interface**. Supports **Rubric Criterion 2 — Design**. The diagrams below render
+inline on GitHub and are also maintained in an online diagramming tool (see the
+source file linked under each section).
 
-> 🛠️ **Building the tool-based diagrams?** Every box, column and screen element is
-> specified in **[diagram-specs.md](diagram-specs.md)** — ready to reproduce in
-> Gliffy, GenMyModel and NinjaMock.
+> 🛠️ **Diagram sources:** all three diagrams are maintained as an editable
+> **[draw.io file](diagrams/smart-lost-found-diagrams.drawio)** (open at
+> <https://app.diagrams.net>). See **[diagram-specs.md](diagram-specs.md)** for how to
+> open, edit and export them, or to rebuild them in Gliffy / GenMyModel / NinjaMock.
 
 ---
 
@@ -36,12 +38,14 @@ flowchart TD
   Modules -->|"supabase-js SDK (CRUD)"| Supabase
 ```
 
-> 🛠️ Also produced as a UML diagram in **Gliffy**: _add link_
+> 🛠️ Also maintained as an editable UML diagram in draw.io — tab **1. Architecture**
+> of [`diagrams/smart-lost-found-diagrams.drawio`](diagrams/smart-lost-found-diagrams.drawio).
+> _Exported image: `img/architecture.png` (add once exported)._
 
 **Layering / separation of concerns**
 - **Presentation** — HTML pages + `styles.css` (JCU design system).
 - **Application logic** — `store.js` (data access), `auth.js` (session + route guard), `map.js`, `camera.js`, `main.js` (shared chrome).
-- **Data** — Supabase Postgres (`items`, `claims` tables) with Row-Level Security.
+- **Data** — Supabase Postgres (`items`, `claims`, `users`) with Row-Level Security.
 
 ### Domain model (class diagram)
 ```mermaid
@@ -76,9 +80,9 @@ classDiagram
 
 ## 2. Database design
 
-Modern **relational** database (PostgreSQL via Supabase). Two tables with a
-one-to-many relationship; `CHECK` constraints enforce valid enums; Row-Level
-Security governs access.
+Modern **relational** database (PostgreSQL via Supabase). Three tables — `items`,
+`claims` and `users` — with a one-to-many relationship between items and claims.
+`CHECK` constraints enforce valid enums and Row-Level Security governs access.
 
 ```mermaid
 erDiagram
@@ -130,14 +134,16 @@ erDiagram
 `users` is deliberately **not** linked by a foreign key to `claims`; claims store
 the claimant's JCU ID as text so a claim survives an account being removed.
 
-> 🛠️ Also modelled in **GenMyModel** (online DB diagram tool): _add link_
+> 🛠️ Also modelled as an ER diagram in draw.io — tab **2. Database ER**
+> of [`diagrams/smart-lost-found-diagrams.drawio`](diagrams/smart-lost-found-diagrams.drawio).
+> _Exported image: `img/database-er.png` (add once exported)._
 
 **Design decisions**
 - Both *lost* and *found* reports live in one `items` table, distinguished by `item_type` — simpler queries, one dashboard.
 - `claims` reference `items` by FK so approving a claim can transition the item's `status`.
 - **Row-Level Security is enabled with no `DELETE` policy on either table.** Reads, inserts and updates are permitted; deletes issued from the browser are silently rejected, so item and claim history cannot be destroyed by a client. Records are retired by changing `status`, never removed.
 - The browser holds only the **anon/publishable key**; the `service_role` key is never shipped to the client.
-- Users are **not** stored in a table this release (open, password-less login) — role lives in the session only. Documented as a deliberate scope decision (see [Requirements](requirements.md)).
+- Accounts live in a `users` table and the **role comes from the account record**, so a user cannot choose their own permissions. Passwords are checked by `verify_login()` inside the database and never reach the browser.
 
 ---
 
@@ -147,9 +153,10 @@ The UI follows an official **JCU Singapore** visual language: brand blue
 `#0079c1` + gold `#f6a800`, Georgia headings, card-based layouts, an interactive
 campus aerial as the location picker, and a persistent utility bar + footer.
 
-**Key screens:** Login (role cards) · Dashboard (search/filter grid) · Report
-Lost (map picker) · Log Found (camera + upload) · Item Detail · Submit Claim ·
-Admin Dashboard · Review Claims.
+**Key screens:** Login (JCU ID + password) · Dashboard (search/filter grid, with
+auto-match alerts) · Report Lost (campus map picker) · Log Found (camera +
+upload) · Item Detail · Submit Claim · Admin Dashboard · Review Claims ·
+Access Denied.
 
 ### Interaction example — claim & approval flow
 ```mermaid
@@ -168,5 +175,7 @@ sequenceDiagram
   App->>DB: UPDATE claim = Returned, item = Returned
 ```
 
-> 🛠️ Interactive wireframes/prototype built in **NinjaMock**: _add link_
+> 🛠️ Wireframes for all five key screens — tab **3. UI Design**
+> of [`diagrams/smart-lost-found-diagrams.drawio`](diagrams/smart-lost-found-diagrams.drawio).
+> _Exported image: `img/ui-design.png` (add once exported)._
 > 📸 Screenshots of the delivered UI: see [Implementation](implementation.md).

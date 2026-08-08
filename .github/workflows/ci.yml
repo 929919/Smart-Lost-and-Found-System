@@ -70,8 +70,13 @@ jobs:
         with:
           node-version: "20"
 
-      - name: Install a headless browser
-        run: npx --yes playwright@1.47.0 install --with-deps chromium
+      # Two separate things are needed: the npm package, so run_tests.mjs can
+      # import it, and the browser binaries it drives. Installing only the
+      # binaries leaves the import unresolved.
+      - name: Install Playwright (package + browser)
+        run: |
+          npm install --no-save playwright@1.47.0
+          npx playwright install --with-deps chromium
 
       - name: Serve the application
         run: |

@@ -39,6 +39,16 @@ CREATE TABLE IF NOT EXISTS claims (
 ALTER TABLE items  ENABLE ROW LEVEL SECURITY;
 ALTER TABLE claims ENABLE ROW LEVEL SECURITY;
 
+-- Dropped first so this script can be re-run safely: PostgreSQL has no
+-- CREATE POLICY IF NOT EXISTS, so a second run would otherwise fail with
+-- "policy ... already exists".
+DROP POLICY IF EXISTS "public read items"    ON items;
+DROP POLICY IF EXISTS "public insert items"  ON items;
+DROP POLICY IF EXISTS "public update items"  ON items;
+DROP POLICY IF EXISTS "public read claims"   ON claims;
+DROP POLICY IF EXISTS "public insert claims" ON claims;
+DROP POLICY IF EXISTS "public update claims" ON claims;
+
 CREATE POLICY "public read items"    ON items  FOR SELECT USING (true);
 CREATE POLICY "public insert items"  ON items  FOR INSERT WITH CHECK (true);
 CREATE POLICY "public update items"  ON items  FOR UPDATE USING (true);
@@ -53,7 +63,10 @@ CREATE POLICY "public update claims" ON claims FOR UPDATE USING (true);
 -- from the client. Records are retired by setting status, never deleted.
 
 -- ---------- Seed data (matches the app's demo data) ----------
-INSERT INTO items (name, category, location, item_type, description, color, shelf_tag, status, created_at) VALUES
+-- Guarded so re-running this script does not duplicate the sample items.
+-- To reload the seed from scratch: TRUNCATE items RESTART IDENTITY CASCADE;
+INSERT INTO items (name, category, location, item_type, description, color, shelf_tag, status, created_at)
+SELECT * FROM (VALUES
 ('Apple AirPods Pro',          'Electronics', 'Library',               'found', 'White case with a small scratch', 'White', 'A-04', 'Active',   '2026-05-28'),
 ('Black leather wallet',       'Accessories', 'Food Court / Canteen',  'found', 'Contains some cards, no cash',    'Black', 'B-12', 'Active',   '2026-05-29'),
 ('JCU Hoodie — size M',        'Clothing',    'Lecture Theatres',      'found', 'Dark blue, JCU logo on front',    'Blue',  'C-02', 'Active',   '2026-05-30'),
@@ -63,8 +76,13 @@ INSERT INTO items (name, category, location, item_type, description, color, shel
 ('MacBook Pro 14"',            'Electronics', 'Lecture Theatres',      'found', 'Space grey, sticker on lid',      'Grey',  'A-01', 'Claimed',  '2026-05-22'),
 ('Blue umbrella',              'Accessories', 'Car Park',              'found', 'Foldable, blue handle',           'Blue',  '',     'Returned', '2026-05-20'),
 ('Set of car keys',            'Keys',        'Car Park',              'found', 'Toyota key with a red tag',       '',      'E-03', 'Active',   '2026-06-02'),
-('Water bottle (Frank Green)', 'Other',       'Sports Field',          'found', 'Mint green, 1L insulated',        'Green', 'F-05', 'Active',   '2026-06-02');
+('Water bottle (Frank Green)', 'Other',       'Sports Field',          'found', 'Mint green, 1L insulated',        'Green', 'F-05', 'Active',   '2026-06-02')
+) AS seed(name, category, location, item_type, description, color, shelf_tag, status, created_at)
+WHERE NOT EXISTS (SELECT 1 FROM items);
 
-INSERT INTO claims (item_id, claimant_jcu_id, proof, contact, status, created_at, updated_at) VALUES
-(2, 'jc123456', 'It''s my wallet — brown stitching inside and my student concession card is in the front slot.', 'jc123456@my.jcu.edu.au', 'Pending',  '2026-06-03', '2026-06-03'),
-(4, 'jc222333', 'Cracked top-right corner, lock screen is a photo of a husky. IMEI ends 7741.',                   'jc222333@my.jcu.edu.au', 'Approved', '2026-05-26', '2026-05-27');
+INSERT INTO claims (item_id, claimant_jcu_id, proof, contact, status, created_at, updated_at)
+SELECT * FROM (VALUES
+(2, 'jc123456', 'It''s my wallet — brown stitching inside and my student concession card is in the front slot.', 'jc123456@my.jcu.edu.au', 'Pending',  '2026-06-03'::timestamptz, '2026-06-03'::timestamptz),
+(4, 'jc222333', 'Cracked top-right corner, lock screen is a photo of a husky. IMEI ends 7741.',                   'jc222333@my.jcu.edu.au', 'Approved', '2026-05-26'::timestamptz, '2026-05-27'::timestamptz)
+) AS seed(item_id, claimant_jcu_id, proof, contact, status, created_at, updated_at)
+WHERE NOT EXISTS (SELECT 1 FROM claims);

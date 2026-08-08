@@ -53,8 +53,17 @@ function buildHeader(user, active) {
   </header>`;
 }
 
-function buildFooter() {
+const REPO = "https://github.com/929919/Smart-Lost-and-Found-System";
+
+function buildFooter(user) {
   const year = new Date().getFullYear();
+
+  // Role-appropriate shortcuts — students never see admin actions and vice versa
+  const quickLinks = (user && user.role === "admin")
+    ? `<li><a href="log-found.html">Log a Found Item</a></li>
+       <li><a href="admin-claims.html">Review Claims</a></li>`
+    : `<li><a href="report-lost.html">Report a Lost Item</a></li>`;
+
   return `
   <div class="acknowledge wrap" style="max-width:none">
     🎓 <strong>Student coursework project</strong> — CP3407 Advanced Software Engineering,
@@ -67,42 +76,45 @@ function buildFooter() {
         <div class="footer-brand">
           <span class="logobox"><img src="assets/img/jcu_logo.png" alt="James Cook University Singapore" /></span>
           <p>The Smart Lost &amp; Found System helps the JCU Singapore community report, search for and recover misplaced items across campus.</p>
-          <div class="socials">
-            <a href="#" title="Facebook">f</a><a href="#" title="Instagram">◎</a>
-            <a href="#" title="LinkedIn">in</a><a href="#" title="YouTube">▶</a>
-          </div>
+          <p style="margin-top:10px;font-size:.82rem">
+            Built for <strong>CP3407 Advanced Software Engineering</strong> by Group 6:
+            Yuvraj Dave, João Gabriel Costa and Chiranjeeb Satpathy.
+          </p>
         </div>
         <div>
-          <h4>Quick Links</h4>
+          <h4>In this system</h4>
           <ul>
             <li><a href="index.html">Found Items Dashboard</a></li>
-            <li><a href="report-lost.html">Report a Lost Item</a></li>
+            ${quickLinks}
             <li><a href="assistant.html">Help Assistant</a></li>
-            <li><a href="login.html">Sign in / Switch role</a></li>
+            <li><a href="login.html">Sign in / Switch account</a></li>
           </ul>
         </div>
         <div>
-          <h4>Campus Services</h4>
+          <h4>Project</h4>
           <ul>
-            <li><a href="#">Campus Security</a></li><li><a href="#">Student Hub</a></li>
-            <li><a href="#">IT Help Desk</a></li><li><a href="#">Library Services</a></li>
+            <li><a href="${REPO}" target="_blank" rel="noopener">Source code on GitHub ↗</a></li>
+            <li><a href="${REPO}/tree/main/docs" target="_blank" rel="noopener">Documentation ↗</a></li>
+            <li><a href="${REPO}/blob/main/docs/HOW-TO-TEST.md" target="_blank" rel="noopener">How to test ↗</a></li>
+            <li><a href="tests/tests.html">Run the test suite</a></li>
           </ul>
         </div>
         <div>
-          <h4>Contact</h4>
+          <h4>Contact (sample data)</h4>
           <ul class="footer-contact">
             <li>📍 149 Sims Drive, Singapore 387380</li>
             <li>✉️ lostandfound@jcu.edu.sg</li>
-            <li>☎️ +65 6709 3888</li>
             <li>🕗 Security Office · Mon–Sat, 8am–6pm</li>
+            <li><a href="https://www.jcu.edu.sg" target="_blank" rel="noopener">Real JCU Singapore website ↗</a></li>
           </ul>
         </div>
       </div>
       <div class="footer-bottom">
-        <span>© ${year} James Cook University Singapore</span>
+        <span>© ${year} Group 6 · CP3407 student project</span>
         <span class="spacer"></span>
-        <a href="#">Privacy</a><a href="#">Terms of Use</a><a href="#">Accessibility</a>
-        <span>CPE Reg. No. 200100786K</span>
+        <a href="${REPO}" target="_blank" rel="noopener">GitHub ↗</a>
+        <a href="${REPO}/blob/main/docs/design.md" target="_blank" rel="noopener">Design ↗</a>
+        <a href="${REPO}/blob/main/docs/testing.md" target="_blank" rel="noopener">Testing ↗</a>
       </div>
     </div>
   </footer>`;
@@ -117,7 +129,7 @@ DB.ready(function initLayout() {
   const header = document.getElementById("site-header");
   const footer = document.getElementById("site-footer");
   if (header) header.innerHTML = buildHeader(user, active);
-  if (footer) footer.innerHTML = buildFooter();
+  if (footer) footer.innerHTML = buildFooter(user);
 
   const burger = document.getElementById("hamburger");
   const nav = document.getElementById("mainnav");

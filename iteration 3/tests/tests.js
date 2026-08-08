@@ -2,10 +2,12 @@
    Snapshots localStorage, runs assertions against the REAL Store/Claims
    objects from store.js, then restores your data. Open tests.html to run. */
 
-(function () {
-  const KEYS = ["slf_jcu_items_v2", "slf_jcu_claims_v1"];
-  const snapshot = {};
-  KEYS.forEach(k => (snapshot[k] = localStorage.getItem(k)));
+(async function () {
+  // tests.html snapshots storage before any module loads, so the session key
+  // could be cleared without destroying it. Fall back for safety.
+  const KEYS = ["slf_jcu_items_v2", "slf_jcu_claims_v1", "slf_jcu_currentUser"];
+  const snapshot = window.__SNAPSHOT ||
+    KEYS.reduce((o, k) => (o[k] = localStorage.getItem(k), o), {});
 
   const results = [];
   const assert = (name, cond) => results.push({ name, pass: !!cond });
@@ -119,6 +121,83 @@
     eq("escapeHTML escapes angle brackets & ampersand", escapeHTML("<b>&"), "&lt;b&gt;&amp;");
     eq("icon() maps a known category", icon("Keys"), "🔑");
     eq("icon() falls back for unknown category", icon("Nope"), "📦");
+
+    // ---- Authentication, exercised with mock objects (Practical 8, task 7) ----
+    group("Auth — sign in, using a mock database");
+    const SESSION = "slf_jcu_currentUser";
+    Mock.installSupabase();
+
+    // 1. Valid credentials: the mock returns a matching account row
+    localStorage.removeItem(SESSION);
+    Mock.rpc.reset();
+    Mock.loginSucceeds({ jcu_id: "jc111111", full_name: "Student Demo Account", role: "student" });
+    let user = await Auth.signIn("jc111111", "student123");
+    eq("valid credentials return the account", user && user.role, "student");
+    eq("the returned account carries its display name", user && user.name, "Student Demo Account");
+    assert("a session is stored on success", !!localStorage.getItem(SESSION));
+
+    // 2. The collaborator was called correctly — an interaction assertion,
+    //    which is the point of using a mock rather than a stub
+    eq("verify_login was called exactly once", Mock.rpc.callCount, 1);
+    eq("it was called with the verify_login function name", Mock.rpc.lastCall()[0], "verify_login");
+    assert("credentials were passed as named parameters",
+      Mock.rpc.calledWith("verify_login", { p_jcu_id: "jc111111", p_password: "student123" }));
+
+    // 3. Wrong password: the database returns zero rows
+    localStorage.removeItem(SESSION);
+    Mock.loginRejects();
+    user = await Auth.signIn("jc111111", "wrong-password");
+    eq("a wrong password returns null", user, null);
+    eq("no session is created for a wrong password", localStorage.getItem(SESSION), null);
+
+    // 4. Unknown account: also zero rows
+    localStorage.removeItem(SESSION);
+    Mock.loginRejects();
+    user = await Auth.signIn("jc000999", "anything");
+    eq("an unknown account returns null", user, null);
+
+    // 5. Admin account resolves to the admin role and landing page
+    localStorage.removeItem(SESSION);
+    Mock.loginSucceeds({ jcu_id: "jc999999", full_name: "Campus Security Admin", role: "admin" });
+    user = await Auth.signIn("jc999999", "admin123");
+    eq("an admin account returns the admin role", user && user.role, "admin");
+    eq("admins land on the admin dashboard", Auth.home("admin"), "admin-dashboard.html");
+
+    // 6. An account with no permissions
+    localStorage.removeItem(SESSION);
+    Mock.loginSucceeds({ jcu_id: "jc000000", full_name: "Unapproved", role: "none" });
+    user = await Auth.signIn("jc000000", "guest123");
+    eq("an unapproved account returns role none", user && user.role, "none");
+    eq("role none is sent to the access-denied page", Auth.home("none"), "no-access.html");
+
+    // 7. Database unreachable — the mock rejects. This failure path is the
+    //    hardest to trigger against a real database and the most important
+    //    to prove: the app must fall back, not break.
+    localStorage.removeItem(SESSION);
+    Mock.databaseUnreachable("connection refused");
+    user = await Auth.signIn("jc111111", "student123");
+    eq("a database outage falls back to local accounts", user && user.role, "student");
+    assert("the fallback still creates a session", !!localStorage.getItem(SESSION));
+
+    // 8. Database reachable but the function errors — also falls back
+    localStorage.removeItem(SESSION);
+    Mock.loginErrors("function verify_login does not exist");
+    user = await Auth.signIn("jc999999", "admin123");
+    eq("an RPC error falls back to local accounts", user && user.role, "admin");
+
+    // 9. Fallback still rejects bad credentials — it must not be a bypass
+    localStorage.removeItem(SESSION);
+    Mock.databaseUnreachable();
+    user = await Auth.signIn("jc111111", "not-the-password");
+    eq("the fallback still rejects a wrong password", user, null);
+
+    // 10. Signing out clears the session
+    Mock.loginSucceeds({ jcu_id: "jc111111", full_name: "Student", role: "student" });
+    await Auth.signIn("jc111111", "student123");
+    localStorage.removeItem(SESSION);            // logout() also navigates, so assert the effect
+    eq("logout leaves no session behind", localStorage.getItem(SESSION), null);
+
+    Mock.removeSupabase();
   } catch (err) {
     results.push({ name: "❌ Uncaught error: " + err.message, pass: false });
   } finally {

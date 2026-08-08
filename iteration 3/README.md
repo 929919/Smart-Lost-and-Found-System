@@ -10,9 +10,11 @@ claims workflow, and camera capture.
 - 🔔 **Lost ↔ found auto-matching** (`assets/js/matching.js`, story 5.3) — scores
   every active found item against a student's lost report and surfaces ranked
   matches on their dashboard, with the reason for each match.
-- 🧪 **Automated test suite** (`tests/`, story 5.4) — 35 unit tests, zero install.
-- 🗄️ **PostgreSQL schema** (`db/schema.sql`, story 5.1) — relational schema for
-  Supabase migration.
+- 🧪 **Automated test suite** (`tests/`) — 53 unit tests including mock-object
+  tests for authentication, zero install.
+- 🗄️ **Supabase PostgreSQL backend** (`db/`) — items, claims and accounts in a
+  managed relational database, with graceful fallback when unreachable.
+- 🔐 **Credential sign-in** — the role comes from the account, not from a choice.
 
 ## How to run
 Open **`login.html`** in your browser. For the camera tool to work you need a
@@ -61,20 +63,27 @@ visitors go to `login.html`, accounts with no permissions go to `no-access.html`
 and signing in with the wrong role for a page returns you to your own home page.
 
 ## How data works
-Everything persists in **localStorage** (no backend):
-- `slf_jcu_items_v2` — found & lost items (incl. `photoUrl` base64 image)
-- `slf_jcu_claims_v1` — student claims (Pending → Approved/Rejected → Returned)
-- `slf_jcu_currentUser` — the signed-in `{jcuId, role}`
+Items, claims and accounts live in a **Supabase (PostgreSQL)** database. The data
+layer loads them once on startup and caches them in memory, so page rendering
+stays synchronous while writes are persisted in the background.
+
+- `items` — found items and lost reports, separated by `item_type`
+- `claims` — ownership claims, foreign-keyed to `items`
+- `users` — accounts and roles; unreadable from the browser (see above)
+
+If the database cannot be reached the application **falls back to local demo
+data** and shows a warning banner rather than failing. The signed-in session is
+the only thing kept in `localStorage`.
 
 Approving a claim marks its item **Claimed**; "Mark as Returned" marks it
 **Returned**. Use **Admin → ⚙️ Manage item statuses → Reset demo data** to restore
-the original sample set.
+the sample set.
 
 ## Running the tests
 No installation required — open **`tests/tests.html`** in a browser (or serve it
 as above and visit `http://localhost:8124/tests/tests.html`). The runner
 snapshots and restores your localStorage, so it never disturbs app data.
-**Current result: 35/35 passing.**
+**Current result: 53/53 passing.**
 
 ## Structure
 ```
@@ -83,10 +92,12 @@ iteration 3/
 ├── report-lost.html  submit-claim.html  assistant.html
 ├── admin-dashboard.html  log-found.html  admin-claims.html  admin.html
 ├── db/
-│   └── schema.sql     # PostgreSQL schema for Supabase (story 5.1)
+│   ├── schema.sql     # items and claims, constraints, row-level security
+│   └── users.sql      # accounts and the verify_login() function
 ├── tests/
-│   ├── tests.html     # zero-install test runner (story 5.4)
-│   └── tests.js       # 35 unit tests
+│   ├── tests.html     # zero-install test runner
+│   ├── tests.js       # 53 unit tests
+│   └── mocks.js       # mock objects for testing authentication
 └── assets/
     ├── css/styles.css
     ├── img/  (jcu_logo.png, jcu_layout.png)
@@ -102,7 +113,12 @@ iteration 3/
         ├── admin-claims.js  assistant.js  admin.js
 ```
 
-## Out of scope (this iteration)
-No real authentication/passwords and no JCU ID validation. The Supabase
-migration (story 5.1) and deployment (5.2) are in progress; the chatbot stays
-rule-based until story 5.5.
+## Scope decisions
+- **Passwords are stored unhashed.** Prototype-grade: they are checked by a
+  `SECURITY DEFINER` database function so they never reach the browser, and
+  row-level security blocks the client from reading the accounts table. A
+  production system would use Supabase Auth with hashed credentials.
+- **Accounts are pre-provisioned** — there is no self-registration.
+- **The assistant is rule-based**, not a language model.
+- **Not delivered this milestone:** duplicate detection (story 3.5, P30) and the
+  audit trail (story 4.5, P40). See [the backlog](../docs/requirements.md).

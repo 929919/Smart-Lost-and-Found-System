@@ -112,7 +112,7 @@ backlog but was necessary to deliver a credible system:
 |------------|--------|
 | Migration to **Supabase PostgreSQL** | The project requires a modern relational database; the prototype had been using browser storage |
 | **Public deployment** (Vercel, HTTPS) | Required for demonstration, and camera capture only works over HTTPS |
-| **Automated test suite** (35 assertions) | Practical 7 required at least 15 automated tests |
+| **Automated test suite** (53 assertions) | Practical 7 required at least 15 automated tests |
 | **Accessibility pass** | Keyboard navigation, focus states, live regions, reduced motion |
 
 ### Not delivered

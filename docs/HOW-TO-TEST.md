@@ -38,7 +38,7 @@ Item data is seeded automatically (10 items, 2 claims).
 
 ## Part 1 — Student experience (5 min)
 
-**Sign in** with JCU ID `jc111111`, role **🎓 Student**.
+**Sign in** with `jc111111` / `student123`.
 
 ### ✅ 1.1 Dashboard, search and filters *(story 2.3)*
 | Do this | Expect |
@@ -97,7 +97,7 @@ Item data is seeded automatically (10 items, 2 claims).
 
 ## Part 2 — Admin experience (5 min)
 
-Click **Logout** (top-right), then sign in as `jc999999`, role **🛡️ Admin**.
+Click **Logout** (top-right), then sign in as `jc999999` / `admin123`.
 
 ### ✅ 2.1 Admin dashboard *(story 4.1)*
 | Do this | Expect |
@@ -137,11 +137,13 @@ Click **Logout** (top-right), then sign in as `jc999999`, role **🛡️ Admin**
 
 Open **http://localhost:8124/tests/tests.html**
 
-Expect a green **✔ 35/35 passing** summary covering:
+Expect a green **✔ 53/53 passing** summary covering:
 - Item CRUD and status transitions
 - The full claims workflow (approve / reject / mark returned)
 - Seed-reset integrity *(a regression test for a real bug these tests caught)*
 - The auto-matching engine
+- **Authentication, using mock objects** — valid and invalid credentials, all
+  three roles, and the database-outage fallback
 
 The runner snapshots and restores your data, so it won't disturb anything.
 

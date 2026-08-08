@@ -117,7 +117,7 @@ Switch to the **Supabase** tab → **Table Editor**
 > CHECK constraints and Row-Level Security — not browser storage."*
 
 ### 4b. Automated tests
-Open **http://localhost:8124/tests/tests.html** → **✔ 35/35 passing**
+Open **http://localhost:8124/tests/tests.html** → **✔ 53/53 passing**
 
 > **Say this:** *"Unit tests for the data layer, the claims workflow and the
 > matching engine. They caught a real bug during development — the seed data was

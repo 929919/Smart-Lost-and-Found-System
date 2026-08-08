@@ -41,7 +41,7 @@ the client.
 
 ## 🧪 Run the tests
 Open **`iteration 3/tests/tests.html`** in a browser (or `http://localhost:8124/tests/tests.html`).
-No installation required. **Current result: 35/35 passing.**
+No installation required. **Current result: 53/53 passing.**
 
 ---
 
@@ -88,7 +88,7 @@ incremental progress is visible. Releases are tagged `v1.0`, `v2.0`, `v3.0`.
 |-----------|-----------|
 | **1** | Found-items dashboard (search, category/status filters, live stats), report form with interactive JCU campus map picker, rule-based assistant |
 | **2** | JCU ID login with Student/Admin roles + route guard, item detail pages, claim submission with proof of ownership, admin dashboard, log-found with **camera capture**, claims review (approve/reject/mark returned) |
-| **3** | **Live PostgreSQL database** (Supabase), **credential login with database-backed accounts and roles**, **lost↔found auto-matching**, **35 automated unit tests**, accessibility pass, full documentation suite |
+| **3** | **Live PostgreSQL database** (Supabase), **credential login with database-backed accounts and roles**, **lost↔found auto-matching**, **53 automated unit tests**, accessibility pass, full documentation suite |
 
 ## 🛠️ Technology
 

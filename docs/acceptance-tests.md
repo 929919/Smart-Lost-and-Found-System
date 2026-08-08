@@ -310,7 +310,7 @@ Deterministic seed loaded on first run (`db/schema.sql` / `SEED_ITEMS`):
 > **Then** all assertions pass, covering item CRUD, the claims workflow, seed
 > integrity and the matching engine.
 
-**Result:** ✅ Pass — **35/35**
+**Result:** ✅ Pass — **53/53**
 
 ---
 

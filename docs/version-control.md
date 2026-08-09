@@ -53,3 +53,22 @@ Tag a release: `git tag -a v2.0 -m "Iteration 2 release" && git push --tags`.
 
 This keeps `main` stable, gives every change a review, and produces a clean,
 auditable history — the evidence this criterion asks for.
+
+## Issues, milestones and the project board
+
+Beyond commits and branches, the repository uses GitHub's planning features:
+
+| Mechanism | Purpose | Where |
+|-----------|---------|-------|
+| **Issues** | One per backlog story, assigned and closed on delivery | [story issues](https://github.com/929919/Smart-Lost-and-Found-System/issues?q=label%3Auser-story) |
+| **Milestones** | Group issues by iteration | [Iterations 1–3](https://github.com/929919/Smart-Lost-and-Found-System/milestones) |
+| **Labels** | Epic, priority P10–P40, iteration | on every issue |
+| **Project board** | Todo / In Progress / Done | [Product Backlog](https://github.com/users/uv-22/projects/1) |
+| **Actions** | CI on every push and pull request | [workflow runs](https://github.com/929919/Smart-Lost-and-Found-System/actions) |
+
+The board is owned by the `uv-22` account rather than the repository, because
+GitHub only permits a user-owned project to be linked to repositories under the
+same account. It is public, so it can be opened without signing in.
+
+See [Agile Process](agile.md#task-tracking) for how this tracking was used and
+when it was introduced.

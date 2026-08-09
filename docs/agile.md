@@ -26,6 +26,41 @@ and tracked with **Todo / In progress / Done** labels *(Practicals 4, 5, 6, 8)*.
 Every story page shows the breakdown and the current label; the summary is in
 [Requirements](requirements.md).
 
+### Moving tracking off the documentation pages *(Practical 9.3)*
+
+Editing a status label inside a Markdown table is a poor substitute for task
+tracking: it carries no history, no assignee, and cannot be queried. The backlog
+was therefore mirrored into GitHub's own tools, where the same information is
+live, assignable and filterable:
+
+| Mechanism | Where |
+|-----------|-------|
+| **Issues** — one per backlog story | [the 20 story issues](https://github.com/929919/Smart-Lost-and-Found-System/issues?q=label%3Auser-story) |
+| **Projects board** — Todo / In Progress / Done | [Smart Lost & Found — Product Backlog](https://github.com/users/uv-22/projects/1) |
+| **Milestones** — one per iteration | [Iterations 1–3](https://github.com/929919/Smart-Lost-and-Found-System/milestones) |
+| **Labels** — epic, priority P10–P40, iteration | applied to every issue |
+
+Each issue carries the persona, priority, day estimate, acceptance criteria and
+task breakdown taken from its story page, and links back to that page. The 18
+delivered stories are **closed**; **3.5 Duplicate detection** and **4.5 Audit
+trail** remain **open** — the same 18-of-20 position recorded in
+[Requirements](requirements.md), now enforced by the issue state rather than by
+a hand-edited table.
+
+Two further issues record the requirements-gathering and iteration-planning work
+of Practicals 2 and 3. That work produced `User_Stories.docx` and
+`Practical_Week3_Iteration1.docx` rather than application code, so it is not one
+of the 20 stories, but it was real effort by a named team member and is tracked
+as such.
+
+**When this was done, stated plainly.** The issues, milestones and board were
+created at the close of Iteration 3. They were not maintained live across the
+three iterations, and the issue timestamps show this. During the iterations
+themselves, tracking was the status labels on the story pages together with the
+Kanban board in `Practical_Week3_Iteration1.docx`. Nothing sits in **In
+Progress** on the board because no work is currently underway — an empty column
+is the honest state, not an oversight.
+
 ---
 
 ## Velocity

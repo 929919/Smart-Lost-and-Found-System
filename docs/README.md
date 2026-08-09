@@ -25,6 +25,7 @@ items, and a help assistant.
 | Page | Rubric criterion it supports |
 |------|------------------------------|
 | 📄 **[Project Report](PROJECT-REPORT.md)** | **8 — Technical writing (the full report)** |
+| 📘 **[Project Report — Word document](../CP3407-Group6-Project-Report.docx)** | The same report as a 32-page `.docx`, with all figures and screenshots |
 | 📋 **[How to Test This Project](HOW-TO-TEST.md)** | **Start here if you are marking** |
 | 🎤 [Demo Script](DEMO-SCRIPT.md) | 15-minute walkthrough running order |
 | 🎬 [Demo Video Script](DEMO-VIDEO-SCRIPT.md) | 5-minute recording script, shot by shot |

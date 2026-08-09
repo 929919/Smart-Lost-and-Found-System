@@ -31,6 +31,13 @@ matching, and a help assistant.
 > **Details → visit this unsafe site**. Only sample data and the three published
 > demo accounts exist there; never enter real credentials.
 
+> 📘 **Full project report:**
+> **[CP3407-Group6-Project-Report.docx](CP3407-Group6-Project-Report.docx)** — 32
+> pages covering requirements, design, implementation, testing, code quality,
+> version control, the agile process and evaluation, with all diagrams and
+> screenshots. The Markdown equivalent is
+> [docs/PROJECT-REPORT.md](docs/PROJECT-REPORT.md).
+
 ### What the demo video shows
 
 A screen recording of the delivered application, run against the live database.

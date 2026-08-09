@@ -51,6 +51,7 @@ Full documentation lives in **[`docs/`](docs)** — one page per assessment crit
 
 | Page | Covers |
 |------|--------|
+| 📄 **[Project Report](docs/PROJECT-REPORT.md)** | **The full project report** |
 | 📋 **[How to Test](docs/HOW-TO-TEST.md)** | **Click-by-click walkthrough — start here if marking** |
 | 🎤 [Demo Script](docs/DEMO-SCRIPT.md) | 15-minute presentation running order |
 | 🚀 [Deployment Guide](docs/DEPLOYMENT.md) | Publishing to Vercel, step by step |

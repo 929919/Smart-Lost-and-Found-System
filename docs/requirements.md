@@ -80,6 +80,40 @@ Status: ✅ delivered · ⬜ not delivered.
 | 4.4 | [Admin roles & access control](user-stories/4.4-admin-roles-access.md) | P30 | 2 d | 3 | ✅ |
 | 4.5 | [Audit trail](user-stories/4.5-audit-trail.md) | P40 | 2 d | 3 | ⬜ |
 
+### Traceability to the interview findings
+
+`User_Stories.docx` records **21 requirements** across the three user groups. The
+backlog carries **20 stories**. The difference is accounted for as follows:
+
+| Interview requirement | Priority | Became |
+|-----------------------|:--------:|--------|
+| Extended lifecycle states (Disposed / Donated / Archived) | 50 | **Excluded** — P50 is out of scope for this milestone by definition |
+| Performance — fast reporting and search | 20 | ⚠️ **Not carried into the backlog** |
+| Reliability — accurate, trustworthy listings | 30 | ⚠️ **Not carried into the backlog** |
+
+Every other interview requirement maps to exactly one story. Two additional
+stories appear in the backlog that were refinements rather than distinct
+interview findings: **1.3 Photo display** (the viewing half of the photo
+requirement, which was captured as upload) and **1.5 Clean grid** (the default
+view implied by the status lifecycle).
+
+**The gap, stated plainly.** *Performance* and *Reliability* are non-functional
+requirements. They were gathered from users, given priorities, and then lost
+between elicitation and the backlog, because the team's story format assumed a
+user-facing feature and neither fits that shape. Nothing was built specifically
+to satisfy them and nothing measured whether they were met.
+
+In practice both were addressed incidentally — search filters an in-memory
+cache so results are immediate, and integrity constraints plus row-level
+security in the database underpin the accuracy of the listings — but that is a
+happy accident, not a tracked requirement.
+
+This is the same weakness that produced the unbudgeted work in Iteration 3: the
+database migration, deployment, testing and accessibility effort was also
+non-functional, also real, and also absent from the backlog. Recording it here
+rather than quietly renumbering the stories, because it is the most useful
+lesson the project produced. See the reflection in [agile.md](agile.md).
+
 ---
 
 ## Iteration allocation

@@ -96,26 +96,27 @@ is precisely what the prioritisation existed to protect.
 ### Iteration 1 — Core functionality *(8 stories, 43 d, all P10)*
 - **Planned:** dashboard, search and filter, chatbot with live querying, found-item logging, storage tagging, claim verification, status lifecycle.
 - **Delivered:** all eight stories.
-- **Review:** the client found the concept clear but said the interface did not look like a university system.
-- **Retrospective:**
-  - *Went well* — prioritising every P10 story into one iteration meant the first demo showed a usable system, not fragments.
-  - *Improve* — commit in smaller, more frequent increments; the work was committed in large batches, which is why the burn-down had to be reconstructed rather than read off.
-  - *Action* — adopt authentic JCU branding; reduce the next commitment from 43 to 18 story-days.
+- **Review:** _to be completed by the team — what was demonstrated and what the client said._
+- **Observations from the project record** *(derived from the repository, not a substitute for the team's retrospective)*:
+  - Prioritising every P10 story into one iteration meant the first increment was a usable system rather than fragments.
+  - Work was committed in large batches — 71 commits fall on only eight distinct days across the project — which is why the burn-down had to be reconstructed from story completion rather than read from daily measurements.
+  - The next commitment was reduced from 43 to 18 story-days, so the over-commitment was recognised and acted on.
+- **Retrospective:** _to be completed by the team._
 
 ### Iteration 2 — Usability and trust *(6 stories, 18 d, all P20)*
 - **Planned:** photo display and upload, responsive design, lost-item reporting, required-field rules, claim with proof of ownership.
 - **Delivered:** all six stories, plus role-based access brought forward from the Iteration 3 plan because the claims workflow could not be demonstrated safely without it.
-- **Review:** the client was satisfied with the role separation and asked for a real database and a public link.
-- **Retrospective:**
-  - *Went well* — extracting shared components (`map.js`, `camera.js`, `main.js`) meant each new page cost less than the last.
-  - *Improve* — no automated tests yet; defects were only caught by manual checking.
-  - *Action* — add a test suite and migrate to a real database in Iteration 3.
+- **Review:** _to be completed by the team — what was demonstrated and what the client said._
+- **Observations from the project record** *(derived from the repository, not a substitute for the team's retrospective)*:
+  - Extracting shared components (`map.js`, `camera.js`, `main.js`) meant each later page reused existing work rather than repeating it.
+  - No automated tests existed at this point; defects were caught only by manual checking. The suite arrived in Iteration 3.
+- **Retrospective:** _to be completed by the team._
 
 ### Iteration 3 — Persistence, deployment and matching *(6 stories planned, 10 d)*
 - **Planned:** clean grid, match notifications, accounts and authentication, duplicate detection, admin roles, audit trail.
 - **Delivered:** 1.5, 2.4, 2.5 and 4.4, plus the four unplanned items above. **3.5 and 4.5 deferred.**
-- **Review:** demonstrated to the client on a laptop. Two defects were raised — dead links in the page footer, and the assistant returning identical answers to students and administrators. Both were fixed and committed the same day.
-- **Retrospective:**
+- **Review:** demonstrated to the client (course lecturer) on the team's laptop in the week 10 practical. Two defects were raised — inoperative footer links, and the assistant returning identical answers to students and administrators. Both were fixed and committed the same day; logged as D-04 and D-05.
+- **Retrospective:** *(recorded after the demonstration)*
   - *Went well* — the automated tests caught a real defect during development (seed data was being mutated in memory, so "reset demo data" did not fully reset). A regression test now guards it. Graceful degradation to local data also meant the database being unavailable never blocked a demonstration.
   - *Improve* — the unplanned work was foreseeable. The database migration was implied by the project requirements from the start and should have been a backlog story with an estimate in Iteration 1, rather than arriving as unbudgeted work in the final iteration.
   - *Action* — recorded 3.5 and 4.5 with the reasoning for deferral and what remains; the matching engine built for 2.4 already provides most of what 3.5 needs.
@@ -131,8 +132,16 @@ is precisely what the prioritisation existed to protect.
 ## What the team would change
 
 The single biggest process lesson is that **non-functional requirements need
-estimates too**. The database, deployment, testing and accessibility work was
-real engineering effort that never appeared in the interview-derived backlog,
-so it had no budget. It ultimately displaced two features. Had it been sized at
-planning time, the commitment would have been adjusted rather than the scope cut
-at the end.
+estimates too** — and the project made the same mistake twice.
+
+At elicitation, *performance* and *reliability* were gathered from users and
+given priorities, then never became stories (see the traceability note in
+[requirements.md](requirements.md)). Later, the database migration, deployment,
+testing and accessibility work — seven story-days of real engineering effort —
+was equally absent from the backlog and therefore unbudgeted, and ultimately
+displaced two features.
+
+The common cause is a story format that assumed every requirement is a
+user-facing feature. Had non-functional work been admitted to the backlog with
+measurable acceptance criteria, the commitment would have been adjusted at
+planning time rather than the scope cut at the end.

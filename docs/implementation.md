@@ -41,16 +41,39 @@ Criterion 3 — Implementation / Code**.
 - ✅ **Supabase PostgreSQL backend** (story 5.1) — the data layer now reads and writes a managed cloud Postgres database via the `supabase-js` browser SDK. Uses a *load-once-then-cache* design so page rendering stays synchronous, with optimistic writes persisted in the background. If the database is unreachable the app **degrades gracefully** to local demo data and shows a warning banner rather than failing.
 - ✅ **Deployed to a public HTTPS URL** (story 5.2) — <https://smart-lost-and-found-system-virid.vercel.app>, hosted as static files on Vercel and redeployed automatically on every push to `main`. HTTPS also enables the camera on real mobile devices.
 
-## Client feedback per iteration
-Each iteration ended with a demo to our client/tutor. Summary:
+## Client demonstration and feedback
 
-| Iteration | Feedback received | Action taken |
-|-----------|-------------------|--------------|
-| 1 | _"Looks clean; make it feel like an official JCU site and add real branding."_ | Adopted JCU Singapore logo, colours and campus map in Iteration 2 |
-| 2 | _"Great role separation; needs a real database and a public link to demo."_ | Planned Supabase + Vercel for Iteration 3 |
-| 3 | _add your client's feedback here_ | |
+The client for this project is the course lecturer, who reviews the delivered
+increment at the end of each iteration.
 
-> _Replace the italicised feedback with your actual tutor/client comments._
+### Iteration 3 — week 10 practical
+
+The application was demonstrated on the team's laptop against the live database.
+The walkthrough covered both roles, access control, the campus map picker, camera
+capture and the claims workflow, followed by the database, the test suite and the
+repository.
+
+**Two defects were raised:**
+
+| Defect | Resolution |
+|--------|------------|
+| Footer links were inoperative — eleven placeholder `href="#"` links implying services that do not exist | Replaced with working destinations (repository, documentation, testing guide, test runner, the JCU site) and the invented social links removed. Logged as **D-04**. |
+| The assistant returned identical answers to students and administrators | Branched by role — students receive recovery guidance, administrators an operational summary drawn from live database counts. Logged as **D-05**. |
+
+Both were fixed and committed the same day. See the
+[defect log](system-testing-plan.md#7-defect-log).
+
+### Iterations 1 and 2
+
+> ⚠️ **To be completed by the team before submission.** Record what was
+> demonstrated, what the lecturer said, and what changed as a result. If an
+> iteration was not formally reviewed, state that — an accurate record of a
+> missed review is worth more than an invented one.
+
+| Iteration | Demonstrated | Feedback received | Action taken |
+|-----------|--------------|-------------------|--------------|
+| 1 | | | |
+| 2 | | | |
 
 ## The delivered solution
 

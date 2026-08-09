@@ -120,7 +120,7 @@ All four call sites now use them. `renderStats()` went from eight lines of
 duplicated markup to one line.
 
 **Verified after the change:** all four pages render the same figures and colour
-tones as before, no console errors, and the 35 unit tests still pass.
+tones as before, no console errors, and the 53 unit tests still pass.
 
 ### ✅ What was already DRY
 

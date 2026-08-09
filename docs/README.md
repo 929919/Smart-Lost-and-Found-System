@@ -16,6 +16,7 @@ items, and a help assistant.
 
 | Page | Rubric criterion it supports |
 |------|------------------------------|
+| 📄 **[Project Report](PROJECT-REPORT.md)** | **8 — Technical writing (the full report)** |
 | 📋 **[How to Test This Project](HOW-TO-TEST.md)** | **Start here if you are marking** |
 | 🎤 [Demo Script](DEMO-SCRIPT.md) | 15-minute walkthrough running order |
 | 🚀 [Deployment Guide](DEPLOYMENT.md) | Publishing to Vercel, step by step |

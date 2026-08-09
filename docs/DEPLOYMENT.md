@@ -99,7 +99,7 @@ Open the URL and work through this list:
 | ☐ | Admin → **Log Found Item** → **Start Camera** | Browser asks for camera permission ✅ *(this only works on HTTPS — it's the main reason to deploy)* |
 | ☐ | Logout → `jc000000` / `guest123` | **Access Not Permitted** page |
 | ☐ | Open the URL on a phone | Layout adapts, camera uses the rear lens |
-| ☐ | `<your-url>/tests/tests.html` | **35/35 passing** |
+| ☐ | `<your-url>/tests/tests.html` | **53/53 passing** |
 
 If every box ticks, the deployment is correct.
 

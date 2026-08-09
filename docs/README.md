@@ -32,6 +32,26 @@ items, and a help assistant.
 | [Build & Development Tools](tools.md) | 6 — Building and development tools |
 | [Agile Process](agile.md) — iterations, reviews, velocity | 7 — Agile software engineering |
 
+## ✅ Assessment coverage
+
+Where each rubric criterion is evidenced:
+
+| Criterion | Primary evidence |
+|-----------|------------------|
+| 1 Requirements | [requirements.md](requirements.md) — 20 stories, personas, P10–P50 priorities, day estimates, traceability to the interviews, completed vs unfinished · [user-stories/](user-stories/) — a page per story |
+| 2 Design | [design.md](design.md) — architecture, database and interface, each with a diagram produced in draw.io · sources in [diagrams/](diagrams/) |
+| 3 Implementation | [implementation.md](implementation.md) — delivery per iteration, screenshots of the running system, client demonstration · [live application](https://smart-lost-and-found-system-virid.vercel.app) |
+| 4 Test | [testing.md](testing.md) — strategy, TDD, mock objects, accessibility · [acceptance-tests.md](acceptance-tests.md) — 34 scenarios · [system-testing-plan.md](system-testing-plan.md) — procedure and defect log · [code-quality.md](code-quality.md) — SRP and DRY |
+| 5 Version control | [version-control.md](version-control.md) — branching, commit conventions, release tags |
+| 6 Build & dev tools | [tools.md](tools.md) — tools, libraries and continuous integration |
+| 7 Agile | [agile.md](agile.md) — velocity, burn-down charts, iteration reviews and retrospectives |
+| 8 Technical writing | [PROJECT-REPORT.md](PROJECT-REPORT.md) and this documentation set |
+
+Practical deliverables are indexed in the same pages: task breakdowns and status
+labels on each story page (Practical 4), the SRP and DRY review (Practical 5),
+velocity and burn-down (Practicals 6 and 8), mock objects (Practical 8), and the
+system testing plan with defect tracking (Practical 9).
+
 ## 👥 Team — Group 6
 - Yuvraj Dave
 - João Gabriel Costa

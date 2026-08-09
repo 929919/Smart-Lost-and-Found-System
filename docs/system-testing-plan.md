@@ -159,13 +159,15 @@ rather than implicit.
 
 ## 7. Defect log
 
-Defects found during development and system testing. All are closed.
+Defects found during development and system testing. **Nine of the ten are
+closed. D-03 remains open at the time of submission** — its cause has been
+removed, but the outcome depends on a third party (see below).
 
 | ID | Summary | Sev | Found by | Cause & resolution |
 |----|---------|:---:|----------|--------------------|
 | **D-01** | "Reset demo data" did not fully reset within a session | S2 | **Automated unit test** | `Store.load()` returned references to the `SEED_ITEMS` constant, so `updateStatus()` mutated the seed in memory. Returned parsed copies; **regression test added**. |
 | **D-02** | Sign-in fell back to hard-coded accounts on the deployed site | S2 | Deployment verification | `users.sql` had not been run, so `verify_login()` did not exist. Ran the migration; the fallback behaved as designed and kept the site usable meanwhile. |
-| **D-03** | Chrome flagged the deployed site as "Dangerous" | S2 | Deployment verification | Authentic university branding + a credential form + a free subdomain matched Safe Browsing's phishing pattern, and nothing on the page said otherwise. Added a prominent student-project disclaimer, opened the demo-accounts panel by default, reworded the sign-in heading. |
+| **D-03** ⚠️ **OPEN** | Chrome flags the deployed site as "Dangerous" | S2 | Deployment verification | Authentic university branding + a credential form + a free subdomain matched Safe Browsing's phishing pattern, and nothing on the page said otherwise. Added a prominent student-project disclaimer, opened the demo-accounts panel by default, reworded the sign-in heading. **The cause is removed but the classification stands**: a review request has been submitted to Google and is pending at the time of submission, so Chrome still shows the interstitial. |
 | **D-04** | Footer links did nothing | S3 | **Client demonstration** | Eleven `href="#"` placeholders implying services that do not exist. Replaced with real destinations — repository, documentation, testing guide, test runner, the real JCU site — and removed the invented social accounts. |
 | **D-05** | The assistant gave identical answers to students and administrators | S3 | **Client demonstration** | A single answer set for both roles. Branched by role: students receive recovery guidance, administrators receive an operational summary drawn from live database counts. |
 | **D-06** | `schema.sql` failed on a second run | S3 | Database rebuild | PostgreSQL has no `CREATE POLICY IF NOT EXISTS`. Added `DROP POLICY IF EXISTS` first. |
@@ -180,6 +182,39 @@ Defects found during development and system testing. All are closed.
 - **One was found by the automated tests** (D-01) — a genuine logic defect that manual testing had missed, and the reason a regression test now guards it.
 - **Two were only exposed by deploying** (D-02, D-03). Neither was reproducible locally, which is the argument for deploying early rather than at the end.
 - **D-07 was found by inspection while fixing something else** — the more damaging of the pair, and it had never actually fired.
+
+### D-03 — the one defect still open
+
+**Reviewing this project?** Chrome currently shows a full-screen "Dangerous
+site" warning before the deployed application loads. The application is not
+compromised. Google Safe Browsing classifies it as phishing because it combines
+three signals that genuinely do describe a phishing site: authentic James Cook
+University branding, a sign-in form asking for a university ID and password, and
+a free `vercel.app` subdomain.
+
+The cause has been addressed — a permanent disclaimer now appears at the top of
+every page, the demonstration accounts are listed openly on the sign-in screen,
+and the heading states that this is a prototype. Clearing the classification,
+however, requires Google to re-review the site. **That request has been
+submitted and is pending; the verdict had not been returned at the time of
+submission.**
+
+Two ways to see the working system without waiting on Google:
+
+- **The demo video** — a 3 min 41 s walkthrough of the whole application, linked
+  from [implementation.md](implementation.md).
+- **Run it locally** — see [HOW-TO-TEST.md](HOW-TO-TEST.md). No install, no build
+  step, and it uses the same live database as the deployed copy.
+
+If you would rather reach the deployed site directly, Chrome's warning page
+allows it via **Details → visit this unsafe site**. The site stores only sample
+data and the three demonstration accounts published in this documentation; no
+real credentials are involved and none should be entered.
+
+**Why it is recorded as open rather than closed.** Every other defect in this
+log was closed by a change the team controlled. This one is not fully within the
+team's control, and reporting it as closed because the code changed would
+misrepresent what a reviewer will actually experience.
 
 ---
 

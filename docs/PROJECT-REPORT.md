@@ -7,7 +7,7 @@
 |---|---|
 | **Team** | Yuvraj Dave · João Gabriel Costa · Chiranjeeb Satpathy |
 | **Repository** | <https://github.com/929919/Smart-Lost-and-Found-System> |
-| **Deployed application** | <https://smart-lost-and-found-system-virid.vercel.app> |
+| **Deployed application** | <https://smart-lost-and-found-system-virid.vercel.app> — ⚠️ Chrome shows a Safe Browsing warning; see [D-03](system-testing-plan.md#d-03--the-one-defect-still-open) |
 | **Documentation** | [`docs/`](README.md) — 16 pages |
 | **Milestone** | 1 — three iterations |
 
@@ -311,8 +311,15 @@ never have been tested.
 
 ### 6.4 Defects
 
-Ten defects were recorded, classified and closed. The discovery sources are
-instructive:
+Ten defects were recorded and classified. **Nine are closed; D-03 remains open
+at the time of submission** — Google Safe Browsing still classifies the deployed
+site as phishing, so Chrome shows a warning before it loads. The cause has been
+removed and a re-review has been requested, but the verdict rests with Google
+rather than the team, so it is reported as open rather than closed. Full detail,
+and how to reach the working system meanwhile, is in
+[D-03](system-testing-plan.md#d-03--the-one-defect-still-open).
+
+The discovery sources are instructive:
 
 - **Two were raised by the client during the Iteration 3 demonstration** — dead footer links, and the assistant giving identical answers to both roles. Both were fixed and committed the same day.
 - **One was found by the automated tests** — the seed data was being mutated in memory, so "reset demo data" did not fully reset. Manual testing had missed it; a regression test now guards it.

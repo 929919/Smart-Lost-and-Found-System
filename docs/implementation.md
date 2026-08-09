@@ -8,6 +8,13 @@ Criterion 3 — Implementation / Code**.
 
 > 🔗 **Deployed app:** <https://smart-lost-and-found-system-virid.vercel.app> ·
 > 🎥 **Demo video:** **[Walkthrough — 3 min 41 s](https://drive.google.com/file/d/1BMMGsTkiHfR5UGWSQg3bmyD5pLkSfZZr/view?usp=sharing)**
+>
+> ⚠️ **Chrome blocks the deployed URL with a "Dangerous site" warning.** Safe
+> Browsing classified the JCU branding + sign-in form + free `vercel.app`
+> subdomain as phishing. The cause has been removed and a Google review is
+> pending — defect **[D-03](system-testing-plan.md#d-03--the-one-defect-still-open)**,
+> the only one still open. **The demo video below shows the whole system
+> working**, and it also runs locally ([How to Test](HOW-TO-TEST.md)).
 
 ### Demo video — running order
 

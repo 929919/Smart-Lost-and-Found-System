@@ -7,6 +7,12 @@ lost items across the JCU Singapore campus, with role-based access (Student /
 Admin), an interactive campus map, a claims workflow, camera capture for found
 items, and a help assistant.
 
+> ⚠️ **Chrome shows a "Dangerous site" warning for the live demo.** Google Safe
+> Browsing flagged the real JCU branding + sign-in form + free subdomain as
+> phishing. The cause is fixed and a review request is pending — see defect
+> **[D-03](system-testing-plan.md#d-03--the-one-defect-still-open)**. Use the
+> demo video below, or run it locally ([How to Test](HOW-TO-TEST.md)).
+>
 > 🔗 **Live demo:** <https://smart-lost-and-found-system-virid.vercel.app>
 > 🎥 **Demo video:** **[Walkthrough — 3 min 41 s](https://drive.google.com/file/d/1BMMGsTkiHfR5UGWSQg3bmyD5pLkSfZZr/view?usp=sharing)**
 > — a silent screen recording; the running order is in

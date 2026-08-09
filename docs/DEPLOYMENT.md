@@ -6,6 +6,10 @@ How to publish the Smart Lost & Found System to a public URL on **Vercel**.
 Free, no credit card, about **10 minutes**.
 
 > ✅ **Currently deployed at:** <https://smart-lost-and-found-system-virid.vercel.app>
+>
+> ⚠️ Chrome shows a Safe Browsing "Dangerous site" warning for this URL. The
+> cause is fixed and a Google review is pending — defect
+> **[D-03](system-testing-plan.md#d-03--the-one-defect-still-open)**.
 
 ---
 

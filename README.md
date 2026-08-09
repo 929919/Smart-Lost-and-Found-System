@@ -10,6 +10,27 @@ matching, and a help assistant.
 > 🔗 **Live demo:** <https://smart-lost-and-found-system-virid.vercel.app>
 > 🎥 **Demo video:** **[Walkthrough — 3 min 41 s](https://drive.google.com/file/d/1BMMGsTkiHfR5UGWSQg3bmyD5pLkSfZZr/view?usp=sharing)**
 
+> ### ⚠️ Please read before clicking the live demo
+>
+> **Chrome currently shows a "Dangerous site" warning for the deployed URL.**
+> The application is not compromised. Google Safe Browsing classifies it as
+> phishing because it combines three signals that do genuinely describe a
+> phishing site: real JCU branding, a sign-in form asking for a university ID
+> and password, and a free `vercel.app` subdomain.
+>
+> The cause has been fixed — a permanent student-project disclaimer sits at the
+> top of every page and the demo accounts are published openly on the sign-in
+> screen — but clearing the flag requires Google to re-review the site. **That
+> review has been requested and is pending.** Tracked as defect
+> **[D-03](docs/system-testing-plan.md#d-03--the-one-defect-still-open)**, the
+> only defect still open.
+>
+> **To see the working system:** watch the **demo video** above, or **run it
+> locally** ([How to Test](docs/HOW-TO-TEST.md)) — no install, no build step,
+> same live database. To reach the deployed site anyway, use Chrome's
+> **Details → visit this unsafe site**. Only sample data and the three published
+> demo accounts exist there; never enter real credentials.
+
 ### What the demo video shows
 
 A screen recording of the delivered application, run against the live database.
@@ -38,6 +59,8 @@ A screen recording of the delivered application, run against the live database.
 ## ▶️ Run it in 30 seconds
 
 **Just open the live site:** <https://smart-lost-and-found-system-virid.vercel.app>
+(Chrome shows a Safe Browsing warning first — see the notice above, defect
+[D-03](docs/system-testing-plan.md#d-03--the-one-defect-still-open).)
 
 Or run it locally — the application is in **[`iteration 3/`](iteration%203)**, no install, no build step.
 

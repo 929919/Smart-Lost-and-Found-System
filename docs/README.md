@@ -8,7 +8,9 @@ Admin), an interactive campus map, a claims workflow, camera capture for found
 items, and a help assistant.
 
 > 🔗 **Live demo:** <https://smart-lost-and-found-system-virid.vercel.app>
-> 🎥 **Demo video:** _add link here_
+> 🎥 **Demo video:** **[Walkthrough — 3 min 41 s](https://drive.google.com/file/d/1BMMGsTkiHfR5UGWSQg3bmyD5pLkSfZZr/view?usp=sharing)**
+> — a silent screen recording; the running order is in
+> [Implementation](implementation.md#demo-video--running-order).
 
 ---
 
@@ -19,6 +21,7 @@ items, and a help assistant.
 | 📄 **[Project Report](PROJECT-REPORT.md)** | **8 — Technical writing (the full report)** |
 | 📋 **[How to Test This Project](HOW-TO-TEST.md)** | **Start here if you are marking** |
 | 🎤 [Demo Script](DEMO-SCRIPT.md) | 15-minute walkthrough running order |
+| 🎬 [Demo Video Script](DEMO-VIDEO-SCRIPT.md) | 5-minute recording script, shot by shot |
 | 🚀 [Deployment Guide](DEPLOYMENT.md) | Publishing to Vercel, step by step |
 | [Requirements & Product Backlog](requirements.md) | 1 — Requirements |
 | [Design](design.md) — architecture, database, UI | 2 — Design |

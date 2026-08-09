@@ -6,7 +6,38 @@ What we delivered each iteration — *"what is needed, on time and on budget"* �
 plus the technology choices and how to see it running. Supports **Rubric
 Criterion 3 — Implementation / Code**.
 
-> 🔗 **Deployed app:** <https://smart-lost-and-found-system-virid.vercel.app> · 🎥 **Demo video:** _add link_
+> 🔗 **Deployed app:** <https://smart-lost-and-found-system-virid.vercel.app> ·
+> 🎥 **Demo video:** **[Walkthrough — 3 min 41 s](https://drive.google.com/file/d/1BMMGsTkiHfR5UGWSQg3bmyD5pLkSfZZr/view?usp=sharing)**
+
+### Demo video — running order
+
+A screen recording of the delivered application running against the live Supabase
+database. **The recording has no narration**; this table is the commentary. It was
+captured from a local copy of the same build that is deployed at the URL above.
+
+| Time | What is demonstrated | Story |
+|------|----------------------|-------|
+| 0:00 | Sign-in page, coursework disclaimer, demo accounts | 2.5 |
+| 0:18 | Student dashboard, counts read live from PostgreSQL | 1.1 |
+| 0:22 | Automatic lost↔found match alert, with the reason for the match | 2.4 |
+| 0:30 | Search and category/status filters on the item grid | 1.2, 1.5 |
+| 0:40 | Reporting a lost item, location pinned on the campus map | 2.3, 3.2 |
+| 0:58 | Report saved — item counts move from 11 to 12 | 2.2 |
+| 1:02 | Help assistant answering retention and collection questions | 2.1 |
+| 1:17 | Item detail: *Set of car keys*, reference #0009, Shelf E-03 | 1.1, 1.3 |
+| 1:25 | Claim submission blocked until proof of ownership is given | 3.3, 4.3 |
+| 1:47 | Administrator sign-in — different navigation for the same system | 4.4 |
+| 1:55 | Logging a found item with live camera capture in the browser | 3.1, 3.4 |
+| 2:36 | New item in the register with its photograph, Shelf B-12 | 1.3, 3.2 |
+| 2:46 | Claim review — proof contradicts the item description, claim rejected | 4.1 |
+| 3:10 | An earlier claim shown at the end of its lifecycle: Returned | 4.2 |
+| 3:14 | Assistant responses branch by role (defect **D-05**) | 2.1, 4.4 |
+| 3:24 | Valid account without permission is refused access | 4.4 |
+
+The rejection at 2:46 is the intended outcome, not a failure: the item is recorded
+as *"Toyota key with a red tag"* while the claimant's stated proof is *"has 5 keys
+and one blue keychain"*. Proof of ownership is what gates the handover, and here it
+did not hold up.
 
 ---
 

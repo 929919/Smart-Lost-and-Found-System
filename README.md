@@ -8,7 +8,30 @@ map, a verified claims workflow, camera capture for found items, automatic lost�
 matching, and a help assistant.
 
 > 🔗 **Live demo:** <https://smart-lost-and-found-system-virid.vercel.app>
-> 🎥 **Demo video:** _to be added_
+> 🎥 **Demo video:** **[Walkthrough — 3 min 41 s](https://drive.google.com/file/d/1BMMGsTkiHfR5UGWSQg3bmyD5pLkSfZZr/view?usp=sharing)**
+
+### What the demo video shows
+
+A screen recording of the delivered application, run against the live database.
+**There is no narration** — the running order below is the commentary.
+
+| Time | What is on screen |
+|------|-------------------|
+| 0:00 | Sign-in page, with the coursework disclaimer and the demo accounts |
+| 0:18 | Student dashboard — item counts read live from PostgreSQL |
+| 0:22 | **Automatic match alert**: a lost *Phone* report matched to a found item, with the reason it matched |
+| 0:40 | Reporting a lost item — location pinned on the interactive campus map |
+| 0:58 | The report is saved; the counts move from 11 items to 12 |
+| 1:02 | Help assistant answering retention and collection questions |
+| 1:17 | Item detail for *Set of car keys* (#0009, Shelf E-03) |
+| 1:25 | **Claim with proof of ownership** — an empty submission is refused by validation |
+| 1:47 | Signing in as an administrator — a different navigation bar for the same system |
+| 1:55 | **Logging a found item using the device camera**, captured live in the browser |
+| 2:36 | The new item appears in the register with its photograph, on Shelf B-12 |
+| 2:46 | **Reviewing claims** — the proof does not match the item description, so the claim is rejected |
+| 3:10 | An earlier claim shows the opposite path: approved, collected, marked Returned |
+| 3:14 | The assistant changes with the role — administrators get an operational greeting |
+| 3:24 | An account with valid credentials but no permission is refused access |
 
 ---
 

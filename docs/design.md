@@ -179,7 +179,17 @@ sequenceDiagram
 
 ![User interface design — wireframes for the five key screens](img/ui-design.drawio.png)
 
-> 🛠️ Produced in **draw.io** (online). Editable source: tab **3. UI Design** of
+> 🛠️ **Wireframes** produced in **draw.io** (online). Editable source: tab
+> **3. UI Design** of
 > [`diagrams/smart-lost-found-diagrams.drawio`](diagrams/smart-lost-found-diagrams.drawio).
+>
+> 🖱️ **Interactive prototype** built in **[Figma](https://www.figma.com/design/fwFGTc5C5OJuHIAH0ncKvS/Untitled?node-id=0-1)** — the delivered
+> screens assembled as navigable frames covering the student and administrator
+> journeys.
+>
 > 📸 Screenshots of the interface as delivered: see [Implementation](implementation.md).
-> 📸 Screenshots of the delivered UI: see [Implementation](implementation.md).
+
+The interface design therefore exists in two forms: **wireframes** produced
+before implementation, which set the layout and component structure, and a
+**Figma prototype** of the delivered screens, which allows a reviewer to move
+through the journeys rather than read a static image.

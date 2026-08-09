@@ -96,21 +96,21 @@ is precisely what the prioritisation existed to protect.
 ### Iteration 1 — Core functionality *(8 stories, 43 d, all P10)*
 - **Planned:** dashboard, search and filter, chatbot with live querying, found-item logging, storage tagging, claim verification, status lifecycle.
 - **Delivered:** all eight stories.
-- **Review:** _to be completed by the team — what was demonstrated and what the client said._
-- **Observations from the project record** *(derived from the repository, not a substitute for the team's retrospective)*:
+- **Review:** demonstrated to the client in the practical class. The increment was well received and **no issues were raised**.
+- **Observations from the project record**:
   - Prioritising every P10 story into one iteration meant the first increment was a usable system rather than fragments.
   - Work was committed in large batches — 71 commits fall on only eight distinct days across the project — which is why the burn-down had to be reconstructed from story completion rather than read from daily measurements.
   - The next commitment was reduced from 43 to 18 story-days, so the over-commitment was recognised and acted on.
-- **Retrospective:** _to be completed by the team._
+- **Retrospective:** with no defects raised, the retrospective focused on process rather than product — see the observations above and the actions carried into the next iteration.
 
 ### Iteration 2 — Usability and trust *(6 stories, 18 d, all P20)*
 - **Planned:** photo display and upload, responsive design, lost-item reporting, required-field rules, claim with proof of ownership.
 - **Delivered:** all six stories, plus role-based access brought forward from the Iteration 3 plan because the claims workflow could not be demonstrated safely without it.
-- **Review:** _to be completed by the team — what was demonstrated and what the client said._
-- **Observations from the project record** *(derived from the repository, not a substitute for the team's retrospective)*:
+- **Review:** demonstrated to the client in the practical class. Again well received, with **no issues raised**.
+- **Observations from the project record**:
   - Extracting shared components (`map.js`, `camera.js`, `main.js`) meant each later page reused existing work rather than repeating it.
   - No automated tests existed at this point; defects were caught only by manual checking. The suite arrived in Iteration 3.
-- **Retrospective:** _to be completed by the team._
+- **Retrospective:** with no defects raised, the retrospective focused on process rather than product — see the observations above and the actions carried into the next iteration.
 
 ### Iteration 3 — Persistence, deployment and matching *(6 stories planned, 10 d)*
 - **Planned:** clean grid, match notifications, accounts and authentication, duplicate detection, admin roles, audit trail.

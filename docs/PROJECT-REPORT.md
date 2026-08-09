@@ -478,10 +478,11 @@ when there was time to respond calmly.
 
 ### Team contributions
 
-_To be completed by the team before submission._
-
 | Member | Contribution |
 |--------|--------------|
-| Yuvraj Dave | |
-| João Gabriel Costa | |
-| Chiranjeeb Satpathy | |
+| **Yuvraj Dave** | Application development across all three iterations — the data layer, authentication and access control, the claims workflow, camera capture, the campus map picker and the matching engine. Database design and the Supabase migration. Deployment, the test suite and continuous integration. |
+| **João Gabriel Costa** | Repository administration and the GitHub workflow. Practical submissions, including the requirements gathering and iteration planning documents. Page layout and ongoing maintenance of the project materials. |
+| **Chiranjeeb Satpathy** | Limited contribution to the delivered work. |
+
+> The distribution of work was uneven. It is recorded accurately here rather
+> than averaged, so that the effort behind the delivered system is clear.

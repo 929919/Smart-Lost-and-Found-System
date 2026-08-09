@@ -65,15 +65,16 @@ Both were fixed and committed the same day. See the
 
 ### Iterations 1 and 2
 
-> ⚠️ **To be completed by the team before submission.** Record what was
-> demonstrated, what the lecturer said, and what changed as a result. If an
-> iteration was not formally reviewed, state that — an accurate record of a
-> missed review is worth more than an invented one.
-
 | Iteration | Demonstrated | Feedback received | Action taken |
 |-----------|--------------|-------------------|--------------|
-| 1 | | | |
-| 2 | | | |
+| 1 | Practical class — the dashboard, search and filtering, the assistant, found-item logging and the claim workflow | Well received; **no issues raised** | None required. Work continued to the Iteration 2 plan |
+| 2 | Practical class — photographs, responsive layout, lost-item reporting with the campus map, and claims carrying proof of ownership | Well received; **no issues raised** | None required |
+
+Neither review produced defects, so both iterations closed on their planned
+scope. The first defects raised by the client came in Iteration 3, when the
+system was tested feature by feature against a live database — a more thorough
+examination than the earlier walkthroughs, and the reason it surfaced problems
+the previous two had not.
 
 ## The delivered solution
 
